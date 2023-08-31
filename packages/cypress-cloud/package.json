@@ -40,7 +40,7 @@
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.191",
     "@types/ws": "^8.5.4",
-    "cypress": "^12.6.0",
+    "cypress": "^13.0.0",
     "esbuild": "^0.16.5",
     "eslint": "^7.32.0",
     "eslint-config-custom": "latest",
@@ -63,6 +63,7 @@
     "cy2": "^3.4.2",
     "debug": "^4.3.4",
     "execa": "^5.1.1",
+    "fast-safe-stringify": "^2.1.1",
     "getos": "^3.2.1",
     "globby": "^11.1.0",
     "is-absolute": "^1.0.0",
@@ -75,9 +76,6 @@
     "tmp-promise": "^3.0.3",
     "ts-pattern": "^4.3.0",
     "ws": "^8.13.0"
-  },
-  "peerDependencies": {
-    "cypress": ">=10.0.0"
   },
   "bin": {
     "cypress-cloud": "./dist/bin/cli.js"

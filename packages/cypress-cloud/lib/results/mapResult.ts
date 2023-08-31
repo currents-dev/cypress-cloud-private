@@ -48,27 +48,42 @@ export function specResultsToCypressResults(
   configState: ConfigState,
   specAfterResult: SpecAfter.SpecResult
 ): CypressCommandLine.CypressRunResult {
+  const stats = {
+    duration:
+      specAfterResult.stats.duration ??
+      (specAfterResult.stats.wallClockDuration as number) ??
+      0,
+    endedAt:
+      specAfterResult.stats.endedAt ??
+      specAfterResult.stats.wallClockEndedAt ??
+      new Date().toISOString(),
+    startedAt:
+      specAfterResult.stats.startedAt ??
+      specAfterResult.stats.wallClockStartedAt ??
+      new Date().toISOString(),
+    failures: specAfterResult.stats.failures ?? 0,
+    passes: specAfterResult.stats.passes ?? 0,
+    pending: specAfterResult.stats.pending ?? 0,
+    skipped: specAfterResult.stats.skipped ?? 0,
+    suites: specAfterResult.stats.suites ?? 0,
+    tests: specAfterResult.stats.tests ?? 0,
+  };
   return {
     status: "finished",
     // @ts-ignore
     config: configState.getConfig(),
-    totalDuration: specAfterResult.stats.wallClockDuration,
-    totalSuites: specAfterResult.stats.suites,
-    totalTests: specAfterResult.stats.tests,
-    totalFailed: specAfterResult.stats.failures,
-    totalPassed: specAfterResult.stats.passes,
-    totalPending: specAfterResult.stats.pending,
-    totalSkipped: specAfterResult.stats.skipped,
-    startedTestsAt: specAfterResult.stats.wallClockStartedAt,
-    endedTestsAt: specAfterResult.stats.wallClockEndedAt,
+    totalDuration: stats.duration,
+    totalSuites: stats.suites,
+    totalTests: stats.tests,
+    totalFailed: stats.failures,
+    totalPassed: stats.passes,
+    totalPending: stats.pending,
+    totalSkipped: stats.skipped ?? 0,
+    startedTestsAt: stats.startedAt,
+    endedTestsAt: stats.endedAt,
     runs: [
       {
-        stats: {
-          ...specAfterResult.stats,
-          startedAt: specAfterResult.stats.wallClockStartedAt,
-          endedAt: specAfterResult.stats.wallClockEndedAt,
-          duration: specAfterResult.stats.wallClockDuration,
-        },
+        stats,
         reporter: specAfterResult.reporter,
         reporterStats: specAfterResult.reporterStats ?? {},
         spec: specAfterResult.spec,

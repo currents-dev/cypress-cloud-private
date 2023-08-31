@@ -1,0 +1,44 @@
+{
+  "stats": {
+    "duration": 1649,
+    "endedAt": "2023-08-31T19:03:08.099Z",
+    "startedAt": "2023-08-31T19:03:06.450Z",
+    "failures": 1,
+    "passes": 0,
+    "pending": 0,
+    "skipped": 0,
+    "suites": 1,
+    "tests": 1,
+    "wallClockDuration": 1649,
+    "wallClockStartedAt": "2023-08-31T19:03:06.450Z",
+    "wallClockEndedAt": "2023-08-31T19:03:08.099Z"
+  },
+  "reporterStats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-08-31T19:03:06.454Z",
+    "end": "2023-08-31T19:03:08.102Z",
+    "duration": 1648
+  },
+  "exception": null,
+  "video": true,
+  "screenshots": [],
+  "hasCoverage": false,
+  "tests": [
+    {
+      "displayError": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://web/./cypress/e2e/retries.js:9:12)",
+      "state": "failed",
+      "hooks": [],
+      "attempts": [
+        { "state": "failed", "screenshots": [], "wallClockDuration": 0 },
+        { "state": "failed", "screenshots": [], "wallClockDuration": 0 },
+        { "state": "failed", "screenshots": [], "wallClockDuration": 0 },
+        { "state": "failed", "screenshots": [], "wallClockDuration": 0 }
+      ],
+      "clientId": "r0"
+    }
+  ]
+}

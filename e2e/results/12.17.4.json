@@ -1,0 +1,283 @@
+{
+  "stats": {
+    "duration": 2187,
+    "endedAt": "2023-08-31T18:56:04.416Z",
+    "startedAt": "2023-08-31T18:56:02.229Z",
+    "failures": 1,
+    "passes": 0,
+    "pending": 0,
+    "skipped": 0,
+    "suites": 1,
+    "tests": 1,
+    "wallClockDuration": 2187,
+    "wallClockStartedAt": "2023-08-31T18:56:02.229Z",
+    "wallClockEndedAt": "2023-08-31T18:56:04.416Z"
+  },
+  "reporterStats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-08-31T18:56:02.231Z",
+    "end": "2023-08-31T18:56:04.426Z",
+    "duration": 2195
+  },
+  "exception": null,
+  "video": true,
+  "screenshots": [
+    {
+      "screenshotId": "diZ1MVuAmzX3Eb9Yj7_SX",
+      "name": "screenshot",
+      "testId": "r0",
+      "testAttemptIndex": 0,
+      "takenAt": "2023-08-31T18:56:02.606Z",
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed).png",
+      "height": 1440,
+      "width": 2560
+    },
+    {
+      "screenshotId": "jSGaUvksexeezB2KRoznZ",
+      "name": "screenshot",
+      "testId": "r0",
+      "testAttemptIndex": 1,
+      "takenAt": "2023-08-31T18:56:02.987Z",
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
+      "height": 1440,
+      "width": 2560
+    },
+    {
+      "screenshotId": "9FHX9c1hZF2Vwmfa2f5uN",
+      "name": "screenshot",
+      "testId": "r0",
+      "testAttemptIndex": 2,
+      "takenAt": "2023-08-31T18:56:03.412Z",
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed) (attempt 3).png",
+      "height": 1440,
+      "width": 2560
+    },
+    {
+      "screenshotId": "SIEOu4ZBP5kSFVQnA9ZrP",
+      "name": "screenshot",
+      "testId": "r0",
+      "testAttemptIndex": 3,
+      "takenAt": "2023-08-31T18:56:04.030Z",
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed) (attempt 4).png",
+      "height": 1440,
+      "width": 2560
+    }
+  ],
+  "hasCoverage": false,
+  "tests": [
+    {
+      "displayError": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://web/./cypress/e2e/retries.js:9:12)",
+      "state": "failed",
+      "hooks": [
+        {
+          "hookId": "h1",
+          "hookName": "before each",
+          "title": ["\"before each\" hook"],
+          "body": "function () {\n    cy.visit(\"/\");\n}"
+        },
+        {
+          "hookId": "h3",
+          "hookName": "after each",
+          "title": ["\"after each\" hook"],
+          "body": "function () {\n      self.sendLogsToPrinter(self.collectorState.getCurrentLogStackIndex(), self.collectorState.getCurrentTest());\n    }"
+        },
+        {
+          "hookId": "h2",
+          "hookName": "after all",
+          "title": ["\"after all\" hook"],
+          "body": "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }"
+        }
+      ],
+      "attempts": [
+        {
+          "state": "failed",
+          "error": {
+            "name": "Error",
+            "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "stack": "    at Context.eval (webpack://web/./cypress/e2e/retries.js:9:12)",
+            "codeFrame": {
+              "line": 9,
+              "column": 13,
+              "originalFile": "cypress/e2e/retries.js",
+              "relativeFile": "examples/webapp/cypress/e2e/retries.js",
+              "absoluteFile": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/retries.js",
+              "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+              "language": "js"
+            }
+          },
+          "timings": {
+            "lifecycle": 78,
+            "before each": [
+              { "hookId": "h1", "fnDuration": 281, "afterFnDuration": 1 }
+            ],
+            "test": { "fnDuration": 5, "afterFnDuration": 224 },
+            "after each": [
+              { "hookId": "h3", "fnDuration": 18, "afterFnDuration": 1 }
+            ]
+          },
+          "failedFromHookId": null,
+          "wallClockStartedAt": "2023-08-31T18:56:02.235Z",
+          "wallClockDuration": 612,
+          "videoTimestamp": 1084,
+          "startedAt": "2023-08-31T18:56:02.235Z",
+          "duration": 612,
+          "screenshots": [
+            {
+              "screenshotId": "3g8ko",
+              "name": "screenshot",
+              "testId": "r3",
+              "testAttemptIndex": 0,
+              "takenAt": "2023-08-31T18:56:02.606Z",
+              "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed).png",
+              "height": 1440,
+              "width": 2560
+            }
+          ]
+        },
+        {
+          "state": "failed",
+          "error": {
+            "name": "Error",
+            "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "stack": "    at Context.eval (webpack://web/./cypress/e2e/retries.js:9:12)",
+            "codeFrame": {
+              "line": 9,
+              "column": 13,
+              "originalFile": "cypress/e2e/retries.js",
+              "relativeFile": "examples/webapp/cypress/e2e/retries.js",
+              "absoluteFile": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/retries.js",
+              "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+              "language": "js"
+            }
+          },
+          "timings": {
+            "lifecycle": 36,
+            "before each": [
+              { "hookId": "h1", "fnDuration": 76, "afterFnDuration": 0 }
+            ],
+            "test": { "fnDuration": 4, "afterFnDuration": 216 },
+            "after each": [
+              { "hookId": "h3", "fnDuration": 20, "afterFnDuration": 0 }
+            ]
+          },
+          "failedFromHookId": null,
+          "wallClockStartedAt": "2023-08-31T18:56:02.869Z",
+          "wallClockDuration": 356,
+          "videoTimestamp": 1718,
+          "startedAt": "2023-08-31T18:56:02.869Z",
+          "duration": 356,
+          "screenshots": [
+            {
+              "screenshotId": "3itba",
+              "name": "screenshot",
+              "testId": "r3",
+              "testAttemptIndex": 1,
+              "takenAt": "2023-08-31T18:56:02.987Z",
+              "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
+              "height": 1440,
+              "width": 2560
+            }
+          ]
+        },
+        {
+          "state": "failed",
+          "error": {
+            "name": "Error",
+            "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "stack": "    at Context.eval (webpack://web/./cypress/e2e/retries.js:9:12)",
+            "codeFrame": {
+              "line": 9,
+              "column": 13,
+              "originalFile": "cypress/e2e/retries.js",
+              "relativeFile": "examples/webapp/cypress/e2e/retries.js",
+              "absoluteFile": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/retries.js",
+              "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+              "language": "js"
+            }
+          },
+          "timings": {
+            "lifecycle": 50,
+            "before each": [
+              { "hookId": "h1", "fnDuration": 102, "afterFnDuration": 0 }
+            ],
+            "test": { "fnDuration": 4, "afterFnDuration": 282 },
+            "after each": [
+              { "hookId": "h3", "fnDuration": 38, "afterFnDuration": 1 }
+            ]
+          },
+          "failedFromHookId": null,
+          "wallClockStartedAt": "2023-08-31T18:56:03.239Z",
+          "wallClockDuration": 483,
+          "videoTimestamp": 2088,
+          "startedAt": "2023-08-31T18:56:03.239Z",
+          "duration": 483,
+          "screenshots": [
+            {
+              "screenshotId": "5idl7",
+              "name": "screenshot",
+              "testId": "r3",
+              "testAttemptIndex": 2,
+              "takenAt": "2023-08-31T18:56:03.412Z",
+              "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed) (attempt 3).png",
+              "height": 1440,
+              "width": 2560
+            }
+          ]
+        },
+        {
+          "state": "failed",
+          "error": {
+            "name": "Error",
+            "message": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "stack": "    at Context.eval (webpack://web/./cypress/e2e/retries.js:9:12)",
+            "codeFrame": {
+              "line": 9,
+              "column": 13,
+              "originalFile": "cypress/e2e/retries.js",
+              "relativeFile": "examples/webapp/cypress/e2e/retries.js",
+              "absoluteFile": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/retries.js",
+              "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+              "language": "js"
+            }
+          },
+          "timings": {
+            "lifecycle": 128,
+            "before each": [
+              { "hookId": "h1", "fnDuration": 127, "afterFnDuration": 0 }
+            ],
+            "test": { "fnDuration": 6, "afterFnDuration": 275 },
+            "after each": [
+              { "hookId": "h3", "fnDuration": 25, "afterFnDuration": 0 }
+            ],
+            "after all": [
+              { "hookId": "h2", "fnDuration": 20, "afterFnDuration": 0 }
+            ]
+          },
+          "failedFromHookId": null,
+          "wallClockStartedAt": "2023-08-31T18:56:03.753Z",
+          "wallClockDuration": 644,
+          "videoTimestamp": 2602,
+          "startedAt": "2023-08-31T18:56:03.753Z",
+          "duration": 644,
+          "screenshots": [
+            {
+              "screenshotId": "t3jyo",
+              "name": "screenshot",
+              "testId": "r3",
+              "testAttemptIndex": 3,
+              "takenAt": "2023-08-31T18:56:04.030Z",
+              "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.js/Retries -- Runs a test with retries (failed) (attempt 4).png",
+              "height": 1440,
+              "width": 2560
+            }
+          ]
+        }
+      ],
+      "clientId": "r0"
+    }
+  ]
+}

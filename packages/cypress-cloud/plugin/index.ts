@@ -14,6 +14,10 @@ export async function cloudPlugin(
     }
   }
 
+  on("after:screenshot", (details) => {
+    console.log("screenshot", details);
+  });
+
   let ws: WebSocket | null = null;
   function sendToWS(message: unknown) {
     if (ws) {
@@ -30,6 +34,14 @@ export async function cloudPlugin(
       });
     });
   }
+
+  on("task", {
+    "currents:test:after:run": (test) => {
+      console.log("test:after:run");
+      console.log(JSON.parse(test));
+      return null;
+    },
+  });
 
   debug("currents plugin loaded");
 

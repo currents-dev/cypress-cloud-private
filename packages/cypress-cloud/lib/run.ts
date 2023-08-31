@@ -12,6 +12,7 @@ import {
   preprocessParams,
   validateParams,
 } from "./config";
+import { getCoverageFilePath } from "./coverage";
 import { runBareCypress } from "./cypress";
 import { activateDebug } from "./debug";
 import { isCurrents } from "./env";
@@ -30,7 +31,6 @@ import { shutdown } from "./shutdown";
 import { getSpecFiles } from "./specMatcher";
 import { ConfigState, ExecutionState } from "./state";
 import { startWSS } from "./ws";
-import { getCoverageFilePath } from "./coverage";
 
 const debug = Debug("currents:run");
 
@@ -165,6 +165,10 @@ function listenToSpecEvents(
   experimentalCoverageRecording?: boolean
 ) {
   const config = configState.getConfig();
+  pubsub.on("test:after:run", async (test: any) => {
+    console.log("test:after:run");
+    console.log(test);
+  });
   pubsub.on("before:spec", async ({ spec }: { spec: Cypress.Spec }) => {
     debug("before:spec %o", spec);
     executionState.setSpecBefore(spec.relative);

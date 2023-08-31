@@ -1,6 +1,6 @@
-let TODO_ITEM_ONE = "buy some cheese";
-let TODO_ITEM_TWO = "feed the cat";
-let TODO_ITEM_THREE = "book a doctors appointment";
+let TODO_ITEM_ONE = "item A";
+let TODO_ITEM_TWO = "item B";
+let TODO_ITEM_THREE = "item C";
 
 context("Clear completed button", function () {
   beforeEach(function () {
@@ -14,7 +14,6 @@ context("Clear completed button", function () {
     },
     function () {
       cy.get("@todos").eq(0).find(".toggle").check();
-
       cy.get(".clear-completed").contains("Clear completed X");
     }
   );

@@ -56,6 +56,9 @@ export interface Stats {
   wallClockStartedAt: string;
   wallClockEndedAt: string;
   wallClockDuration: number;
+  duration: string;
+  startedAt: string;
+  endedAt: number;
 }
 
 export interface Test {

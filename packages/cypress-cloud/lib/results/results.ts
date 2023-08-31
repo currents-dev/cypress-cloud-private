@@ -46,7 +46,7 @@ export const getTestAttempt = (attempt: CypressCommandLine.AttemptResult) => {
   return {
     ...attempt,
     state: attempt.state as TestState,
-    wallClockDuration: attempt.duration,
+    wallClockDuration: attempt.duration ?? 0,
     wallClockStartedAt: attempt.startedAt,
   };
 };
@@ -66,7 +66,7 @@ export const getInstanceResultPayload = (
       runResult.tests?.map((test, i) => ({
         displayError: test.displayError,
         state: test.state as TestState,
-        hooks: runResult.hooks,
+        hooks: runResult.hooks ?? [],
         attempts: test.attempts?.map(getTestAttempt) ?? [],
         clientId: `r${i}`,
       })) ?? [],
@@ -111,11 +111,11 @@ export const getInstanceTestsPayload = (
       runResult.tests?.map((test, i) => ({
         title: test.title,
         config: null,
-        body: test.body,
+        body: test.body ?? "redacted",
         clientId: `r${i}`,
         hookIds: [],
       })) ?? [],
-    hooks: runResult.hooks,
+    hooks: runResult.hooks ?? [],
   };
 };
 
@@ -127,6 +127,7 @@ export const summarizeTestResults = (
     return getEmptyCypressResults(config);
   }
 
+  debugger;
   const overall = input.reduce(
     (
       acc,
