@@ -23,6 +23,9 @@ type InstanceExecutionState = {
   specAfterResults?: SpecResult;
   reportStartedAt?: Date;
   coverageFilePath?: string;
+  specFileData?: SpecResult;
+  attemptsData?: any[],
+  screenshotsData?: any
 };
 
 export class ExecutionState {
@@ -155,5 +158,31 @@ export class ExecutionState {
       specs: [i.spec],
       error: `No results detected for the spec file. That usually happens because of cypress crash. See the console output for details.`,
     });
+  }
+
+  public setAttemptsData(spec: string, attemptDetails: any) {
+    const i = this.getSpec(spec);
+    console.log("PRESPEC::", i)
+    if (!i) {
+      warn('Cannot find execution state for spec "%s"', spec);
+      return;
+    }
+    if(!i.attemptsData){
+      i.attemptsData = []
+    }
+    i.attemptsData?.push(attemptDetails);
+    this.state[i.instanceId].attemptsData = i.attemptsData;
+    console.log("ATTDATA::", i.attemptsData)
+  }
+
+  public getAttemptsData(spec: string): any[] | undefined {
+    const i = this.getSpec(spec);
+    console.log("SPEC::", i)
+    if (!i) {
+      error('Cannot find execution state for spec "%s"', spec);
+      return [];
+    }
+
+    return i.attemptsData;
   }
 }
