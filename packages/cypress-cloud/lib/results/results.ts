@@ -15,7 +15,7 @@ const debug = Debug("currents:results");
 export const isSuccessResult = (
   result: CypressResult
 ): result is CypressCommandLine.CypressRunResult => {
-  return result.status === "finished";
+  return result?.status !== "failed";
 };
 
 export const getScreenshotsSummary = (
@@ -127,7 +127,6 @@ export const summarizeTestResults = (
     return getEmptyCypressResults(config);
   }
 
-  debugger;
   const overall = input.reduce(
     (
       acc,

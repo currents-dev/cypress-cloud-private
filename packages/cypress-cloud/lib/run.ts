@@ -23,6 +23,12 @@ import { getPlatform } from "./platform";
 import { pubsub } from "./pubsub";
 import { summarizeTestResults, summaryTable } from "./results";
 import {
+  handleScreenshotEvent,
+  handleTestAfter,
+  handleTestBefore,
+} from "./results/captureHooks";
+import { getCombinedSpecResult } from "./results/combine";
+import {
   createReportTaskSpec,
   reportTasks,
   runTillDoneOrCancelled,
@@ -159,131 +165,34 @@ export async function run(params: CurrentsRunParameters = {}) {
   return _summary;
 }
 
-function getSpecResults(results: any, attempts?: any[]) {
-  if (!attempts) {
-    return results;
-  }
-
-  const testsWithRetries = results.tests.map((test: any) => {
-    const testFullTitle = test.title.join(" ");
-    const testAttempts = attempts.filter(
-      (attempt) => attempt.fullTitle === testFullTitle
-    );
-    test.attempts = testAttempts.map((attempt) => ({
-      state: attempt.state,
-      error: attempt.err,
-      timings: attempt.timings,
-      wallClockStartedAt: attempt.wallClockStartedAt,
-      wallClockDuration: attempt.duration,
-      videoTimestamp: 0,
-    }));
-    test.testId = testAttempts[0].id;
-    return test;
-  });
-
-  return {
-    ...results,
-    tests: testsWithRetries,
-  };
-}
-
-function parseScreenshotResults(results: any, allScreenshots?: any[]) {
-  if (!allScreenshots?.length) {
-    return results;
-  }
-
-  return {
-    ...results,
-    screenshots: results.screenshots.map(
-      (specScreenshot: any) =>
-        allScreenshots?.find(
-          (screenshot) => screenshot.path === specScreenshot.path
-        )
-    ),
-  };
-}
-
 function listenToSpecEvents(
   configState: ConfigState,
   executionState: ExecutionState,
   experimentalCoverageRecording?: boolean
 ) {
   const config = configState.getConfig();
-  pubsub.on("test:after:run", async (test: any) => {
-    test = JSON.parse(test);
-    const {
-      title,
-      body,
-      retries,
-      _currentRetry,
-      pending,
-      type,
-      invocationDetails,
-      id,
-      hooks,
-      order,
-      wallClockStartedAt,
-      timings,
-      _events,
-      _eventsCount,
-      duration,
-      err,
-      state,
-      fullTitle,
-    } = test;
-    const attempt = {
-      title,
-      fullTitle,
-      body,
-      retries,
-      _currentRetry,
-      pending,
-      type,
-      invocationDetails,
-      id,
-      hooks,
-      order,
-      wallClockStartedAt,
-      timings,
-      _events,
-      _eventsCount,
-      duration,
-      err: {
-        name: err?.name,
-      },
-      state,
-    };
-    executionState.setAttemptsData(attempt);
+
+  pubsub.on("test:after:run", (test: string) => {
+    handleTestAfter(test, executionState);
   });
 
-  pubsub.on("test:before:run", async (test: any) => {
-    test = JSON.parse(test);
-    executionState.setCurrentTestID(test.id);
+  pubsub.on("test:before:run", (test: any) => {
+    handleTestBefore(test, executionState);
   });
 
-  pubsub.on("after:screenshot", async (screenshot: any) => {
-    const testId = executionState.getCurrentTestID();
-    const screenshotData = {
-      ...screenshot,
-      testId,
-      height: screenshot.dimensions.height,
-      width: screenshot.dimensions.width,
-    };
-    executionState.setScreenshotsData(screenshotData);
+  pubsub.on("after:screenshot", (screenshot) => {
+    handleScreenshotEvent(screenshot, executionState);
   });
 
   pubsub.on(
     "after:spec",
     async ({ spec, results }: { spec: Cypress.Spec; results: any }) => {
       debug("after:spec %o %o", spec, results);
-      const attemptsData = executionState.getAttemptsData();
-      const screenshotsData = executionState.getScreenshotsData();
 
-      const resultsWithScreenshots = parseScreenshotResults(
-        getSpecResults(results, attemptsData),
-        screenshotsData
+      executionState.setSpecAfter(
+        spec.relative,
+        getCombinedSpecResult(results, executionState)
       );
-      executionState.setSpecAfter(spec.relative, results);
       executionState.setSpecOutput(spec.relative, getCapturedOutput());
 
       if (experimentalCoverageRecording) {
