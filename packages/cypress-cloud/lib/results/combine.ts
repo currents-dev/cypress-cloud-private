@@ -1,5 +1,6 @@
 import { parseISO } from "date-fns";
 import * as _ from "lodash";
+import { SpecResult } from "../runner/spec.type";
 import { ExecutionState } from "../state";
 
 function getAttemptError(err: any) {
@@ -36,12 +37,12 @@ function getAttemptVideoTimestamp(
 ) {
   return Math.max(attemptStartedAtMs - specStartedAtMs, 0);
 }
-function getSpecResults(specResults: any, attempts?: any[]) {
+function getSpecResults(specResults: SpecResult, attempts?: any[]) {
   if (!attempts) {
     return specResults;
   }
 
-  const enhancedTestList = specResults.tests.map((test: any) => {
+  const enhancedTestList = (specResults.tests ?? []).map((test: any) => {
     const testFullTitle = test.title.join(" ");
     const standaloneAttempts = attempts.filter(
       (attempt) => attempt.fullTitle === testFullTitle
@@ -74,7 +75,7 @@ function getSpecResults(specResults: any, attempts?: any[]) {
  * @returns unified results, including attempts and screenshot details
  */
 export function getCombinedSpecResult(
-  specResult: Cypress.Spec,
+  specResult: SpecResult,
   executionState: ExecutionState
 ) {
   return parseScreenshotResults(

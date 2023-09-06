@@ -8,6 +8,7 @@ import {
   UpdateInstanceResultsPayload,
 } from "../api";
 import { MergedConfig } from "../config";
+import { TestAttempt } from "../runner/spec.type";
 import { ConfigState } from "../state";
 
 const debug = Debug("currents:results");
@@ -18,7 +19,7 @@ export const isSuccessResult = (
   return result?.status !== "failed";
 };
 
-export const getScreenshotsSummary = (
+export const getRunScreenshots = (
   tests: CypressCommandLine.TestResult[] = []
 ): ScreenshotArtifact[] => {
   return tests.flatMap((test, i) =>
@@ -36,18 +37,20 @@ export const getScreenshotsSummary = (
 export const getStats = (stats: CypressCommandLine.RunResult["stats"]) => {
   return {
     ...stats,
-    wallClockDuration: stats.duration,
+    wallClockDuration: stats.duration ?? 0,
     wallClockStartedAt: stats.startedAt,
     wallClockEndedAt: stats.endedAt,
   };
 };
 
-export const getTestAttempt = (attempt: CypressCommandLine.AttemptResult) => {
+export const getTestAttempt = (attempt: TestAttempt) => {
   return {
     ...attempt,
     state: attempt.state as TestState,
-    wallClockDuration: attempt.duration ?? 0,
-    wallClockStartedAt: attempt.startedAt,
+    // @ts-ignore
+    wallClockDuration: attempt.wallClockDuration ?? attempt.duration ?? 0,
+    // @ts-ignore
+    wallClockStartedAt: attempt.wallClockStartedAt ?? attempt.startedAt,
   };
 };
 
@@ -60,13 +63,15 @@ export const getInstanceResultPayload = (
     reporterStats: runResult.reporterStats,
     exception: runResult.error ?? null,
     video: !!runResult.video, // Did the instance generate a video?
-    screenshots: getScreenshotsSummary(runResult.tests ?? []),
+    screenshots: getRunScreenshots(runResult.tests ?? []),
     hasCoverage: !!coverageFilePath,
     tests:
       runResult.tests?.map((test, i) => ({
         displayError: test.displayError,
         state: test.state as TestState,
+        // @ts-ignore
         hooks: runResult.hooks ?? [],
+        // @ts-ignore
         attempts: test.attempts?.map(getTestAttempt) ?? [],
         clientId: `r${i}`,
       })) ?? [],
@@ -85,7 +90,7 @@ export function getFakeTestFromException(
     hooks: [],
     attempts: [
       getTestAttempt({
-        state: "failed",
+        state: TestState.Failed,
         duration: 0,
         error: {
           name: "Error",
@@ -296,7 +301,7 @@ export function getCypressRunResultForSpec(
     ...cypressResult,
     runs: [run],
     totalSuites: 1,
-    totalDuration: stats.wallClockDuration,
+    totalDuration: stats.wallClockDuration ?? 0,
     totalTests: stats.tests,
     totalFailed: stats.failures,
     totalPassed: stats.passes,

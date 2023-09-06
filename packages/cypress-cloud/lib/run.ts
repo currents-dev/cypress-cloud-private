@@ -33,6 +33,7 @@ import {
   reportTasks,
   runTillDoneOrCancelled,
 } from "./runner";
+import { SpecResult } from "./runner/spec.type";
 import { shutdown } from "./shutdown";
 import { getSpecFiles } from "./specMatcher";
 import { ConfigState, ExecutionState } from "./state";
@@ -155,14 +156,11 @@ export async function run(params: CurrentsRunParameters = {}) {
   await shutdown();
 
   spacer();
-  if (_summary.status === "finished") {
-    return {
-      ..._summary,
-      runUrl: run.runUrl,
-    };
-  }
 
-  return _summary;
+  return {
+    ..._summary,
+    runUrl: run.runUrl,
+  };
 }
 
 function listenToSpecEvents(
@@ -186,7 +184,7 @@ function listenToSpecEvents(
 
   pubsub.on(
     "after:spec",
-    async ({ spec, results }: { spec: Cypress.Spec; results: any }) => {
+    async ({ spec, results }: { spec: Cypress.Spec; results: SpecResult }) => {
       debug("after:spec %o %o", spec, results);
 
       executionState.setSpecAfter(
