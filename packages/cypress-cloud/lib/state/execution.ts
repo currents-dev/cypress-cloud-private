@@ -215,7 +215,7 @@ export class ExecutionState {
     });
   }
 
-  public setAttemptsData(attemptDetails: any) {
+  public setAttemptsData(attemptDetails: AttemptData) {
     if (!this.attemptsData) {
       this.attemptsData = [];
     }
@@ -226,7 +226,11 @@ export class ExecutionState {
     return this.attemptsData;
   }
 
-  public setScreenshotsData(screenshotsData: any) {
+  public cleanAttemptsData() {
+    this.attemptsData = [];
+  }
+
+  public setScreenshotsData(screenshotsData: ScreenshotData) {
     if (!this.screenshotsData) {
       this.screenshotsData = [];
     }
