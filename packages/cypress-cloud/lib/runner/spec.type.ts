@@ -56,9 +56,9 @@ export interface Stats {
   wallClockStartedAt: string;
   wallClockEndedAt: string;
   wallClockDuration: number;
-  duration: string;
+  duration: number;
   startedAt: string;
-  endedAt: number;
+  endedAt: string;
 }
 
 export interface Test {
@@ -102,7 +102,9 @@ export interface TestAttempt {
   state: TestState;
   timings: TestAttemptTiming | null;
   videoTimestamp: number;
+  duration: number;
   wallClockDuration: number;
+  startedAt: string;
   wallClockStartedAt: string;
 }
 

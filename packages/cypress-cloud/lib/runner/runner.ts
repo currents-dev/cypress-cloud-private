@@ -157,11 +157,7 @@ async function runBatch(
     if (!specRunResult) {
       return;
     }
-    executionState.setInstanceResult(
-      configState,
-      spec.instanceId,
-      specRunResult
-    );
+    executionState.setInstanceResult(spec.instanceId, specRunResult);
   });
 
   resetCapture();

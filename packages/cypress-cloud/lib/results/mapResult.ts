@@ -89,6 +89,7 @@ export function specResultsToCypressResults(
         spec: specAfterResult.spec,
         error: specAfterResult.error,
         video: specAfterResult.video,
+        // @ts-ignore
         shouldUploadVideo: true, // not really used
         // @ts-ignore
         // wrong typedef for CypressCommandLine.CypressRunResult

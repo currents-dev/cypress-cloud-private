@@ -173,7 +173,6 @@ export class ExecutionState {
   }
 
   public setInstanceResult(
-    configState: ConfigState,
     instanceId: string,
     results: CypressCommandLine.CypressRunResult
   ) {
@@ -186,10 +185,7 @@ export class ExecutionState {
     i.runResultsReportedAt = new Date();
   }
 
-  public getInstanceResults(
-    configState: ConfigState,
-    instanceId: string
-  ): CypressCommandLine.CypressRunResult {
+  public getInstanceResults(configState: ConfigState, instanceId: string) {
     const i = this.getInstance(instanceId);
 
     if (!i) {
