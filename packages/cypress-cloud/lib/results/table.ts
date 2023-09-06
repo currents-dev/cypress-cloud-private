@@ -21,8 +21,8 @@ export const summaryTable = (r: CypressCommandLine.CypressRunResult) => {
 
   const data = r.runs.map((r) => [
     r.stats.failures + r.stats.skipped > 0 ? failureIcon : successIcon,
-    r.spec.relativeToCommonRoot,
-    gray(prettyMS(r.stats.duration)),
+    r.spec.relative,
+    gray(prettyMS(r.stats.duration ?? 0)),
     white(r.stats.tests ?? 0),
     r.stats.passes ? green(r.stats.passes) : gray("-"),
     r.stats.failures ? red(r.stats.failures) : gray("-"),
