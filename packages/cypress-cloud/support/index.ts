@@ -5,49 +5,62 @@ localStorage.debug = "cypress:*";
 const afterReportedTests: string[] = [];
 const beforeReportedTests: string[] = [];
 
-function sendTestAfterMetrics(test: Mocha.Test) {
+function sendTestAfterMetrics(test: Mocha.Runnable) {
   if (test.pending || !test.state) {
     // Test is either skipped or hasn't ran yet.
     // We need to check this because all tests will show up in the hook every time
     return;
   }
-  afterReportedTests.push(test.fullTitle());
-  cy.task(`currents:test:after:run`, safeStringify(test));
+  // @ts-ignore
+  afterReportedTests.push(getTestHash(test));
+  cy.task(
+    `currents:test:after:run`,
+    safeStringify({
+      ...test,
+      fullTitle: test.fullTitle(),
+    }),
+    {
+      log: false,
+    }
+  );
 }
 
-function sendTestBeforeMetrics(test: Mocha.Test) {
-  beforeReportedTests.push(test.fullTitle());
-  cy.task(`currents:test:before:run`, safeStringify(test));
+function sendTestBeforeMetrics(test: Mocha.Runnable) {
+  beforeReportedTests.push(getTestHash(test));
+  cy.task(`currents:test:before:run`, safeStringify(test), {
+    log: false,
+  });
 }
 
-function sendSuite(suite: Mocha.Suite, eventType: "before" | "after") {
-  if(eventType === "after"){
-    suite.eachTest((test) => {
-      if (!afterReportedTests.includes(test.fullTitle())) {
-        sendTestAfterMetrics(test);
-      }
-    });
-  }else if(eventType === "before"){
-    suite.eachTest((test) => {
-      if (!beforeReportedTests.includes(test.fullTitle())) {
-        sendTestBeforeMetrics(test);
-      }
-    });
+function getTestHash(test: Mocha.Runnable) {
+  // @ts-ignore
+  return `${test.fullTitle()}-${test._currentRetry}`;
+}
+
+function handleAfter(test: Mocha.Runnable) {
+  if (!afterReportedTests.includes(getTestHash(test))) {
+    sendTestAfterMetrics(test);
+  }
+}
+function handleBefore(test: Mocha.Runnable) {
+  if (!beforeReportedTests.includes(getTestHash(test))) {
+    sendTestBeforeMetrics(test);
   }
 }
 
 afterEach(() => {
   // @ts-ignore
-  const afterHook = cy.state("runnable");
-  if (afterHook.parent) {
-    sendSuite(afterHook.parent, "after");
+  const currentTest = cy.state("ctx").currentTest;
+  if (currentTest) {
+    handleAfter(currentTest);
   }
 });
 
 beforeEach(() => {
   // @ts-ignore
-  const afterHook = cy.state("runnable");
-  if (afterHook.parent) {
-    sendSuite(afterHook.parent, "before");
+  const currentTest = cy.state("ctx").currentTest;
+
+  if (currentTest) {
+    handleBefore(currentTest);
   }
-})
+});

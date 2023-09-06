@@ -162,7 +162,7 @@ export class ExecutionState {
   }
 
   public setAttemptsData(attemptDetails: any) {
-    if(!this.attemptsData){
+    if (!this.attemptsData) {
       this.attemptsData = [];
     }
     this.attemptsData.push(attemptDetails);
@@ -173,7 +173,7 @@ export class ExecutionState {
   }
 
   public setScreenshotsData(screenshotsData: any) {
-    if(!this.screenshotsData){
+    if (!this.screenshotsData) {
       this.screenshotsData = [];
     }
     this.screenshotsData.push(screenshotsData);
@@ -184,7 +184,7 @@ export class ExecutionState {
   }
 
   public setCurrentTestID(testID: string) {
-    this.currentTestID = testID
+    this.currentTestID = testID;
   }
 
   public getCurrentTestID(): any {
