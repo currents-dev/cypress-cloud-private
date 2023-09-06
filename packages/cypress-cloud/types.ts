@@ -10,6 +10,7 @@ export type CypressRun = ArrayItemType<
 export type CypressTest = ArrayItemType<CypressRun["tests"]>;
 export type CypressTestAttempt = ArrayItemType<CypressTest["attempts"]>;
 export type CypressScreenshot = ArrayItemType<
+  // @ts-ignore
   CypressTestAttempt["screenshots"]
 >;
 

@@ -15,10 +15,12 @@ main()
     if (!result) {
       process.exit(1);
     }
+    // @ts-ignore
     if (result.status === "failed") {
       process.exit(1);
     }
 
+    // @ts-ignore
     const overallFailed = result.totalFailed + result.totalSkipped;
     if (overallFailed > 0) {
       process.exit(overallFailed);
