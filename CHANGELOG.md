@@ -1,5 +1,17 @@
 
 
+# [1.10.0-beta.1](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.0...v1.10.0-beta.1) (2023-09-06)
+
+
+### Bug Fixes
+
+* combine standalone with spec:after results ([0d7b2eb](https://github.com/currents-dev/cypress-cloud/commit/0d7b2eb02ee8aeb0e6ff0627f3afbf0d641bd581))
+
+
+### Features
+
+* support cypres@13+ ([45fd903](https://github.com/currents-dev/cypress-cloud/commit/45fd9036ad686f7edfcb7859db64ce79692dd429))
+
 # [1.10.0-beta.0](https://github.com/currents-dev/cypress-cloud/compare/v1.9.3...v1.10.0-beta.0) (2023-08-25)
 
 
