@@ -21,13 +21,13 @@ function sendTestBeforeMetrics(test: Mocha.Test) {
 }
 
 function sendSuite(suite: Mocha.Suite, eventType: "before" | "after") {
-  if(eventType === "after"){
+  if (eventType === "after") {
     suite.eachTest((test) => {
       if (!afterReportedTests.includes(test.fullTitle())) {
         sendTestAfterMetrics(test);
       }
     });
-  }else if(eventType === "before"){
+  } else if (eventType === "before") {
     suite.eachTest((test) => {
       if (!beforeReportedTests.includes(test.fullTitle())) {
         sendTestBeforeMetrics(test);

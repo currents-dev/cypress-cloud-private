@@ -87,8 +87,7 @@ export async function run(params: CurrentsRunParameters = {}) {
 
 	info("Discovered %d spec files", specs.length);
 	info(
-		`Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${
-			group ?? false
+		`Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${group ?? false
 		}; Parallel: ${parallel ?? false}; Batch Size: ${batchSize}`
 	);
 	info("Connecting to cloud orchestration service...");
@@ -160,45 +159,45 @@ export async function run(params: CurrentsRunParameters = {}) {
 	return _summary;
 }
 
-function parseSpecResults(results: any, attempts?: any[]){
-	if(!attempts){
+function parseSpecResults(results: any, attempts?: any[]) {
+	if (!attempts) {
 		return results;
 	}
 
 	const newResults = _.cloneDeep(results);
 
 	const tests: any[] = [];
-	for(let attempt of attempts){
+	for (let attempt of attempts) {
 		const test = tests.find((ele) => ele.testId === attempt.id);
-		if(!test){
+		if (!test) {
 			tests.push({
-				"testId": attempt.id,
-				"title": [attempt.title],
-				"state": attempt.state,
-				"body": attempt.body,
-				"displayError": attempt.invocationDetails.stack,
-				"attempts": [
+				testId: attempt.id,
+				title: [attempt.title],
+				state: attempt.state,
+				body: attempt.body,
+				displayError: attempt.invocationDetails.stack,
+				attempts: [
 					{
-						"state": attempt.state,
-						"error": attempt.err,
-						"timings": attempt.timings,
-						"failedFromHookId": "h4",
-						"wallClockStartedAt": attempt.wallClockStartedAt,
-						"wallClockDuration": attempt.duration,
-						"videoTimestamp": 2898
+						state: attempt.state,
+						error: attempt.err,
+						timings: attempt.timings,
+						failedFromHookId: "h4",
+						wallClockStartedAt: attempt.wallClockStartedAt,
+						wallClockDuration: attempt.duration,
+						videoTimestamp: 2898
 					}
 				]
 			})
-		}else{
+		} else {
 			test.title.push(attempt.title)
 			test.attempts.push({
-				"state": attempt.state,
-				"error": attempt.err,
-				"timings": attempt.timings,
-				"failedFromHookId": "h4",
-				"wallClockStartedAt": attempt.wallClockStartedAt,
-				"wallClockDuration": attempt.duration,
-				"videoTimestamp": 2898
+				state: attempt.state,
+				error: attempt.err,
+				timings: attempt.timings,
+				failedFromHookId: "h4",
+				wallClockStartedAt: attempt.wallClockStartedAt,
+				wallClockDuration: attempt.duration,
+				videoTimestamp: 2898
 			})
 			const testIndex = tests.findIndex((ele) => ele.testId === attempt.id);
 			tests[testIndex] = test;
@@ -209,13 +208,13 @@ function parseSpecResults(results: any, attempts?: any[]){
 }
 
 
-function parseScreenshotResults(results: any, screenshots?: any[]){
-	if(!screenshots){
+function parseScreenshotResults(results: any, screenshots?: any[]) {
+	if (!screenshots) {
 		return results;
 	}
 
 	const newResults = _.cloneDeep(results);
-	
+
 	newResults.screenshots = screenshots;
 	return newResults;
 }
@@ -226,55 +225,17 @@ function listenToSpecEvents(
 	experimentalCoverageRecording?: boolean
 ) {
 	const config = configState.getConfig();
-	pubsub.on("test:after:run", async (test: any) => {
-		test = JSON.parse(test)
-		const {
-			title, 
-			body, 
-			retries, 
-			_currentRetry, 
-			pending, 
-			type, 
-			invocationDetails, 
-			id, 
-			hooks, 
-			order, 
-			wallClockStartedAt, 
-			timings, 
-			_events, 
-			_eventsCount, 
-			duration, 
-			err, 
-			state
-		} = test
-		const attempt = {
-			title,
-			body,
-			retries,
-			_currentRetry,
-			pending,
-			type,
-			invocationDetails,
-			id,
-			hooks,
-			order,
-			wallClockStartedAt,
-			timings,
-			_events,
-			_eventsCount,
-			duration,
-			err,
-			state
-		}
-		executionState.setAttemptsData(attempt);
+	pubsub.on("test:after:run", async (test) => {
+		test = JSON.parse(test);
+		executionState.setAttemptsData(test);
 	});
 
-	pubsub.on("test:before:run", async (test: any) => {
+	pubsub.on("test:before:run", async (test) => {
 		test = JSON.parse(test)
 		executionState.setCurrentTestID(test.id);
 	});
 
-	pubsub.on("after:screenshot", async (screenshot: any) => {
+	pubsub.on("after:screenshot", async (screenshot) => {
 		const testId = executionState.getCurrentTestID();
 		const screenshotData = {
 			...screenshot,
@@ -293,6 +254,10 @@ function listenToSpecEvents(
 			const screenshotsData = executionState.getScreenshotsData();
 			const newResults = parseSpecResults(results, attemptsData);
 			const resultsWithScreenshots = parseScreenshotResults(newResults, screenshotsData)
+
+			executionState.cleanAttemptsData();
+			executionState.cleanScreenshotsData();
+
 			executionState.setSpecAfter(spec.relative, resultsWithScreenshots);
 			executionState.setSpecOutput(spec.relative, getCapturedOutput());
 			if (experimentalCoverageRecording) {
