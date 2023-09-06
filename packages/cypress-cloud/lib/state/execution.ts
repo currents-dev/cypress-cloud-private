@@ -26,9 +26,67 @@ type InstanceExecutionState = {
   specFileData?: SpecResult;
 };
 
+type InvocationDetails = {
+  function: string;
+  fileUrl: string;
+  originalFile: string;
+  relativeFile: string;
+  absoluteFile: string;
+  line: number;
+  column: number;
+  whitespace: string;
+  stack: string;
+};
+
+type AttepmtHook = {
+  title: string;
+  hookName: string;
+  hookId: string;
+  pending: boolean;
+  body: string;
+  type: string;
+  file: string | null;
+  invocationDetails: InvocationDetails;
+  currentRetry: number;
+  retries: number;
+  _slow: number;
+};
+
+export type AttemptData = {
+  title: string;
+  body: string;
+  retries: number;
+  _currentRetry: number;
+  pending: boolean;
+  type: string;
+  invocationDetails: InvocationDetails;
+  id: string;
+  hooks: AttepmtHook[];
+  order: number;
+  wallClockStartedAt: string;
+  timings: Record<string, any>;
+  _eventsCount: number;
+  duration: number;
+  err: Record<string, any>;
+  state: string;
+};
+
+export type ScreenshotData = {
+  testAttemptIndex: number;
+  size: number;
+  takenAt: string;
+  dimensions: { width: number; height: number };
+  multipart: boolean;
+  specName: string;
+  testFailure: boolean;
+  path: string;
+  scaled: boolean;
+  duration: number;
+};
+
 export class ExecutionState {
-  private attemptsData?: any[];
-  private screenshotsData?: any[];
+  private attemptsData?: AttemptData[];
+  private screenshotsData?: ScreenshotData[];
   private currentTestID?: string;
   private state: Record<InstanceId, InstanceExecutionState> = {};
 
@@ -168,7 +226,7 @@ export class ExecutionState {
     this.attemptsData.push(attemptDetails);
   }
 
-  public getAttemptsData(): any[] | undefined {
+  public getAttemptsData(): AttemptData[] | undefined {
     return this.attemptsData;
   }
 
@@ -179,7 +237,7 @@ export class ExecutionState {
     this.screenshotsData.push(screenshotsData);
   }
 
-  public getScreenshotsData(): any[] | undefined {
+  public getScreenshotsData(): ScreenshotData[] | undefined {
     return this.screenshotsData;
   }
 
@@ -187,7 +245,11 @@ export class ExecutionState {
     this.currentTestID = testID;
   }
 
-  public getCurrentTestID(): any {
+  public getCurrentTestID(): string | undefined {
     return this.currentTestID;
+  }
+
+  public cleanScreenshotsData() {
+    this.screenshotsData = [];
   }
 }
