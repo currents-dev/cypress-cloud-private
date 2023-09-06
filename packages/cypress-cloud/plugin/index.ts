@@ -33,7 +33,7 @@ export async function cloudPlugin(
 	on("after:screenshot", (details) => {
     sendToWS({
 			type: "after:screenshot",
-			payload: {screenshot: details},
+			payload: details,
 		});
 	});
 
@@ -58,6 +58,13 @@ export async function cloudPlugin(
 		"currents:test:after:run": (test) => {
       sendToWS({
         type: "test:after:run",
+        payload: test,
+      });
+			return null;
+		},
+    "currents:test:before:run": (test) => {
+      sendToWS({
+        type: "test:before:run",
         payload: test,
       });
 			return null;

@@ -24,11 +24,12 @@ type InstanceExecutionState = {
   reportStartedAt?: Date;
   coverageFilePath?: string;
   specFileData?: SpecResult;
-  attemptsData?: any[],
-  screenshotsData?: any
 };
 
 export class ExecutionState {
+  private attemptsData?: any[];
+  private screenshotsData?: any[];
+  private currentTestID?: string;
   private state: Record<InstanceId, InstanceExecutionState> = {};
 
   public getResults(configState: ConfigState) {
@@ -160,29 +161,33 @@ export class ExecutionState {
     });
   }
 
-  public setAttemptsData(spec: string, attemptDetails: any) {
-    const i = this.getSpec(spec);
-    console.log("PRESPEC::", i)
-    if (!i) {
-      warn('Cannot find execution state for spec "%s"', spec);
-      return;
+  public setAttemptsData(attemptDetails: any) {
+    if(!this.attemptsData){
+      this.attemptsData = [];
     }
-    if(!i.attemptsData){
-      i.attemptsData = []
-    }
-    i.attemptsData?.push(attemptDetails);
-    this.state[i.instanceId].attemptsData = i.attemptsData;
-    console.log("ATTDATA::", i.attemptsData)
+    this.attemptsData.push(attemptDetails);
   }
 
-  public getAttemptsData(spec: string): any[] | undefined {
-    const i = this.getSpec(spec);
-    console.log("SPEC::", i)
-    if (!i) {
-      error('Cannot find execution state for spec "%s"', spec);
-      return [];
-    }
+  public getAttemptsData(): any[] | undefined {
+    return this.attemptsData;
+  }
 
-    return i.attemptsData;
+  public setScreenshotsData(screenshotsData: any) {
+    if(!this.screenshotsData){
+      this.screenshotsData = [];
+    }
+    this.screenshotsData.push(screenshotsData);
+  }
+
+  public getScreenshotsData(): any[] | undefined {
+    return this.screenshotsData;
+  }
+
+  public setCurrentTestID(testID: string) {
+    this.currentTestID = testID
+  }
+
+  public getCurrentTestID(): any {
+    return this.currentTestID;
   }
 }

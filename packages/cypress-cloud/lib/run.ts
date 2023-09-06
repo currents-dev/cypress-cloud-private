@@ -161,10 +161,11 @@ export async function run(params: CurrentsRunParameters = {}) {
 }
 
 function parseSpecResults(results: any, attempts?: any[]){
-	const newResults = _.cloneDeep(results);
 	if(!attempts){
 		return results;
 	}
+
+	const newResults = _.cloneDeep(results);
 
 	const tests: any[] = [];
 	for(let attempt of attempts){
@@ -207,23 +208,25 @@ function parseSpecResults(results: any, attempts?: any[]){
 	return newResults;
 }
 
+
+function parseScreenshotResults(results: any, screenshots?: any[]){
+	if(!screenshots){
+		return results;
+	}
+
+	const newResults = _.cloneDeep(results);
+	
+	newResults.screenshots = screenshots;
+	return newResults;
+}
+
 function listenToSpecEvents(
 	configState: ConfigState,
 	executionState: ExecutionState,
 	experimentalCoverageRecording?: boolean
 ) {
-	/*
-	- spec:before -> ws -> set executionState.currentSpec
-	- test:before
-	- * test:beforeEach -> ws -> set executionState.currentTest
-	- ** screenshot -> ws -> // implemented
-	- test:afterEach 
-	- *** test:after -> ws -> 
-	- spec:after
-	*/
 	const config = configState.getConfig();
 	pubsub.on("test:after:run", async (test: any) => {
-		console.log("test:after:run");
 		test = JSON.parse(test)
 		const {
 			title, 
@@ -263,29 +266,34 @@ function listenToSpecEvents(
 			err,
 			state
 		}
-		executionState.setAttemptsData(invocationDetails.relativeFile, attempt);
+		executionState.setAttemptsData(attempt);
+	});
+
+	pubsub.on("test:before:run", async (test: any) => {
+		test = JSON.parse(test)
+		executionState.setCurrentTestID(test.id);
 	});
 
 	pubsub.on("after:screenshot", async (screenshot: any) => {
-		console.log("after:screenshot");
-		console.log(screenshot);
-	});
-
-	pubsub.on("before:spec", async ({ spec }: { spec: Cypress.Spec }) => {
-		debug("before:spec %o", spec);
-		executionState.setSpecBefore(spec.relative);
+		const testId = executionState.getCurrentTestID();
+		const screenshotData = {
+			...screenshot,
+			testId,
+			height: screenshot.dimensions.height,
+			width: screenshot.dimensions.width,
+		}
+		executionState.setScreenshotsData(screenshotData);
 	});
 
 	pubsub.on(
 		"after:spec",
 		async ({ spec, results }: { spec: Cypress.Spec; results: any }) => {
 			debug("after:spec %o %o", spec, results);
-			console.log("SPECFILE::", spec);
-			console.log("RESULTS::", JSON.stringify(results));
-			const attemptsData = executionState.getAttemptsData(spec.relative);
-			console.log("ATTEMPTS::", JSON.stringify(attemptsData));
+			const attemptsData = executionState.getAttemptsData();
+			const screenshotsData = executionState.getScreenshotsData();
 			const newResults = parseSpecResults(results, attemptsData);
-			executionState.setSpecAfter(spec.relative, newResults);
+			const resultsWithScreenshots = parseScreenshotResults(newResults, screenshotsData)
+			executionState.setSpecAfter(spec.relative, resultsWithScreenshots);
 			executionState.setSpecOutput(spec.relative, getCapturedOutput());
 			if (experimentalCoverageRecording) {
 				const coverageFilePath = await getCoverageFilePath(
