@@ -42,25 +42,27 @@ function getSpecResults(specResults: SpecResult, attempts?: any[]) {
     return specResults;
   }
 
-  const enhancedTestList = (specResults.tests ?? []).map((test: any) => {
-    const testFullTitle = test.title.join(" ");
-    const standaloneAttempts = attempts.filter(
-      (attempt) => attempt.fullTitle === testFullTitle
-    );
-    test.attempts = standaloneAttempts.map((attempt) => ({
-      state: attempt.state,
-      error: getAttemptError(attempt.err),
-      timings: attempt.timings,
-      wallClockStartedAt: attempt.wallClockStartedAt,
-      wallClockDuration: attempt.duration,
-      videoTimestamp: getAttemptVideoTimestamp(
-        parseISO(attempt.wallClockStartedAt).getTime(),
-        parseISO(specResults.stats.startedAt).getTime()
-      ),
-    }));
-    test.testId = standaloneAttempts[0].id;
-    return test;
-  });
+  const enhancedTestList = (specResults.tests ?? []).map(
+    (test: any, i: number) => {
+      const testFullTitle = test.title.join(" ");
+      const standaloneAttempts = attempts.filter(
+        (attempt) => attempt.fullTitle === testFullTitle
+      );
+      test.attempts = standaloneAttempts.map((attempt) => ({
+        state: attempt.state,
+        error: getAttemptError(attempt.err),
+        timings: attempt.timings,
+        wallClockStartedAt: attempt.wallClockStartedAt,
+        wallClockDuration: attempt.duration,
+        videoTimestamp: getAttemptVideoTimestamp(
+          parseISO(attempt.wallClockStartedAt).getTime(),
+          parseISO(specResults.stats.startedAt).getTime()
+        ),
+      }));
+      test.testId = standaloneAttempts[0]?.id ?? `r${i}}`;
+      return test;
+    }
+  );
 
   return {
     ..._.cloneDeep(specResults),
