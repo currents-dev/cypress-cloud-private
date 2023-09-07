@@ -1,63 +1,50 @@
 import fs from "fs";
 
-function compareObjectsRecursively(objA: Record<string, any>, objB: Record<string, any>, path = '') {
-    let result: { isEqual: boolean, path: string, valueA: any, valueB: any }[] = [];
+type ComparisonResult = {
+    path: string;
+    valueA: any;
+    valueB: any;
+    isEqual: boolean;
+    note?: string;
+};
 
-    if (Array.isArray(objA) && Array.isArray(objB)) {
-        for (let i = 0; i < Math.max(objA.length, objB.length); i++) {
-            const newPath = `${path}[${i}]`;
-            if (i >= objA.length || i >= objB.length || typeof objA[i] !== typeof objB[i]) {
-                result.push({
-                    path: newPath,
-                    valueA: objA[i] || 'Does not exist',
-                    valueB: objB[i] || 'Does not exist',
-                    isEqual: false
-                });
-            } else {
-                result = result.concat(compareObjectsRecursively(objA[i], objB[i], newPath));
-            }
-        }
-    } else {
-        for (let key in objA) {
+function compareObjectsRecursively(objA: any, objB: any, path: string = ''): ComparisonResult[] {
+    let results: ComparisonResult[] = [];
+
+    // Si ambos son objetos pero no arrays ni strings
+    if (typeof objA === 'object' && objA !== null && !(objA instanceof Array) && typeof objA !== 'string' &&
+        typeof objB === 'object' && objB !== null && !(objB instanceof Array) && typeof objB !== 'string') {
+        
+        const keys = new Set([...Object.keys(objA), ...Object.keys(objB)]);
+
+        keys.forEach(key => {
             const newPath = path ? `${path}.${key}` : key;
-
-            if (objB.hasOwnProperty(key) && typeof objA[key] === 'object' && objA[key] !== null && typeof objB[key] === 'object') {
-                result = result.concat(compareObjectsRecursively(objA[key], objB[key], newPath));
-            } else {
-                if (!objB.hasOwnProperty(key) || objA[key] !== objB[key]) {
-                    result.push({
-                        path: newPath,
-                        valueA: objA[key],
-                        valueB: objB.hasOwnProperty(key) ? objB[key] : 'Does not exist',
-                        isEqual: false
-                    });
-                } else {
-                    result.push({
-                        path: newPath,
-                        valueA: objA[key],
-                        valueB: objB[key],
-                        isEqual: true
-                    });
-                }
-            }
-        }
-
-        for (let key in objB) {
-            if (!objA.hasOwnProperty(key)) {
-                const newPath = path ? `${path}.${key}` : key;
-                result.push({
-                    path: newPath,
-                    valueA: 'Does not exist',
-                    valueB: objB[key],
-                    isEqual: false
-                });
-            }
+            results = results.concat(compareObjectsRecursively(objA[key], objB[key], newPath));
+        });
+    }
+    // Si ambos son arrays
+    else if (Array.isArray(objA) && Array.isArray(objB)) {
+        const maxLength = Math.max(objA.length, objB.length);
+        for (let i = 0; i < maxLength; i++) {
+            const newPath = `${path}[${i}]`;
+            results = results.concat(compareObjectsRecursively(objA[i], objB[i], newPath));
         }
     }
+    else {
+        const isEqual = objA === objB;
+        const note = objA === undefined ? "Does not exist in A" : objB === undefined ? "Does not exist in B" : undefined;
 
-    return result;
+        results.push({
+            path: path || 'root',
+            valueA: objA,
+            valueB: objB,
+            isEqual: isEqual,
+            note: note
+        });
+    }
+
+    return results;
 }
-
 
 
 
