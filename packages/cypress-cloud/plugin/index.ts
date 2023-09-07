@@ -53,6 +53,12 @@ export async function cloudPlugin(
       });
       return null;
     },
+    "ctrLogMessages": (test) => {
+      return null;
+    },
+    "ctrLogFiles": (test) => {
+      return null;
+    }
   });
 
   debug("currents plugin loaded");

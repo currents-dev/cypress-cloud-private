@@ -1,0 +1,1150 @@
+{
+    "totalDuration": 14210,
+    "totalSuites": 2,
+    "totalPending": 0,
+    "totalFailed": 3,
+    "totalSkipped": 0,
+    "totalPassed": 1,
+    "totalTests": 4,
+    "runs": [
+        {
+            "stats": {
+                "duration": 2127,
+                "endedAt": "2023-09-07T15:13:45.915Z",
+                "startedAt": "2023-09-07T15:13:43.788Z",
+                "failures": 1,
+                "passes": 0,
+                "pending": 0,
+                "skipped": 0,
+                "suites": 1,
+                "tests": 1
+            },
+            "reporter": "spec",
+            "reporterStats": {
+                "suites": 1,
+                "tests": 1,
+                "passes": 0,
+                "pending": 0,
+                "failures": 1,
+                "start": "2023-09-07T15:13:43.791Z",
+                "end": "2023-09-07T15:13:45.918Z",
+                "duration": 2127
+            },
+            "spec": {
+                "fileExtension": ".js",
+                "baseName": "retries.spec.js",
+                "fileName": "retries",
+                "specFileExtension": ".spec.js",
+                "relativeToCommonRoot": "retries.spec.js",
+                "specType": "integration",
+                "name": "cypress/e2e/retries.spec.js",
+                "relative": "cypress/e2e/retries.spec.js",
+                "absolute": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/retries.spec.js"
+            },
+            "error": null,
+            "video": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/videos/retries.spec.js.mp4",
+            "shouldUploadVideo": true,
+            "hooks": [
+                {
+                    "hookId": "h1",
+                    "hookName": "before each",
+                    "title": [
+                        "\"before each\" hook"
+                    ],
+                    "body": "() => {\n  const currentTest = cy.state(\"ctx\").currentTest;\n  if (currentTest) {\n    handleBefore(currentTest);\n  }\n}"
+                },
+                {
+                    "hookId": "h2",
+                    "hookName": "before each",
+                    "title": [
+                        "\"before each\" hook"
+                    ],
+                    "body": "function () {\n    cy.visit(\"/\");\n}"
+                },
+                {
+                    "hookId": "h4",
+                    "hookName": "after each",
+                    "title": [
+                        "\"after each\" hook"
+                    ],
+                    "body": "function () {\n      self.sendLogsToPrinter(self.collectorState.getCurrentLogStackIndex(), self.collectorState.getCurrentTest());\n    }"
+                },
+                {
+                    "hookId": "h5",
+                    "hookName": "after each",
+                    "title": [
+                        "\"after each\" hook"
+                    ],
+                    "body": "() => {\n  const currentTest = cy.state(\"ctx\").currentTest;\n  if (currentTest) {\n    handleAfter(currentTest);\n  }\n}"
+                },
+                {
+                    "hookId": "h3",
+                    "hookName": "after all",
+                    "title": [
+                        "\"after all\" hook"
+                    ],
+                    "body": "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }"
+                }
+            ],
+            "tests": [
+                {
+                    "testId": "r3",
+                    "title": [
+                        "Retries",
+                        "Runs a test with retries"
+                    ],
+                    "state": "failed",
+                    "body": "function () {\n    throw new Error(\"x\".repeat(1024));\n    // if (i > 1) {\n    //   i--;\n    // }\n    // return;\n  }",
+                    "displayError": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/retries.spec.js:9:12)",
+                    "attempts": [
+                        {
+                            "state": "failed",
+                            "error": {
+                                "name": "Error",
+                                "message": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                                "stack": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/retries.spec.js:9:12)",
+                                "codeFrame": {
+                                    "line": 9,
+                                    "column": 13,
+                                    "originalFile": "cypress/e2e/retries.spec.js",
+                                    "relativeFile": "e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "absoluteFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+                                    "language": "js"
+                                }
+                            },
+                            "timings": {
+                                "lifecycle": 36,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 19,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 433,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 6,
+                                    "afterFnDuration": 301
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 16,
+                                        "afterFnDuration": 0
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:13:43.814Z",
+                            "wallClockDuration": 796,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:13:43.814Z",
+                            "duration": 796,
+                            "screenshots": [
+                                {
+                                    "testAttemptIndex": 0,
+                                    "size": 333986,
+                                    "takenAt": "2023-09-07T15:13:44.312Z",
+                                    "dimensions": {
+                                        "width": 2560,
+                                        "height": 1440
+                                    },
+                                    "multipart": false,
+                                    "specName": "retries.spec.js",
+                                    "testFailure": true,
+                                    "path": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed).png",
+                                    "scaled": true,
+                                    "blackout": [],
+                                    "duration": 297,
+                                    "testId": "r3",
+                                    "height": 1440,
+                                    "width": 2560,
+                                    "name": "screenshot"
+                                }
+                            ]
+                        },
+                        {
+                            "state": "failed",
+                            "error": {
+                                "name": "Error",
+                                "message": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                                "stack": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/retries.spec.js:9:12)",
+                                "codeFrame": {
+                                    "line": 9,
+                                    "column": 13,
+                                    "originalFile": "cypress/e2e/retries.spec.js",
+                                    "relativeFile": "e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "absoluteFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+                                    "language": "js"
+                                }
+                            },
+                            "timings": {
+                                "lifecycle": 29,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 10,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 74,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 5,
+                                    "afterFnDuration": 236
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 16,
+                                        "afterFnDuration": 0
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:13:44.666Z",
+                            "wallClockDuration": 356,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:13:44.666Z",
+                            "duration": 356,
+                            "screenshots": [
+                                {
+                                    "testAttemptIndex": 1,
+                                    "size": 379936,
+                                    "takenAt": "2023-09-07T15:13:44.787Z",
+                                    "dimensions": {
+                                        "width": 2560,
+                                        "height": 1440
+                                    },
+                                    "multipart": false,
+                                    "specName": "retries.spec.js",
+                                    "testFailure": true,
+                                    "path": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
+                                    "scaled": true,
+                                    "blackout": [],
+                                    "duration": 234,
+                                    "testId": "r3",
+                                    "height": 1440,
+                                    "width": 2560,
+                                    "name": "screenshot"
+                                }
+                            ]
+                        },
+                        {
+                            "state": "failed",
+                            "error": {
+                                "name": "Error",
+                                "message": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                                "stack": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/retries.spec.js:9:12)",
+                                "codeFrame": {
+                                    "line": 9,
+                                    "column": 13,
+                                    "originalFile": "cypress/e2e/retries.spec.js",
+                                    "relativeFile": "e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "absoluteFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+                                    "language": "js"
+                                }
+                            },
+                            "timings": {
+                                "lifecycle": 35,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 14,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 63,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 5,
+                                    "afterFnDuration": 245
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 20,
+                                        "afterFnDuration": 1
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:13:45.073Z",
+                            "wallClockDuration": 363,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:13:45.073Z",
+                            "duration": 363,
+                            "screenshots": [
+                                {
+                                    "testAttemptIndex": 2,
+                                    "size": 376075,
+                                    "takenAt": "2023-09-07T15:13:45.193Z",
+                                    "dimensions": {
+                                        "width": 2560,
+                                        "height": 1440
+                                    },
+                                    "multipart": false,
+                                    "specName": "retries.spec.js",
+                                    "testFailure": true,
+                                    "path": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 3).png",
+                                    "scaled": true,
+                                    "blackout": [],
+                                    "duration": 243,
+                                    "testId": "r3",
+                                    "height": 1440,
+                                    "width": 2560,
+                                    "name": "screenshot"
+                                }
+                            ]
+                        },
+                        {
+                            "state": "failed",
+                            "error": {
+                                "name": "Error",
+                                "message": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+                                "stack": "Error: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/retries.spec.js:9:12)",
+                                "codeFrame": {
+                                    "line": 9,
+                                    "column": 13,
+                                    "originalFile": "cypress/e2e/retries.spec.js",
+                                    "relativeFile": "e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "absoluteFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/retries.spec.js",
+                                    "frame": "   7 |     },\n   8 |     function () {\n>  9 |       throw new Error(\"x\".repeat(1024));\n     |             ^\n  10 |       // if (i > 1) {\n  11 |       //   i--;\n  12 |       // }",
+                                    "language": "js"
+                                }
+                            },
+                            "timings": {
+                                "lifecycle": 43,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 19,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 55,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 5,
+                                    "afterFnDuration": 235
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 17,
+                                        "afterFnDuration": 0
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:13:45.489Z",
+                            "wallClockDuration": 359,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:13:45.489Z",
+                            "duration": 359,
+                            "screenshots": [
+                                {
+                                    "testAttemptIndex": 3,
+                                    "size": 285892,
+                                    "takenAt": "2023-09-07T15:13:45.615Z",
+                                    "dimensions": {
+                                        "width": 2560,
+                                        "height": 1440
+                                    },
+                                    "multipart": false,
+                                    "specName": "retries.spec.js",
+                                    "testFailure": true,
+                                    "path": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 4).png",
+                                    "scaled": true,
+                                    "blackout": [],
+                                    "duration": 230,
+                                    "testId": "r3",
+                                    "height": 1440,
+                                    "width": 2560,
+                                    "name": "screenshot"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stats": {
+                "duration": 12083,
+                "endedAt": "2023-09-07T15:14:01.880Z",
+                "startedAt": "2023-09-07T15:13:49.797Z",
+                "failures": 2,
+                "passes": 1,
+                "pending": 0,
+                "skipped": 0,
+                "suites": 1,
+                "tests": 3
+            },
+            "reporter": "spec",
+            "reporterStats": {
+                "suites": 1,
+                "tests": 3,
+                "passes": 1,
+                "pending": 0,
+                "failures": 2,
+                "start": "2023-09-07T15:13:49.799Z",
+                "end": "2023-09-07T15:14:01.884Z",
+                "duration": 12085
+            },
+            "spec": {
+                "fileExtension": ".js",
+                "baseName": "xxx.spec.js",
+                "fileName": "xxx",
+                "specFileExtension": ".spec.js",
+                "relativeToCommonRoot": "xxx.spec.js",
+                "specType": "integration",
+                "name": "cypress/e2e/xxx.spec.js",
+                "relative": "cypress/e2e/xxx.spec.js",
+                "absolute": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/xxx.spec.js"
+            },
+            "error": null,
+            "video": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/videos/xxx.spec.js.mp4",
+            "shouldUploadVideo": true,
+            "hooks": [
+                {
+                    "hookId": "h1",
+                    "hookName": "before each",
+                    "title": [
+                        "\"before each\" hook"
+                    ],
+                    "body": "() => {\n  const currentTest = cy.state(\"ctx\").currentTest;\n  if (currentTest) {\n    handleBefore(currentTest);\n  }\n}"
+                },
+                {
+                    "hookId": "h2",
+                    "hookName": "before each",
+                    "title": [
+                        "\"before each\" hook"
+                    ],
+                    "body": "function () {\n    cy.visit(\"/\");\n}"
+                },
+                {
+                    "hookId": "h6",
+                    "hookName": "before each",
+                    "title": [
+                        "\"before each\" hook"
+                    ],
+                    "body": "function () {\n    cy.createDefaultTodos().as(\"todos\");\n  }"
+                },
+                {
+                    "hookId": "h4",
+                    "hookName": "after each",
+                    "title": [
+                        "\"after each\" hook"
+                    ],
+                    "body": "function () {\n      self.sendLogsToPrinter(self.collectorState.getCurrentLogStackIndex(), self.collectorState.getCurrentTest());\n    }"
+                },
+                {
+                    "hookId": "h5",
+                    "hookName": "after each",
+                    "title": [
+                        "\"after each\" hook"
+                    ],
+                    "body": "() => {\n  const currentTest = cy.state(\"ctx\").currentTest;\n  if (currentTest) {\n    handleAfter(currentTest);\n  }\n}"
+                },
+                {
+                    "hookId": "h3",
+                    "hookName": "after all",
+                    "title": [
+                        "\"after all\" hook"
+                    ],
+                    "body": "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }"
+                }
+            ],
+            "tests": [
+                {
+                    "testId": "r3",
+                    "title": [
+                        "Clear completed button",
+                        "should display the correct text"
+                    ],
+                    "state": "failed",
+                    "body": "function () {\n    cy.get(\"@todos\").eq(0).find(\".toggle\").check();\n    cy.get(\".clear-completed\").contains(\"Clear completed X\");\n  }",
+                    "displayError": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Clear completed X' within the element: <button.clear-completed> but never did.\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/xxx.spec.js:17:33)",
+                    "attempts": [
+                        {
+                            "state": "failed",
+                            "error": {
+                                "name": "AssertionError",
+                                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Clear completed X' within the element: <button.clear-completed> but never did.",
+                                "stack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Clear completed X' within the element: <button.clear-completed> but never did.\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/xxx.spec.js:17:33)",
+                                "codeFrame": {
+                                    "line": 17,
+                                    "column": 34,
+                                    "originalFile": "cypress/e2e/xxx.spec.js",
+                                    "relativeFile": "e2e/cypress-12-demo/cypress/e2e/xxx.spec.js",
+                                    "absoluteFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/xxx.spec.js",
+                                    "frame": "  15 |     function () {\n  16 |       cy.get(\"@todos\").eq(0).find(\".toggle\").check();\n> 17 |       cy.get(\".clear-completed\").contains(\"Clear completed X\");\n     |                                  ^\n  18 |     }\n  19 |   );\n  20 | ",
+                                    "language": "js"
+                                }
+                            },
+                            "timings": {
+                                "lifecycle": 43,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 16,
+                                        "afterFnDuration": 1
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 167,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h6",
+                                        "fnDuration": 851,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 4092,
+                                    "afterFnDuration": 235
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 13,
+                                        "afterFnDuration": 0
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:13:49.811Z",
+                            "wallClockDuration": 5407,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:13:49.811Z",
+                            "duration": 5407,
+                            "screenshots": [
+                                {
+                                    "testAttemptIndex": 0,
+                                    "size": 418133,
+                                    "takenAt": "2023-09-07T15:13:54.986Z",
+                                    "dimensions": {
+                                        "width": 2560,
+                                        "height": 1440
+                                    },
+                                    "multipart": false,
+                                    "specName": "xxx.spec.js",
+                                    "testFailure": true,
+                                    "path": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots/xxx.spec.js/Clear completed button -- should display the correct text (failed).png",
+                                    "scaled": true,
+                                    "blackout": [],
+                                    "duration": 232,
+                                    "testId": "r3",
+                                    "height": 1440,
+                                    "width": 2560,
+                                    "name": "screenshot"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "testId": "r4",
+                    "title": [
+                        "Clear completed button",
+                        "should remove completed items when clicked"
+                    ],
+                    "state": "failed",
+                    "body": "function () {\n    cy.get(\"@todos\").eq(1).find(\".toggle\").check();\n    cy.get(\".clear-completed\").click();\n    cy.get(\"@todos\").should(\"have.length\", 2);\n    cy.get(\".todo-list li\").eq(0).should(\"contain\", TODO_ITEM_ONE);\n    cy.get(\".todo-list li\").eq(1).should(\"contain\", \"XXXX\");\n  }",
+                    "displayError": "AssertionError: Timed out retrying after 4000ms: expected '<li>' to contain 'item A'\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/xxx.spec.js:31:36)",
+                    "attempts": [
+                        {
+                            "state": "failed",
+                            "error": {
+                                "name": "AssertionError",
+                                "message": "AssertionError: Timed out retrying after 4000ms: expected '<li>' to contain 'item A'",
+                                "stack": "AssertionError: Timed out retrying after 4000ms: expected '<li>' to contain 'item A'\n    at Context.eval (webpack://cypress-12-demo/./cypress/e2e/xxx.spec.js:31:36)",
+                                "codeFrame": {
+                                    "line": 31,
+                                    "column": 37,
+                                    "originalFile": "cypress/e2e/xxx.spec.js",
+                                    "relativeFile": "e2e/cypress-12-demo/cypress/e2e/xxx.spec.js",
+                                    "absoluteFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/e2e/xxx.spec.js",
+                                    "frame": "  29 |       cy.get(\".clear-completed\").click();\n  30 |       cy.get(\"@todos\").should(\"have.length\", 2);\n> 31 |       cy.get(\".todo-list li\").eq(0).should(\"contain\", TODO_ITEM_ONE);\n     |                                     ^\n  32 |       cy.get(\".todo-list li\").eq(1).should(\"contain\", \"XXXX\");\n  33 |     }\n  34 |   );",
+                                    "language": "js"
+                                }
+                            },
+                            "timings": {
+                                "lifecycle": 32,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 12,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 67,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h6",
+                                        "fnDuration": 878,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 4154,
+                                    "afterFnDuration": 213
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 26,
+                                        "afterFnDuration": 0
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:13:55.276Z",
+                            "wallClockDuration": 5357,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:13:55.276Z",
+                            "duration": 5357,
+                            "screenshots": [
+                                {
+                                    "testAttemptIndex": 0,
+                                    "size": 389035,
+                                    "takenAt": "2023-09-07T15:14:00.421Z",
+                                    "dimensions": {
+                                        "width": 2560,
+                                        "height": 1440
+                                    },
+                                    "multipart": false,
+                                    "specName": "xxx.spec.js",
+                                    "testFailure": true,
+                                    "path": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots/xxx.spec.js/Clear completed button -- should remove completed items when clicked (failed).png",
+                                    "scaled": true,
+                                    "blackout": [],
+                                    "duration": 211,
+                                    "testId": "r4",
+                                    "height": 1440,
+                                    "width": 2560,
+                                    "name": "screenshot"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "testId": "r5",
+                    "title": [
+                        "Clear completed button",
+                        "should be hidden when there are no items that are completed"
+                    ],
+                    "state": "passed",
+                    "body": "function () {\n    cy.get(\"@todos\").eq(1).find(\".toggle\").check();\n    cy.get(\".clear-completed\").should(\"be.visible\").click();\n    cy.get(\".clear-completed\").should(\"not.be.visible\");\n  }",
+                    "displayError": null,
+                    "attempts": [
+                        {
+                            "state": "passed",
+                            "error": null,
+                            "timings": {
+                                "lifecycle": 37,
+                                "before each": [
+                                    {
+                                        "hookId": "h1",
+                                        "fnDuration": 12,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h2",
+                                        "fnDuration": 67,
+                                        "afterFnDuration": 0
+                                    },
+                                    {
+                                        "hookId": "h6",
+                                        "fnDuration": 880,
+                                        "afterFnDuration": 0
+                                    }
+                                ],
+                                "test": {
+                                    "fnDuration": 155,
+                                    "afterFnDuration": 1
+                                },
+                                "after each": [
+                                    {
+                                        "hookId": "h4",
+                                        "fnDuration": 12,
+                                        "afterFnDuration": 0
+                                    }
+                                ]
+                            },
+                            "wallClockStartedAt": "2023-09-07T15:14:00.687Z",
+                            "wallClockDuration": 1156,
+                            "videoTimestamp": null,
+                            "startedAt": "2023-09-07T15:14:00.687Z",
+                            "duration": 1156,
+                            "screenshots": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "startedTestsAt": "2023-09-07T15:13:43.788Z",
+    "endedTestsAt": "2023-09-07T15:14:01.880Z",
+    "config": {
+        "additionalIgnorePattern": [],
+        "animationDistanceThreshold": 5,
+        "arch": "arm64",
+        "autoOpen": false,
+        "baseUrl": "https://todomvc.com/examples/vanillajs",
+        "blockHosts": null,
+        "browsers": [
+            {
+                "name": "chrome",
+                "family": "chromium",
+                "channel": "stable",
+                "displayName": "Chrome",
+                "version": "116.0.5845.179",
+                "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                "minSupportedVersion": 64,
+                "majorVersion": "116"
+            },
+            {
+                "name": "edge",
+                "family": "chromium",
+                "channel": "stable",
+                "displayName": "Edge",
+                "version": "116.0.1938.69",
+                "path": "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+                "minSupportedVersion": 79,
+                "majorVersion": "116"
+            },
+            {
+                "name": "electron",
+                "channel": "stable",
+                "family": "chromium",
+                "displayName": "Electron",
+                "version": "106.0.5249.51",
+                "path": "",
+                "majorVersion": 106
+            }
+        ],
+        "chromeWebSecurity": true,
+        "clientCertificates": [],
+        "clientRoute": "/__/",
+        "configFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress.config.ts",
+        "cypressBinaryRoot": "/Users/miguelangarano/Library/Caches/Cypress/12.17.4/Cypress.app/Contents/Resources/app",
+        "cypressEnv": "production",
+        "defaultCommandTimeout": 4000,
+        "devServerPublicPathRoute": "/__cypress/src",
+        "downloadsFolder": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/downloads",
+        "env": {
+            "currents_temp_file": "/var/folders/1l/tzj2dqys6js7w35f8rx2jsq00000gn/T/tmp-71420-QoY2brpK3PF5",
+            "currents_debug_enabled": false
+        },
+        "excludeSpecPattern": "*.hot-update.js",
+        "execTimeout": 60000,
+        "experimentalCspAllowList": false,
+        "experimentalFetchPolyfill": false,
+        "experimentalInteractiveRunEvents": false,
+        "experimentalMemoryManagement": false,
+        "experimentalModifyObstructiveThirdPartyCode": false,
+        "experimentalOriginDependencies": false,
+        "experimentalRunAllSpecs": false,
+        "experimentalSingleTabRunMode": false,
+        "experimentalSkipDomainInjection": null,
+        "experimentalSourceRewriting": false,
+        "experimentalStudio": false,
+        "experimentalWebKitSupport": false,
+        "fileServerFolder": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo",
+        "fixturesFolder": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/fixtures",
+        "hosts": null,
+        "includeShadowDom": false,
+        "isInteractive": true,
+        "isTextTerminal": true,
+        "keystrokeDelay": 0,
+        "modifyObstructiveCode": true,
+        "morgan": false,
+        "namespace": "__cypress",
+        "numTestsKeptInMemory": 0,
+        "pageLoadTimeout": 60000,
+        "platform": "darwin",
+        "port": null,
+        "projectId": null,
+        "projectName": "cypress-12-demo",
+        "projectRoot": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo",
+        "rawJson": {
+            "e2e": {
+                "baseUrl": "https://todomvc.com/examples/vanillajs",
+                "supportFile": "cypress/support/e2e.ts",
+                "specPattern": "cypress/*/**/*.spec.js",
+                "setupNodeEvents": "[Function setupNodeEvents]"
+            },
+            "component": {
+                "specPattern": [
+                    "pages/__tests__/*.spec.tsx"
+                ],
+                "setupNodeEvents": "[Function setupNodeEvents]",
+                "devServer": {
+                    "framework": "next",
+                    "bundler": "webpack"
+                }
+            },
+            "baseUrl": "https://todomvc.com/examples/vanillajs",
+            "supportFile": "cypress/support/e2e.ts",
+            "specPattern": "cypress/*/**/*.spec.js",
+            "setupNodeEvents": "[Function setupNodeEvents]",
+            "envFile": {},
+            "projectRoot": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo",
+            "projectName": "cypress-12-demo",
+            "repoRoot": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13"
+        },
+        "redirectionLimit": 20,
+        "repoRoot": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13",
+        "report": true,
+        "reporter": "spec",
+        "reporterOptions": null,
+        "reporterRoute": "/__cypress/reporter",
+        "requestTimeout": 5000,
+        "resolved": {
+            "animationDistanceThreshold": {
+                "value": 5,
+                "from": "default"
+            },
+            "arch": {
+                "value": "arm64",
+                "from": "default"
+            },
+            "baseUrl": {
+                "value": "https://todomvc.com/examples/vanillajs",
+                "from": "config"
+            },
+            "blockHosts": {
+                "value": null,
+                "from": "default"
+            },
+            "chromeWebSecurity": {
+                "value": true,
+                "from": "default"
+            },
+            "clientCertificates": {
+                "value": [],
+                "from": "default"
+            },
+            "defaultCommandTimeout": {
+                "value": 4000,
+                "from": "default"
+            },
+            "downloadsFolder": {
+                "value": "cypress/downloads",
+                "from": "default"
+            },
+            "env": {
+                "currents_temp_file": {
+                    "value": "/var/folders/1l/tzj2dqys6js7w35f8rx2jsq00000gn/T/tmp-71420-QoY2brpK3PF5",
+                    "from": "cli"
+                },
+                "currents_debug_enabled": {
+                    "value": false,
+                    "from": "cli"
+                }
+            },
+            "execTimeout": {
+                "value": 60000,
+                "from": "default"
+            },
+            "experimentalCspAllowList": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalFetchPolyfill": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalInteractiveRunEvents": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalRunAllSpecs": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalMemoryManagement": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalModifyObstructiveThirdPartyCode": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalSkipDomainInjection": {
+                "value": null,
+                "from": "default"
+            },
+            "experimentalOriginDependencies": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalSourceRewriting": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalSingleTabRunMode": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalStudio": {
+                "value": false,
+                "from": "default"
+            },
+            "experimentalWebKitSupport": {
+                "value": false,
+                "from": "default"
+            },
+            "fileServerFolder": {
+                "value": "",
+                "from": "default"
+            },
+            "fixturesFolder": {
+                "value": "cypress/fixtures",
+                "from": "default"
+            },
+            "excludeSpecPattern": {
+                "value": "*.hot-update.js",
+                "from": "default"
+            },
+            "includeShadowDom": {
+                "value": false,
+                "from": "default"
+            },
+            "keystrokeDelay": {
+                "value": 0,
+                "from": "default"
+            },
+            "modifyObstructiveCode": {
+                "value": true,
+                "from": "default"
+            },
+            "nodeVersion": {
+                "from": "default"
+            },
+            "numTestsKeptInMemory": {
+                "value": 0,
+                "from": "config"
+            },
+            "platform": {
+                "value": "darwin",
+                "from": "default"
+            },
+            "pageLoadTimeout": {
+                "value": 60000,
+                "from": "default"
+            },
+            "port": {
+                "value": null,
+                "from": "default"
+            },
+            "projectId": {
+                "value": null,
+                "from": "default"
+            },
+            "redirectionLimit": {
+                "value": 20,
+                "from": "default"
+            },
+            "reporter": {
+                "value": "spec",
+                "from": "default"
+            },
+            "reporterOptions": {
+                "value": null,
+                "from": "default"
+            },
+            "requestTimeout": {
+                "value": 5000,
+                "from": "default"
+            },
+            "resolvedNodePath": {
+                "value": null,
+                "from": "default"
+            },
+            "resolvedNodeVersion": {
+                "value": null,
+                "from": "default"
+            },
+            "responseTimeout": {
+                "value": 30000,
+                "from": "default"
+            },
+            "retries": {
+                "value": {
+                    "runMode": 0,
+                    "openMode": 0
+                },
+                "from": "default"
+            },
+            "screenshotOnRunFailure": {
+                "value": true,
+                "from": "default"
+            },
+            "screenshotsFolder": {
+                "value": "cypress/screenshots",
+                "from": "default"
+            },
+            "slowTestThreshold": {
+                "value": 10000,
+                "from": "default"
+            },
+            "scrollBehavior": {
+                "value": "top",
+                "from": "default"
+            },
+            "supportFile": {
+                "value": "cypress/support/e2e.ts",
+                "from": "config"
+            },
+            "supportFolder": {
+                "value": false,
+                "from": "default"
+            },
+            "taskTimeout": {
+                "value": 60000,
+                "from": "default"
+            },
+            "testIsolation": {
+                "value": true,
+                "from": "default"
+            },
+            "trashAssetsBeforeRuns": {
+                "value": true,
+                "from": "default"
+            },
+            "userAgent": {
+                "value": null,
+                "from": "default"
+            },
+            "video": {
+                "value": true,
+                "from": "default"
+            },
+            "videoCompression": {
+                "value": 32,
+                "from": "default"
+            },
+            "videosFolder": {
+                "value": "cypress/videos",
+                "from": "default"
+            },
+            "videoUploadOnPasses": {
+                "value": true,
+                "from": "default"
+            },
+            "viewportHeight": {
+                "value": 660,
+                "from": "default"
+            },
+            "viewportWidth": {
+                "value": 1000,
+                "from": "default"
+            },
+            "waitForAnimations": {
+                "value": true,
+                "from": "default"
+            },
+            "watchForFileChanges": {
+                "value": false,
+                "from": "config"
+            },
+            "specPattern": {
+                "value": "cypress/*/**/*.spec.js",
+                "from": "config"
+            },
+            "browsers": {
+                "value": [
+                    {
+                        "name": "chrome",
+                        "family": "chromium",
+                        "channel": "stable",
+                        "displayName": "Chrome",
+                        "version": "116.0.5845.179",
+                        "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                        "minSupportedVersion": 64,
+                        "majorVersion": "116"
+                    },
+                    {
+                        "name": "edge",
+                        "family": "chromium",
+                        "channel": "stable",
+                        "displayName": "Edge",
+                        "version": "116.0.1938.69",
+                        "path": "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+                        "minSupportedVersion": 79,
+                        "majorVersion": "116"
+                    },
+                    {
+                        "name": "electron",
+                        "channel": "stable",
+                        "family": "chromium",
+                        "displayName": "Electron",
+                        "version": "106.0.5249.51",
+                        "path": "",
+                        "majorVersion": 106
+                    }
+                ],
+                "from": "runtime"
+            },
+            "hosts": {
+                "value": null,
+                "from": "default"
+            },
+            "isInteractive": {
+                "value": true,
+                "from": "default"
+            }
+        },
+        "resolvedNodePath": "/Users/miguelangarano/.nvm/versions/node/v18.14.2/bin/node",
+        "resolvedNodeVersion": "18.14.2",
+        "responseTimeout": 30000,
+        "retries": {
+            "runMode": 0,
+            "openMode": 0
+        },
+        "screenshotOnRunFailure": true,
+        "screenshotsFolder": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/screenshots",
+        "scrollBehavior": "top",
+        "setupNodeEvents": "[Function setupNodeEvents]",
+        "slowTestThreshold": 10000,
+        "socketId": "9pttd16qs3",
+        "socketIoCookie": "__socket",
+        "socketIoRoute": "/__socket",
+        "specPattern": "cypress/*/**/*.spec.js",
+        "supportFile": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/support/e2e.ts",
+        "supportFolder": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/support",
+        "taskTimeout": 60000,
+        "testIsolation": true,
+        "trashAssetsBeforeRuns": true,
+        "userAgent": null,
+        "version": "12.17.4",
+        "video": true,
+        "videoCompression": 32,
+        "videoUploadOnPasses": true,
+        "videosFolder": "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-12-demo/cypress/videos",
+        "viewportHeight": 660,
+        "viewportWidth": 1000,
+        "waitForAnimations": true,
+        "watchForFileChanges": false,
+        "testingType": "e2e"
+    },
+    "status": "finished",
+    "runUrl": "https://app.currents.dev/run/1cb3d5f5b901170e"
+}

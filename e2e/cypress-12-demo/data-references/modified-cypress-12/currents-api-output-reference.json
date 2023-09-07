@@ -1,0 +1,249 @@
+{
+    "status": "OK",
+    "data": {
+        "runId": "1cb3d5f5b901170e",
+        "projectId": "2cI1I5",
+        "createdAt": "2023-09-07T15:13:37.552Z",
+        "tags": [],
+        "cypressVersion": "12.17.4",
+        "cancellation": null,
+        "timeout": {
+            "isTimeout": false
+        },
+        "groups": [
+            {
+                "groupId": "run-api-smoke-2023-09-07T15:13:33.924Z",
+                "platform": {
+                    "osName": "darwin",
+                    "osVersion": "22.5.0",
+                    "browserName": "Electron",
+                    "browserVersion": "106.0.5249.51"
+                },
+                "createdAt": "2023-09-07T15:13:37.552Z",
+                "instances": {
+                    "overall": 2,
+                    "claimed": 2,
+                    "complete": 2,
+                    "passes": 0,
+                    "failures": 2
+                },
+                "tests": {
+                    "overall": 4,
+                    "passes": 1,
+                    "failures": 3,
+                    "pending": 0,
+                    "skipped": 0,
+                    "retries": 0,
+                    "flaky": 0
+                }
+            }
+        ],
+        "meta": {
+            "ciBuildId": "run-api-smoke-2023-09-07T15:13:33.924Z",
+            "commit": {
+                "branch": "fix/cypress-13-ml",
+                "remoteOrigin": null,
+                "authorEmail": "agoldis@gmail.com",
+                "authorName": "Andrew Goldis",
+                "message": "Merge branch 'fix/cypress-13-ml' of https://github.com/currents-dev/cypress-cloud-private into fix/cypress-13-ml\n",
+                "sha": "9a83d60ae901f8975ff343b8d4330258d35f01d3"
+            },
+            "platform": {
+                "osName": "darwin",
+                "osVersion": "22.5.0",
+                "browserName": "Electron",
+                "browserVersion": "106.0.5249.51"
+            }
+        },
+        "specs": [
+            {
+                "groupId": "run-api-smoke-2023-09-07T15:13:33.924Z",
+                "spec": "cypress/e2e/retries.spec.js",
+                "instanceId": "rbs7YrlOSINU",
+                "claimedAt": "2023-09-07T15:13:37.938Z",
+                "completedAt": "2023-09-07T15:13:48.035Z",
+                "machineId": "OXFt7Pz5QnjN",
+                "worker": null,
+                "results": {
+                    "videoUrl": "https://fs.currents.dev/64af8eee5411be7416b22d5f/rbs7YrlOSINU_8JKXG6qPDUO6.mp4?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=tfRTLGv8tnIfJvAN51OClr2V9E6HZJhi1WsOty7luJKXKfbBV33egbN6nmZCxmqr9fp3XGnQchJ4QYB-0Q9GCwOlcqwjVmC2ZAmZv0ugmK-V63YnQuCiNYhjAXUR3TA7j2ecTL~L6VODCzXBhQqA2IOUz5ACuasPZNN7Jhp2Bt-CXlFCfpXGB5VYv~vqsHp7qnNhHIx6md0afJzAhoXR5B1mT5uP2XPY9XcU~0ZM6oIxzBg-xPPNQPXxmATwZZOHDxSUel60MkyVY-2ZiBQzPmaIZSItcNJcgmrDX5nHuY66oTHZB1gYSX3bbirw5AEx68WQ-gVvEOISzegpkCc8kQ__",
+                    "stats": {
+                        "duration": 2127,
+                        "endedAt": "2023-09-07T15:13:45.915Z",
+                        "startedAt": "2023-09-07T15:13:43.788Z",
+                        "failures": 1,
+                        "passes": 0,
+                        "pending": 0,
+                        "skipped": 0,
+                        "suites": 1,
+                        "tests": 1,
+                        "wallClockDuration": 2127,
+                        "wallClockStartedAt": "2023-09-07T15:13:43.788Z",
+                        "wallClockEndedAt": "2023-09-07T15:13:45.915Z"
+                    },
+                    "screenshots": [
+                        {
+                            "testAttemptIndex": 0,
+                            "size": 333986,
+                            "takenAt": "2023-09-07T15:13:44.312Z",
+                            "dimensions": {
+                                "width": 2560,
+                                "height": 1440
+                            },
+                            "multipart": false,
+                            "specName": "retries.spec.js",
+                            "testFailure": true,
+                            "scaled": true,
+                            "blackout": [],
+                            "duration": 297,
+                            "testId": "r0",
+                            "name": "screenshot",
+                            "screenshotId": "4Rpyah6Tp_RWQVNiO-qM9",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/mqyZZIa9N04n.png?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=C6rlSmcWuqPdg5QJTW93a1ZwXrbLgr8Yc5QFnQcvOfT9LDU8gtc3cRwBjqyZU3Jny3Fq60hzfQixBwBehe3VfHiMtpsNWutxtLpEDmX~seihENXlPszXDxhIBrEn7A9w3Q5a8f0n02lE4hxKgUkcPPjhCv6itxfSu-9-fIYs~CX~lufGRWUMLQwgrc8KMwnOvZ1tKBup~gyJgpmrSwTmRKvwkB0IRelr9FP1tuJDk1upeyFeuKCsCwLOizDes6pVCqY8WW9nzDeC7y1IuHX7Xuovp3jHbTZSmn-myFO6Kl5FbVfOPokF05Hm2KCSsgwb8kTbQEMwZC6yRvf-~sWLEw__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "testAttemptIndex": 1,
+                            "size": 379936,
+                            "takenAt": "2023-09-07T15:13:44.787Z",
+                            "dimensions": {
+                                "width": 2560,
+                                "height": 1440
+                            },
+                            "multipart": false,
+                            "specName": "retries.spec.js",
+                            "testFailure": true,
+                            "scaled": true,
+                            "blackout": [],
+                            "duration": 234,
+                            "testId": "r0",
+                            "name": "screenshot",
+                            "screenshotId": "cGQroZf8Wqd-CmWN4tG7H",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/Kf0tzGzlLBBc.png?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=Z~o45C8OBWY0XBNtsiTC2KfDHZxXm2X-4dKY-DbEWyO~vajLd3IxUQyTqEoxCikPxAOjHYGKDpdV4mlrWiepTKbjO8LCTLhUMBm0hejYl0fnzdrbwzGSP--Yx41wRptkKfofEa66eIce9FyHup2whQTtGktkOntV97mWem3SKCs2eBQT6GNdglgcOLQY~crdeF80hLp-rs5QSLbWclEbAXKF1QMxPhGGbI5NGYvo6cUSS08cHu~xJX8efaZ84STeDSQT4WxTmR-N1hbojjOHT6sPgg9QIiQO1UDizHlNNErFdkqJkXhTmIc2LxVv493NlBmSJNPL~LbdSZoGidMkaQ__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "testAttemptIndex": 2,
+                            "size": 376075,
+                            "takenAt": "2023-09-07T15:13:45.193Z",
+                            "dimensions": {
+                                "width": 2560,
+                                "height": 1440
+                            },
+                            "multipart": false,
+                            "specName": "retries.spec.js",
+                            "testFailure": true,
+                            "scaled": true,
+                            "blackout": [],
+                            "duration": 243,
+                            "testId": "r0",
+                            "name": "screenshot",
+                            "screenshotId": "lSwirT-Vo4tmhNj9fbJw5",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/b821kqN6jc5K.png?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=hjGnCyQ4x9x9pkpLD7W0kzmbyvFLRCboKEzWv6pno1GbDatHEUkjz4PYg18Y9Z4QDrO67IbUA8ukfGRpYkCin1kMa9v3eNeRs2St6XNz9kOGEKo8CjI1qaqGy-4gD-W7FVeExBkpwMRLkwLt6eFMYXjruYxl2GHxwCWuc8MubX6hPtsEq3ESDhWbSIpROaLqdNMIbB2Ok51iIsdlkpyePzlgWsW417F0V48InDZ63cp~WW52ljXbEtPxlxYvRa5vOT0sPrsvkiqp9w-PLEI-CujJCfELjhp9ReHxj1sQg53hlH0nAtRhQUB9iAjj10hCw3-xAAduye~bTVE18B2j2g__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "testAttemptIndex": 3,
+                            "size": 285892,
+                            "takenAt": "2023-09-07T15:13:45.615Z",
+                            "dimensions": {
+                                "width": 2560,
+                                "height": 1440
+                            },
+                            "multipart": false,
+                            "specName": "retries.spec.js",
+                            "testFailure": true,
+                            "scaled": true,
+                            "blackout": [],
+                            "duration": 230,
+                            "testId": "r0",
+                            "name": "screenshot",
+                            "screenshotId": "yvPgD2nfmg8EeLltndAl8",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/k6n4RXDsC6nY.png?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=hyfwRoAA0OL1uavVtvY2amJ~jBf3opqI2Uwo7DxNAm49vbbXeQcpaNK6oyrwD8UetdHGDbYz~iM7Jby4eQ1cKZ6S-CF9KwTYCdjFBioTJvmRgLacpDag2WBCtDvwnzOztomRUnmXp9De2TMP~n2YKoQ9JpGixhIrKjZCFGxZQVHOCIvRXtKUAoz7NvlgPuHlWsqAPFAf5rZ3cS8bG2b1ZNsCkhbAI9fTPkFESdM6D5WtsN0JDV9BwR9zG9wj~GU6enjZdXmDzPdlzeKOHn4rSSGunNhjwpEorlmAL-KqGK1-c8iLVHv-SiQSjEyGEOegyQG~NPp0ZgAS0ul8iJkOeg__",
+                            "height": 0,
+                            "width": 0
+                        }
+                    ],
+                    "exception": null,
+                    "flaky": 0
+                }
+            },
+            {
+                "groupId": "run-api-smoke-2023-09-07T15:13:33.924Z",
+                "spec": "cypress/e2e/xxx.spec.js",
+                "instanceId": "yV1h3twEnzfJ",
+                "claimedAt": "2023-09-07T15:13:37.947Z",
+                "completedAt": "2023-09-07T15:14:03.869Z",
+                "machineId": "OXFt7Pz5QnjN",
+                "worker": null,
+                "results": {
+                    "videoUrl": "https://fs.currents.dev/64af8eee5411be7416b22d5f/yV1h3twEnzfJ_QQ7ZMFI3m1DM.mp4?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=EX99HKaL03AQ9fKw9TrZcV-4vXD7n0eT6sEfqwz3p6CIdVQvl0SHQDtNmYCkimFC0fQTgtLlyAAnmBk-xuT-jtgYGq0EKbx~MOUkqlhnTe2iTYjRNP3rVl9v8e0yUkPsVdZI5YIB3Fcwn2Qy0iUlg4Prju0d74b7fms9cezONC7FMRIpIAo~ZEoEoAlkTKc65e-OsRrzYjg9WChmLQwM17i~oimidMcHIOFsYnt9wkjf2GNjCqJ7BJXmSYjig~enEWm-amAPbkCcQSqtdnvGw~MJ1jmcO7Y1jDAEcHCqv48cUnAd8TLf1XsPdY0UF~mLX0towk3zDQjff-xv2tPf3Q__",
+                    "stats": {
+                        "duration": 12083,
+                        "endedAt": "2023-09-07T15:14:01.880Z",
+                        "startedAt": "2023-09-07T15:13:49.797Z",
+                        "failures": 2,
+                        "passes": 1,
+                        "pending": 0,
+                        "skipped": 0,
+                        "suites": 1,
+                        "tests": 3,
+                        "wallClockDuration": 12083,
+                        "wallClockStartedAt": "2023-09-07T15:13:49.797Z",
+                        "wallClockEndedAt": "2023-09-07T15:14:01.880Z"
+                    },
+                    "screenshots": [
+                        {
+                            "testAttemptIndex": 0,
+                            "size": 418133,
+                            "takenAt": "2023-09-07T15:13:54.986Z",
+                            "dimensions": {
+                                "width": 2560,
+                                "height": 1440
+                            },
+                            "multipart": false,
+                            "specName": "xxx.spec.js",
+                            "testFailure": true,
+                            "scaled": true,
+                            "blackout": [],
+                            "duration": 232,
+                            "testId": "r0",
+                            "name": "screenshot",
+                            "screenshotId": "oivMg_7acB8d9vJ_PD0u0",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/M9riLCn4k9VA.png?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=uvzizucdHl5rojtfw78wb~lzpJCel472Ag9I2JvYQczm2NouLAqTz~CsyN~z~BSyGBqi3tPggNadBCEBYdZDMLGxk5VQhpq1j6yO23RDFh70A5HA87SDA6T5kXj4q1oipoC78YzleP4uqlA0etSsUtSzx0F-RAKXXrlIIJTz0pf6mSq6TiaNl28~OBYHhfV92OR0uMyHo-Ep1OmHR8z6WwVyuC9zcjxvMDxQX8IizpkKMw9wmmx2XAxLrzAiVj0KNMwlYCdop-gBRHbaamNSQermHNc2QhvEDVFs2n6YqEgkfMIzpLUDax~XWnz3YeYBkdnw9qejLEe05RJto6RLXg__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "testAttemptIndex": 0,
+                            "size": 389035,
+                            "takenAt": "2023-09-07T15:14:00.421Z",
+                            "dimensions": {
+                                "width": 2560,
+                                "height": 1440
+                            },
+                            "multipart": false,
+                            "specName": "xxx.spec.js",
+                            "testFailure": true,
+                            "scaled": true,
+                            "blackout": [],
+                            "duration": 211,
+                            "testId": "r1",
+                            "name": "screenshot",
+                            "screenshotId": "De0ifKAyoq-2jNPHtKJn7",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/NDkvUsertmv1.png?Expires=1694358837&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=MOZ5fu8eWNU4DW3IBc~Po62LBEn1oZsoKlgXsL8eOx2VEs317nsYGd9hbc9kdZuzwKuxcHGAJcXKsUmbrmPN9PuXNOrQOH8B9b0bFNRmpxrskJh1--2q3X4iK87WXSyesl3gV8c05WTpI9smjYRacs6k-sIjlzZzyTB3QYymjbG9cfT2fr21qh5D0KwJ8YQ1~VPQnSyKe8EUoUrj068yLslUH21T7kMcJIc21P7wZwn0yhyfVjne3QdGitmAaCz-f0i2ncKicKjoyoDLVQMSBWni0SMcXITyb5C20R4LnZ2Lo9uQKOpSFNYVVXXl8ByBaMc5DjfLLAdv1b-sPgAgig__",
+                            "height": 0,
+                            "width": 0
+                        }
+                    ],
+                    "exception": null,
+                    "flaky": 0
+                }
+            }
+        ],
+        "completionState": "COMPLETE",
+        "status": "FAILED"
+    }
+}

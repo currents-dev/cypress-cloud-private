@@ -1,0 +1,183 @@
+{
+    "status": "OK",
+    "data": {
+        "runId": "8bca8d1e39c70474",
+        "projectId": "2cI1I5",
+        "createdAt": "2023-09-07T14:43:06.355Z",
+        "tags": [],
+        "cypressVersion": "12.17.4",
+        "cancellation": null,
+        "timeout": {
+            "isTimeout": false
+        },
+        "groups": [
+            {
+                "groupId": "run-api-smoke-2023-09-07T14:43:02.518Z",
+                "platform": {
+                    "osName": "darwin",
+                    "osVersion": "22.5.0",
+                    "browserName": "Electron",
+                    "browserVersion": "106.0.5249.51"
+                },
+                "createdAt": "2023-09-07T14:43:06.355Z",
+                "instances": {
+                    "overall": 2,
+                    "claimed": 2,
+                    "complete": 2,
+                    "passes": 0,
+                    "failures": 2
+                },
+                "tests": {
+                    "overall": 4,
+                    "passes": 1,
+                    "failures": 3,
+                    "pending": 0,
+                    "skipped": 0,
+                    "retries": 0,
+                    "flaky": 0
+                }
+            }
+        ],
+        "meta": {
+            "ciBuildId": "run-api-smoke-2023-09-07T14:43:02.518Z",
+            "commit": {
+                "branch": "fix/cypress-13-ml",
+                "remoteOrigin": null,
+                "authorEmail": "agoldis@gmail.com",
+                "authorName": "Andrew Goldis",
+                "message": "Merge branch 'fix/cypress-13-ml' of https://github.com/currents-dev/cypress-cloud-private into fix/cypress-13-ml\n",
+                "sha": "9a83d60ae901f8975ff343b8d4330258d35f01d3"
+            },
+            "platform": {
+                "osName": "darwin",
+                "osVersion": "22.5.0",
+                "browserName": "Electron",
+                "browserVersion": "106.0.5249.51"
+            }
+        },
+        "specs": [
+            {
+                "groupId": "run-api-smoke-2023-09-07T14:43:02.518Z",
+                "spec": "cypress/e2e/retries.spec.js",
+                "instanceId": "8J3rwD777aCy",
+                "claimedAt": "2023-09-07T14:43:06.807Z",
+                "completedAt": "2023-09-07T14:43:16.205Z",
+                "machineId": "5sO76DOXueAs",
+                "worker": null,
+                "results": {
+                    "videoUrl": "https://fs.currents.dev/64af8eee5411be7416b22d5f/8J3rwD777aCy_6fNrOdy8nJCA.mp4?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=ASPwUt~ZecRhsF2a9YYso-GB4i1c-F2WHKWXQX2VglFEYKFsS8MV4sswVT470Ccd6J2Zlg738GJHz6jVMwyw3yXxfj1J7kgNXodKXaoG1Ra24yNAk4pYkOazD0KXw4rIOqv9L7mPL9O8wv7e7eHvF~1HBexgdo8teJCW-1AS~C2tP~OcYZ1DsSuB~mQzPU77kaFXQ93htnZBxSImu54s5ttbMR3tt6vPawPhGjvYLASvrGRBoMdHWOgxmtIXVOmv6e1WxR6XpicnK7OtYkHvonGl-dQ-eUrWjnZbN5tGk9goFi1r333JqyEHZZDsBivNkpqI9yO53C3gJ3ZOgeZvKw__",
+                    "stats": {
+                        "duration": 2254,
+                        "endedAt": "2023-09-07T14:43:14.391Z",
+                        "startedAt": "2023-09-07T14:43:12.137Z",
+                        "failures": 1,
+                        "passes": 0,
+                        "pending": 0,
+                        "skipped": 0,
+                        "suites": 1,
+                        "tests": 1,
+                        "wallClockDuration": 2254,
+                        "wallClockStartedAt": "2023-09-07T14:43:12.137Z",
+                        "wallClockEndedAt": "2023-09-07T14:43:14.391Z"
+                    },
+                    "screenshots": [
+                        {
+                            "screenshotId": "Tml5Yc4nGNbdiHx-Pt0cr",
+                            "name": "screenshot",
+                            "testId": "r0",
+                            "testAttemptIndex": 0,
+                            "takenAt": "2023-09-07T14:43:12.709Z",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/NlmKKKEpT5ei.png?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=EL1VMe2pzO3yZamPnPmUUXjjS7q-9DdaEH5gOxEyOMrupuX7G2Y4judokPcIcsF-HPO5iEUXsEkOFBjGBDGW2hViuDMuIVLV-UfubMcIRg9QOy4A-LlZ62gwEtesc~GbkQDkTSA1UCcKn4SBHiDQolXfe8MYxlbr4GrKp3Zajf2kRitYb5pq8te7wvlaQyvDhl1Xs6Zykt0Fwo2vCxAK56mDV7rhKq2-kKOdEeX15PH2tyTMzvufRiPkc6sKwWGSxdJEpMzzbk-WAEuWjngoqJqdxrDlBMV~q0nPdYSdGdqC582uXlFrNn4QehPM0uzjGOhyykjkdchg4f-pdiYkhQ__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "screenshotId": "ejtK6-YBwFVDalCGBLi7s",
+                            "name": "screenshot",
+                            "testId": "r0",
+                            "testAttemptIndex": 1,
+                            "takenAt": "2023-09-07T14:43:13.168Z",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/7OxLURMw7O25.png?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=RxhWyUdzLbRPKULm5O6fu4YkbArD81WWaT~TUS11d1i6KEurZZD0AsorMBy-ZctXcyzdnB7R4wtXg2r85Jjap9rkv52XrzaSLPcppyh3g3c3rWGUquMCDbYwgw9X~Ckp8H3eYeUuRszjRlvWDhCk1JVE-7aKFbxnSAQpLATjAjs~4qFmhUG0MLF0y95nPLy7o6L1f4vnywa-UpZtTfUwJtZvbimqV74dcPQKSTxbHTcnIdoV-NcYaRh1qjnmKHGaZN6pmreNQ7Hmq22XfSuv9ga2EKUwsDHVUxd3e~bl7kwNIKPmMRgHSyumRnTX23EeeugOAjXI1HqzpriQQnxS0w__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "screenshotId": "2jteLpIvl_LfW6ULaExOF",
+                            "name": "screenshot",
+                            "testId": "r0",
+                            "testAttemptIndex": 2,
+                            "takenAt": "2023-09-07T14:43:13.598Z",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/Ak6wrgkEnhff.png?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=gzhg3iY7L5y7Pjhg6BaS-tbYzBMJW4ZGvYJ6hX2Qk71QnTqZ91kg1RLURhZ-nBNbLsIvsmcOnyARGKtxLpanf08PEjTlZRto2xWW~pNR3O3SOTCkS7yACQWuHBNNNa~Rgl4eS6dZwyVgEvWRDY4Jk8xLgv4TKnTp-a4LwvzS6BtdzUGLxwztOqDAXbwjOVuxAWFxuw~SsZPmt7w-aAVybBHBAq6tk8ZATg2S321qCM-KfUS5XDpQSDV8nj-Q4HBpMjpIuAh943wX2kYdJ5MkZG5CF570gAMZYyIoKfDEdaLvn59dqtTUU77TSyie7kWbDk8KVbLfLxgXiq8KOd9X8g__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "screenshotId": "d-XmcTx49f68Dus9DUnjx",
+                            "name": "screenshot",
+                            "testId": "r0",
+                            "testAttemptIndex": 3,
+                            "takenAt": "2023-09-07T14:43:14.067Z",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/yYdCIWF3aAev.png?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=JPRD6DvU5KVSu8U8uhjHgoj8g-kg0C~KSDhaPLGIr7u8OiyJEkGsWogBG01mPEFCYKrNXHXjSOpabfgp6VzvuxekVs-iDnmd7vtA61Ir4GD8MWaYU3iCH1kBWkQpvXNkT3XzddeUtNQ1MAQz-S2xqjHh-deCCHM~eL6lf7E7SUfZhew~j5qx7VMmuuY~4jxwcIzTfoQP~92giE4P5J2Evh8OEbT3mFheL18cDKFbMHOcqQybDf4AvGNQkQucm0hHv~bU498zOVcDgdLhWZr4sjRn1IqmYreK-s-Zn0dfpa5mg4oOcMpbGybOqKTPh6l7CmBOJTeqnQicdbIICFey7A__",
+                            "height": 0,
+                            "width": 0
+                        }
+                    ],
+                    "exception": null,
+                    "flaky": 0
+                }
+            },
+            {
+                "groupId": "run-api-smoke-2023-09-07T14:43:02.518Z",
+                "spec": "cypress/e2e/xxx.spec.js",
+                "instanceId": "gfN55D1Z1Ssq",
+                "claimedAt": "2023-09-07T14:43:06.815Z",
+                "completedAt": "2023-09-07T14:43:32.123Z",
+                "machineId": "5sO76DOXueAs",
+                "worker": null,
+                "results": {
+                    "videoUrl": "https://fs.currents.dev/64af8eee5411be7416b22d5f/gfN55D1Z1Ssq_mR76fZikuc8A.mp4?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=RluI2-xMVMVK501sGUvh9QY09MlBlATaFuUyp8-lZDZ5PNnD-hg3Af1mvdDTnj7zbZFOyMIk2iMDP-SpVZ7LAF-fKTjC43RCymZK1XUbt6K5~LzMxBoBaGgAZXv~AODDvabq9BLYWYKo5k77fGYI3HKtqqtx9z129LYFA9CkGar0v49K~PEpo2KtyVYKdeCJpGhSanpBH~dyaH83hgQnFnCb2HEZLoOBizZnW1Fq-ABiUyaF~n2FyRnAeku2yfsr9z07aZN1bIKGHCLx0nW~Hgmt1FkOkFZpUFGLWg-zIcmMfEdKPH-8jC6pkbo-ZFOZIUK61dF~HoGT9GahxbvXeg__",
+                    "stats": {
+                        "duration": 12043,
+                        "endedAt": "2023-09-07T14:43:30.200Z",
+                        "startedAt": "2023-09-07T14:43:18.157Z",
+                        "failures": 2,
+                        "passes": 1,
+                        "pending": 0,
+                        "skipped": 0,
+                        "suites": 1,
+                        "tests": 3,
+                        "wallClockDuration": 12043,
+                        "wallClockStartedAt": "2023-09-07T14:43:18.157Z",
+                        "wallClockEndedAt": "2023-09-07T14:43:30.200Z"
+                    },
+                    "screenshots": [
+                        {
+                            "screenshotId": "_2ZG8ySKdSINKk1MXp56g",
+                            "name": "screenshot",
+                            "testId": "r0",
+                            "testAttemptIndex": 0,
+                            "takenAt": "2023-09-07T14:43:23.326Z",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/CbRyd8GNvTBZ.png?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=KWufDBOr5YM8f0G1MdzXMpS3X0g67GZ7611Qx6c7veQewa4cSEsDJVtR60eZXg6yIk7j26QquFm2IMtVLo8Moj7RnTMJ0NnoP-JUbEFN9ZQh0OfC4vN~5mp02QGDumqjMDwPIVDJbbk2qYQRq6rTrRtkYEc5O-iqUp2ZO5N0E~cen8s6NUR0DQmSOR4fGcL027FpEOSaMN3l5UvUB74XFy9xQhACnAycbevD1YuUuoFrPTFHvYk5LonXt7w~gBSMrezZ~Y5fEJUu2dEI3-YWuO4At3fs~TUcym6f~9zbSopE797qxTnpCVAY3lusNB-ypD0O2s4SPTlr85HqjAUBUw__",
+                            "height": 0,
+                            "width": 0
+                        },
+                        {
+                            "screenshotId": "AO_aGuj16E1ksnW4KEOXs",
+                            "name": "screenshot",
+                            "testId": "r1",
+                            "testAttemptIndex": 0,
+                            "takenAt": "2023-09-07T14:43:28.809Z",
+                            "screenshotURL": "https://fs.currents.dev/64af8eee5411be7416b22d5f/BIrNIsy1KNNf.png?Expires=1694357436&Key-Pair-Id=K1ZNDCCIZ3P4FU&Signature=FOoQkcYxIQFruKQU9oOxLFENAEucUvFBImI5kzSNFOCAWXyJjpPq0X7irUFh29P2MsziD~1BYIn5L0sARtKuziQ6nSurQ6K2qnIXjut15~YZiEP5i~GpmkU3ReRnAGRILJ45uR0PJN7BixP6KHfKk-mOnuYbw8fBsTT1D~JadRdxor0Nz9ieP9Y2KLv6yQwxne3u5kcSumHlFrLpXT~A6M30-2Em6kWJKkfdm~ATdzgfgbw753wq-fX36aCKQ9NBKKg6C6m8dMmTPlEGlZVtF8vOd611glURCilfsZwZJnez6Ic53W5HBNbkJdtyXLoBirCnd5dtR1Z4xdixyMYduA__",
+                            "height": 0,
+                            "width": 0
+                        }
+                    ],
+                    "exception": null,
+                    "flaky": 0
+                }
+            }
+        ],
+        "completionState": "COMPLETE",
+        "status": "FAILED"
+    }
+}
