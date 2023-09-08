@@ -22,7 +22,7 @@ function getTestAttempt(
 ): CypressTestAttempt {
   return {
     ...attempt,
-    startedAt: attempt.wallClockStartedAt,
+    startedAt: attempt.wallClockStartedAt ?? attempt.startedAt,
     duration: attempt.wallClockDuration,
     screenshots: screenshots.map(getScreenshot),
   };

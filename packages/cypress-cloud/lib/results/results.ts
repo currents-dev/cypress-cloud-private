@@ -24,7 +24,7 @@ export const getRunScreenshots = (
 ): ScreenshotArtifact[] => {
   return tests.flatMap((test, i) =>
     test.attempts.flatMap((a, ai) =>
-      a.screenshots.flatMap((s) => ({
+      (a.screenshots ?? []).flatMap((s) => ({
         ...s,
         testId: `r${i}`,
         testAttemptIndex: ai,
@@ -58,6 +58,7 @@ export const getInstanceResultPayload = (
   runResult: CypressCommandLine.RunResult,
   coverageFilePath?: string
 ): UpdateInstanceResultsPayload => {
+  debug("generating instance result payload from %o", runResult);
   return {
     stats: getStats(runResult.stats),
     reporterStats: runResult.reporterStats,
@@ -66,7 +67,7 @@ export const getInstanceResultPayload = (
     screenshots: getRunScreenshots(runResult.tests ?? []),
     hasCoverage: !!coverageFilePath,
     tests:
-      runResult.tests?.map((test, i) => ({
+      (runResult.tests ?? []).map((test, i) => ({
         displayError: test.displayError,
         state: test.state as TestState,
         // @ts-ignore
