@@ -3,16 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "tests": "ts-node scripts/tests.ts",
-    "validate": "ts-node scripts/validate.ts"
+    "files": "ts-node scripts/files.ts",
+    "validate": "ts-node scripts/validate.ts",
+    "test": "ts-node scripts/test.ts"
   },
   "dependencies": {
     "cypress-cloud": "*"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.6",
     "@types/node": "^17.0.12",
+    "chai": "^4.3.8",
     "cypress": "^12.17.4",
     "tsconfig": "*",
-    "typescript": "^4.7.4"
+    "typescript": "^5.2.2"
   }
 }

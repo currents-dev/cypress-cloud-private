@@ -20,7 +20,7 @@ import fs from "fs";
     'Authorization': `Bearer ${apiKey}`,
   });
 
-  fs.writeFile('data-references/modified-cypress-12/cypress-cloud-output-reference.json', JSON.stringify(result), (err) => {
+  fs.writeFile('data-references/ccy-1.10-cypress-13/cypress-cloud-output-reference.json', JSON.stringify(result), (err) => {
     if (err) throw err;
     console.log('file saved');
   });
@@ -39,7 +39,7 @@ import fs from "fs";
     })
     .then(data => {
       console.log(data);
-      fs.writeFile('data-references/modified-cypress-12/currents-api-output-reference.json', JSON.stringify(data), (err) => {
+      fs.writeFile('data-references/ccy-1.10-cypress-13/currents-api-output-reference.json', JSON.stringify(data), (err) => {
         if (err) throw err;
         console.log('file saved');
       });

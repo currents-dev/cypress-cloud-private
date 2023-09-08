@@ -50,14 +50,14 @@ function compareObjectsRecursively(objA: any, objB: any, path: string = ''): Com
 
 (async function runValidation() {
     try {
-        const originalCurrentApiFile = fs.readFileSync('data-references/original-cypress-12/currents-api-output-reference.json', 'utf8');
-        const originalCypressCloudFile = fs.readFileSync('data-references/original-cypress-12/cypress-cloud-output-reference.json', 'utf8');
+        const originalCurrentApiFile = fs.readFileSync('data-references/ccy-1.9.4-cypress-12/currents-api-output-reference.json', 'utf8');
+        const originalCypressCloudFile = fs.readFileSync('data-references/ccy-1.9.4-cypress-12/cypress-cloud-output-reference.json', 'utf8');
 
         const originalCurrentApi = JSON.parse(originalCurrentApiFile);
         const originalCypressCloud = JSON.parse(originalCypressCloudFile);
 
-        const modifiedCurrentApiFile = fs.readFileSync('data-references/modified-cypress-12/currents-api-output-reference.json', 'utf8');
-        const modifiedCypressCloudFile = fs.readFileSync('data-references/modified-cypress-12/cypress-cloud-output-reference.json', 'utf8');
+        const modifiedCurrentApiFile = fs.readFileSync('data-references/ccy-1.10-cypress-12/currents-api-output-reference.json', 'utf8');
+        const modifiedCypressCloudFile = fs.readFileSync('data-references/ccy-1.10-cypress-12/cypress-cloud-output-reference.json', 'utf8');
 
         const modifiedCurrentApi = JSON.parse(modifiedCurrentApiFile);
         const modifiedCypressCloud = JSON.parse(modifiedCypressCloudFile);

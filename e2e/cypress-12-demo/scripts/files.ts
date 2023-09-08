@@ -3,16 +3,17 @@ import { run } from "cypress-cloud";
 import fs from "fs";
 
 (async function runTests() {
-  const projectId = process.env.CURRENTS_PROJECT_ID || "projectId";
-  const recordKey = process.env.CURRENTS_RECORD_KEY || "recordKey";
-  const apiKey = process.env.CURRENTS_API_KEY || "apiKey";
+  const projectId = process.env.CURRENTS_PROJECT_ID || "2cI1I5";
+  const recordKey = process.env.CURRENTS_RECORD_KEY || "YakSabgBLb7D40nZ";
+  const apiKey = process.env.CURRENTS_API_KEY || "YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9";
   const apiUrl = "https://api.currents.dev/v1/runs/"
 
   const ciBuildId = `run-api-smoke-${new Date().toISOString()}`;
   const result: any = await run({
     ciBuildId,
     projectId,
-    recordKey
+    recordKey,
+    batchSize: 4
   });
   assert(result !== undefined);
 
@@ -20,7 +21,7 @@ import fs from "fs";
     'Authorization': `Bearer ${apiKey}`,
   });
 
-  fs.writeFile('data-references/modified-cypress-13/cypress-cloud-output-reference.json', JSON.stringify(result), (err) => {
+  fs.writeFile('data-references/ccy-1.10-cypress-12/cypress-cloud-output-reference.json', JSON.stringify(result), (err) => {
     if (err) throw err;
     console.log('file saved');
   });
@@ -38,8 +39,7 @@ import fs from "fs";
       return response.json();
     })
     .then(data => {
-      console.log(data);
-      fs.writeFile('data-references/modified-cypress-13/currents-api-output-reference.json', JSON.stringify(data), (err) => {
+      fs.writeFile('data-references/ccy-1.10-cypress-12/currents-api-output-reference.json', JSON.stringify(data), (err) => {
         if (err) throw err;
         console.log('file saved');
       });
