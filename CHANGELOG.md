@@ -1,5 +1,12 @@
 
 
+# [1.10.0-beta.3](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.2...v1.10.0-beta.3) (2023-09-08)
+
+
+### Bug Fixes
+
+* issue 179 fixes ([cf8ca5d](https://github.com/currents-dev/cypress-cloud/commit/cf8ca5d5f71b69a6fc7d1098b1bb0b42d27427d2))
+
 # [1.10.0-beta.2](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.1...v1.10.0-beta.2) (2023-09-06)
 
 
