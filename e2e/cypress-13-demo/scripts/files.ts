@@ -1,4 +1,3 @@
-import assert from "assert";
 import { run } from "cypress-cloud";
 import fs from "fs";
 

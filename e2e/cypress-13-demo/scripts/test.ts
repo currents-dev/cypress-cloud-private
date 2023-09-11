@@ -1,6 +1,8 @@
 import fs from "fs";
 import { expect } from "chai";
 import { run } from "cypress-cloud";
+import colors from "colors";
+colors.enable();
 
 type ComparisonResult = {
 	path: string;
@@ -224,6 +226,18 @@ const avoidableProperties: { property: string; mustHave: boolean }[] = [
 		property: "runUrl",
 		mustHave: true,
 	},
+	{
+		property: "commit.message",
+		mustHave: true,
+	},
+	{
+		property: "commit.sha",
+		mustHave: true,
+	},
+	{
+		property: "cypressVersion",
+		mustHave: true,
+	},
 ];
 
 function isAvoidableProperty(property: string) {
@@ -326,7 +340,16 @@ async function getApiData(runUrl: string) {
 			modifiedCurrentApi
 		);
 
+		console.log("Starting test: Currents API output".yellow);
+
 		testEachResults(currentsApiResults);
+
+		console.log(
+			"Test Passed: Currents API output is the same in ccy 1.9 cypress 12 without change and ccy 1.9 cypress 12 with changes"
+				.green
+		);
+
+		console.log("Starting test: Cypress Cloud output".yellow);
 
 		const cypressCloudResults = compareObjectsRecursively(
 			originalCypressCloud,
@@ -334,6 +357,11 @@ async function getApiData(runUrl: string) {
 		);
 
 		testEachResults(cypressCloudResults);
+
+		console.log(
+			"Test Passed: Cypress Cloud output is the same in ccy 1.9 cypress 12 without change and ccy 1.9 cypress 12 with changes"
+				.green
+		);
 	} catch (err) {
 		console.error("Process error:", err);
 	}
