@@ -112,7 +112,11 @@ export const getInstanceTestsPayload = (
   config: Cypress.ResolvedConfigOptions
 ): SetInstanceTestsPayload => {
   return {
-    config,
+    config: {
+      ...config,
+      // @ts-ignore
+      videoUploadOnPasses: config?.videoUploadOnPasses ?? false,
+    },
     tests:
       runResult.tests?.map((test, i) => ({
         title: test.title,
