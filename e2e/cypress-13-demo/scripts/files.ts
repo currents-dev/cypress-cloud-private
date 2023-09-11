@@ -16,7 +16,6 @@ import fs from "fs";
 		projectId,
 		recordKey,
 	});
-	assert(result !== undefined);
 
 	const headers = new Headers({
 		Authorization: `Bearer ${apiKey}`,

@@ -1,4 +1,3 @@
-import assert from "assert";
 import { run } from "cypress-cloud";
 import fs from "fs";
 
@@ -17,7 +16,6 @@ import fs from "fs";
 		recordKey,
 		batchSize: 4,
 	});
-	assert(result !== undefined);
 
 	const headers = new Headers({
 		Authorization: `Bearer ${apiKey}`,

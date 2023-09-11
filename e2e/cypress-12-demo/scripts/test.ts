@@ -1,5 +1,6 @@
 import fs from "fs";
 import { expect } from "chai";
+import { run } from "cypress-cloud";
 
 type ComparisonResult = {
 	path: string;
@@ -270,6 +271,44 @@ function testEachResults(results: ComparisonResult[]) {
 	});
 }
 
+async function runTests() {
+	const projectId = process.env.CURRENTS_PROJECT_ID || "2cI1I5";
+	const recordKey = process.env.CURRENTS_RECORD_KEY || "YakSabgBLb7D40nZ";
+
+	const ciBuildId = `run-api-smoke-${new Date().toISOString()}`;
+	const result: any = await run({
+		ciBuildId,
+		projectId,
+		recordKey,
+		batchSize: 4,
+	});
+
+	return result;
+}
+
+async function getApiData(runUrl: string) {
+	const apiKey =
+		process.env.CURRENTS_API_KEY ||
+		"YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9";
+	const apiUrl = "https://api.currents.dev/v1/runs/";
+
+	const headers = new Headers({
+		Authorization: `Bearer ${apiKey}`,
+	});
+
+	try {
+		const response = await fetch(`${apiUrl}${runUrl.split("run/")[1]}`, {
+			method: "GET",
+			headers,
+		});
+		const result = await response.json();
+
+		return result;
+	} catch (e: any) {
+		throw new Error(e.toString());
+	}
+}
+
 (async function runTest() {
 	try {
 		const originalCurrentApiFile = fs.readFileSync(
@@ -284,17 +323,11 @@ function testEachResults(results: ComparisonResult[]) {
 		const originalCurrentApi = JSON.parse(originalCurrentApiFile);
 		const originalCypressCloud = JSON.parse(originalCypressCloudFile);
 
-		const modifiedCurrentApiFile = fs.readFileSync(
-			"data-references/ccy-1.10-cypress-12/currents-api-output-reference.json",
-			"utf8"
-		);
-		const modifiedCypressCloudFile = fs.readFileSync(
-			"data-references/ccy-1.10-cypress-12/cypress-cloud-output-reference.json",
-			"utf8"
-		);
+		const cypressCloudData = await runTests();
+		const currentsApiData = await getApiData(cypressCloudData.runUrl);
 
-		const modifiedCurrentApi = JSON.parse(modifiedCurrentApiFile);
-		const modifiedCypressCloud = JSON.parse(modifiedCypressCloudFile);
+		const modifiedCurrentApi = currentsApiData;
+		const modifiedCypressCloud = cypressCloudData;
 
 		const currentsApiResults = compareObjectsRecursively(
 			originalCurrentApi,
