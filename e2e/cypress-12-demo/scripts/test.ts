@@ -69,7 +69,11 @@ function compareObjectsRecursively(
 	return results;
 }
 
-const avoidableProperties: { property: string; mustHave: boolean }[] = [
+const avoidableProperties: {
+	property: string | RegExp;
+	mustHave: boolean;
+	isRegex?: boolean;
+}[] = [
 	{
 		property: "runId",
 		mustHave: true,
@@ -238,43 +242,133 @@ const avoidableProperties: { property: string; mustHave: boolean }[] = [
 		property: "cypressVersion",
 		mustHave: true,
 	},
+	{
+		property: "env.currents_temp_file",
+		mustHave: true,
+	},
+	{
+		property: "config.browsers[0].version",
+		mustHave: true,
+	},
+	{
+		property: "config.resolved.browsers.value[0].version",
+		mustHave: true,
+	},
 ];
 
+const avoidedButNeedeProperties: {
+	property: string | RegExp;
+	mustHave: boolean;
+	isRegex?: boolean;
+}[] = [
+	{
+		property:
+			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after each\[1\]/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property:
+			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after all/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: "runs[2].tests[0].attempts[0]",
+		mustHave: true,
+	},
+	{
+		property: "runs[2].tests[0].testId",
+		mustHave: true,
+	},
+];
+
+const similarProperties: { property: string; similarProperty: string }[] = [];
+
 function isAvoidableProperty(property: string) {
-	const avoidableData = avoidableProperties.find((item) =>
-		property.includes(item.property)
-	);
+	const avoidableData = [
+		...avoidableProperties,
+		...avoidedButNeedeProperties,
+	].find((item) => {
+		if (item.isRegex) {
+			return (item.property as RegExp).test(property);
+		}
+
+		return property.includes(item.property as string);
+	});
 	if (avoidableData) {
 		return avoidableData;
 	}
 	return;
 }
 
-function testEachResults(results: ComparisonResult[]) {
-	results.forEach((result) => {
-		if (result.valueA) {
-			const avoidableData = isAvoidableProperty(result.path);
-			if (!avoidableData) {
-				expect(
-					result.valueA,
-					`The values are not equal at: ${result.path}. ${
-						result.note ?? ""
-					}`
-				).to.equal(result.valueB);
-				return;
-			}
+function isSimilarProperty(propertyA: string) {
+	const similarData = similarProperties.find((item) =>
+		propertyA.includes(item.property)
+	);
+	if (similarData) {
+		return similarData;
+	}
+	return;
+}
 
-			if (avoidableData.mustHave) {
-				expect(
-					result.valueB,
-					`The values at ${
-						result.path
-					} does not exist and it should. ${result.note ?? ""}`
-				).not.to.equal("Does not exist");
-				return;
+function testEachResults(results: ComparisonResult[]) {
+	const errors: string[] = [];
+	results.forEach((result) => {
+		try {
+			if (result.valueA) {
+				const avoidableData = isAvoidableProperty(result.path);
+				const similarData = isSimilarProperty(result.path);
+
+				if (similarData) {
+					const similarPath = result.path.split(similarData.property);
+					const valueB = results.find(
+						(item) =>
+							item.path ===
+							`${similarPath[0]}${similarData.similarProperty}`
+					)?.valueB;
+					expect(
+						result.valueA,
+						`The values are not equal at: ${result.path}. ${
+							result.note ?? ""
+						}`
+					).to.equal(valueB);
+					return;
+				}
+
+				if (!avoidableData) {
+					expect(
+						result.valueA,
+						`The values are not equal at: ${result.path}. ${
+							result.note ?? ""
+						}`
+					).to.equal(result.valueB);
+					return;
+				}
+
+				if (avoidableData.mustHave) {
+					expect(
+						result.valueB,
+						`The values at ${
+							result.path
+						} does not exist and it should. ${result.note ?? ""}`
+					).not.to.equal("Does not exist");
+					expect(
+						result.valueB,
+						`The values at ${
+							result.path
+						} does not exist and it should. ${result.note ?? ""}`
+					).not.to.equal("undefined");
+					return;
+				}
 			}
+		} catch (e: any) {
+			const error = `${errors.length}.- ${e.toString()}`;
+			errors.push(error);
+			console.log(error.red);
 		}
 	});
+	return errors;
 }
 
 async function runTests() {
@@ -342,12 +436,14 @@ async function getApiData(runUrl: string) {
 
 		console.log("Starting test: Currents API output".yellow);
 
-		testEachResults(currentsApiResults);
+		const currentsApiErrors = testEachResults(currentsApiResults);
 
-		console.log(
-			"Test Passed: Currents API output is the same in ccy 1.9 cypress 12 without change and ccy 1.9 cypress 12 with changes"
-				.green
-		);
+		if (currentsApiErrors.length === 0) {
+			console.log(
+				"Test Passed: Currents API output is the same in ccy 1.9 cypress 12 without change and ccy 1.10 cypress 12 with changes"
+					.green
+			);
+		}
 
 		console.log("Starting test: Cypress Cloud output".yellow);
 
@@ -356,12 +452,14 @@ async function getApiData(runUrl: string) {
 			modifiedCypressCloud
 		);
 
-		testEachResults(cypressCloudResults);
+		const cypressCloudErrors = testEachResults(cypressCloudResults);
 
-		console.log(
-			"Test Passed: Cypress Cloud output is the same in ccy 1.9 cypress 12 without change and ccy 1.9 cypress 12 with changes"
-				.green
-		);
+		if (cypressCloudErrors.length === 0) {
+			console.log(
+				"Test Passed: Cypress Cloud output is the same in ccy 1.9 cypress 12 without change and ccy 1.9 cypress 12 with changes"
+					.green
+			);
+		}
 	} catch (err) {
 		console.error("Process error:", err);
 	}

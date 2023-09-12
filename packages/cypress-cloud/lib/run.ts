@@ -7,10 +7,10 @@ import { createRun } from "./api";
 import { cutInitialOutput, getCapturedOutput } from "./capture";
 import { getCI } from "./ciProvider";
 import {
-  getMergedConfig,
-  isOffline,
-  preprocessParams,
-  validateParams,
+	getMergedConfig,
+	isOffline,
+	preprocessParams,
+	validateParams,
 } from "./config";
 import { getCoverageFilePath } from "./coverage";
 import { runBareCypress } from "./cypress";
@@ -23,15 +23,15 @@ import { getPlatform } from "./platform";
 import { pubsub } from "./pubsub";
 import { summarizeTestResults, summaryTable } from "./results";
 import {
-  handleScreenshotEvent,
-  handleTestAfter,
-  handleTestBefore,
+	handleScreenshotEvent,
+	handleTestAfter,
+	handleTestBefore,
 } from "./results/captureHooks";
 import { getCombinedSpecResult } from "./results/combine";
 import {
-  createReportTaskSpec,
-  reportTasks,
-  runTillDoneOrCancelled,
+	createReportTaskSpec,
+	reportTasks,
+	runTillDoneOrCancelled,
 } from "./runner";
 import { SpecResult } from "./runner/spec.type";
 import { shutdown } from "./shutdown";
@@ -42,166 +42,175 @@ import { startWSS } from "./ws";
 const debug = Debug("currents:run");
 
 export async function run(params: CurrentsRunParameters = {}) {
-  const executionState = new ExecutionState();
-  const configState = new ConfigState();
-  activateDebug(params.cloudDebug);
-  debug("run params %o", params);
-  params = preprocessParams(params);
-  debug("params after preprocess %o", params);
+	const executionState = new ExecutionState();
+	const configState = new ConfigState();
+	activateDebug(params.cloudDebug);
+	debug("run params %o", params);
+	params = preprocessParams(params);
+	debug("params after preprocess %o", params);
 
-  if (isOffline(params)) {
-    info(`Skipping cloud orchestration because --record is set to false`);
-    return runBareCypress(params);
-  }
+	if (isOffline(params)) {
+		info(`Skipping cloud orchestration because --record is set to false`);
+		return runBareCypress(params);
+	}
 
-  const validatedParams = await validateParams(params);
-  setAPIBaseUrl(validatedParams.cloudServiceUrl);
+	const validatedParams = await validateParams(params);
+	setAPIBaseUrl(validatedParams.cloudServiceUrl);
 
-  if (!isCurrents()) {
-    console.log(getLegalNotice());
-  }
+	if (!isCurrents()) {
+		console.log(getLegalNotice());
+	}
 
-  const {
-    recordKey,
-    projectId,
-    group,
-    parallel,
-    ciBuildId,
-    tag,
-    testingType,
-    batchSize,
-    autoCancelAfterFailures,
-    experimentalCoverageRecording,
-  } = validatedParams;
+	const {
+		recordKey,
+		projectId,
+		group,
+		parallel,
+		ciBuildId,
+		tag,
+		testingType,
+		batchSize,
+		autoCancelAfterFailures,
+		experimentalCoverageRecording,
+	} = validatedParams;
 
-  const config = await getMergedConfig(validatedParams);
-  configState.setConfig(config?.resolved);
+	const config = await getMergedConfig(validatedParams);
+	configState.setConfig(config?.resolved);
 
-  const { specs, specPattern } = await getSpecFiles({
-    config,
-    params: validatedParams,
-  });
+	const { specs, specPattern } = await getSpecFiles({
+		config,
+		params: validatedParams,
+	});
 
-  if (specs.length === 0) {
-    return;
-  }
+	if (specs.length === 0) {
+		return;
+	}
 
-  const platform = await getPlatform({
-    config,
-    browser: validatedParams.browser,
-  });
+	const platform = await getPlatform({
+		config,
+		browser: validatedParams.browser,
+	});
 
-  info("Discovered %d spec files", specs.length);
-  info(
-    `Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${
-      group ?? false
-    }; Parallel: ${parallel ?? false}; Batch Size: ${batchSize}`
-  );
-  info("Connecting to cloud orchestration service...");
+	info("Discovered %d spec files", specs.length);
+	info(
+		`Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${
+			group ?? false
+		}; Parallel: ${parallel ?? false}; Batch Size: ${batchSize}`
+	);
+	info("Connecting to cloud orchestration service...");
 
-  const run = await createRun({
-    ci: getCI(ciBuildId),
-    specs: specs.map((spec) => spec.relative),
-    commit: await getGitInfo(config.projectRoot),
-    group,
-    platform,
-    parallel: parallel ?? false,
-    ciBuildId,
-    projectId,
-    recordKey,
-    specPattern: [specPattern].flat(2),
-    tags: tag,
-    testingType,
-    batchSize,
-    autoCancelAfterFailures,
-    coverageEnabled: experimentalCoverageRecording,
-  });
+	const run = await createRun({
+		ci: getCI(ciBuildId),
+		specs: specs.map((spec) => spec.relative),
+		commit: await getGitInfo(config.projectRoot),
+		group,
+		platform,
+		parallel: parallel ?? false,
+		ciBuildId,
+		projectId,
+		recordKey,
+		specPattern: [specPattern].flat(2),
+		tags: tag,
+		testingType,
+		batchSize,
+		autoCancelAfterFailures,
+		coverageEnabled: experimentalCoverageRecording,
+	});
 
-  setRunId(run.runId);
-  info("🎥 Run URL:", bold(run.runUrl));
-  cutInitialOutput();
+	setRunId(run.runId);
+	info("🎥 Run URL:", bold(run.runUrl));
+	cutInitialOutput();
 
-  await startWSS();
-  listenToSpecEvents(
-    configState,
-    executionState,
-    config.experimentalCoverageRecording
-  );
+	await startWSS();
+	listenToSpecEvents(
+		configState,
+		executionState,
+		config.experimentalCoverageRecording
+	);
 
-  await runTillDoneOrCancelled(
-    executionState,
-    configState,
-    {
-      runId: run.runId,
-      groupId: run.groupId,
-      machineId: run.machineId,
-      platform,
-      specs,
-    },
-    validatedParams
-  );
+	await runTillDoneOrCancelled(
+		executionState,
+		configState,
+		{
+			runId: run.runId,
+			groupId: run.groupId,
+			machineId: run.machineId,
+			platform,
+			specs,
+		},
+		validatedParams
+	);
 
-  divider();
+	divider();
 
-  await Promise.allSettled(reportTasks);
-  const _summary = summarizeTestResults(
-    executionState.getResults(configState),
-    config
-  );
+	await Promise.allSettled(reportTasks);
+	const _summary = summarizeTestResults(
+		executionState.getResults(configState),
+		config
+	);
 
-  title("white", "Cloud Run Finished");
-  console.log(summaryTable(_summary));
-  info("🏁 Recorded Run:", bold(run.runUrl));
+	title("white", "Cloud Run Finished");
+	console.log(summaryTable(_summary));
+	info("🏁 Recorded Run:", bold(run.runUrl));
 
-  await shutdown();
+	await shutdown();
 
-  spacer();
+	spacer();
 
-  return {
-    ..._summary,
-    runUrl: run.runUrl,
-  };
+	return {
+		..._summary,
+		runUrl: run.runUrl,
+	};
 }
 
 function listenToSpecEvents(
-  configState: ConfigState,
-  executionState: ExecutionState,
-  experimentalCoverageRecording?: boolean
+	configState: ConfigState,
+	executionState: ExecutionState,
+	experimentalCoverageRecording?: boolean
 ) {
-  const config = configState.getConfig();
+	const config = configState.getConfig();
 
-  pubsub.on("test:after:run", (test: string) => {
-    handleTestAfter(test, executionState);
-  });
+	pubsub.on("test:after:run", (test: string) => {
+		handleTestAfter(test, executionState);
+	});
 
-  pubsub.on("test:before:run", (test: any) => {
-    handleTestBefore(test, executionState);
-  });
+	pubsub.on("test:before:run", (test: any) => {
+		handleTestBefore(test, executionState);
+	});
 
-  pubsub.on("after:screenshot", (screenshot) => {
-    handleScreenshotEvent(screenshot, executionState);
-  });
+	pubsub.on("after:screenshot", (screenshot) => {
+		handleScreenshotEvent(screenshot, executionState);
+	});
 
-  pubsub.on(
-    "after:spec",
-    async ({ spec, results }: { spec: Cypress.Spec; results: SpecResult }) => {
-      debug("after:spec %o %o", spec, results);
+	pubsub.on(
+		"after:spec",
+		async ({
+			spec,
+			results,
+		}: {
+			spec: Cypress.Spec;
+			results: SpecResult;
+		}) => {
+			debug("after:spec %o %o", spec, results);
 
-      executionState.setSpecAfter(
-        spec.relative,
-        getCombinedSpecResult(results, executionState)
-      );
-      executionState.setSpecOutput(spec.relative, getCapturedOutput());
+			executionState.setSpecAfter(
+				spec.relative,
+				getCombinedSpecResult(results, executionState)
+			);
+			executionState.setSpecOutput(spec.relative, getCapturedOutput());
 
-      if (experimentalCoverageRecording) {
-        const coverageFilePath = await getCoverageFilePath(
-          config?.env?.coverageFile
-        );
-        if (coverageFilePath) {
-          executionState.setSpecCoverage(spec.relative, coverageFilePath);
-        }
-      }
-      createReportTaskSpec(configState, executionState, spec.relative);
-    }
-  );
+			if (experimentalCoverageRecording) {
+				const coverageFilePath = await getCoverageFilePath(
+					config?.env?.coverageFile
+				);
+				if (coverageFilePath) {
+					executionState.setSpecCoverage(
+						spec.relative,
+						coverageFilePath
+					);
+				}
+			}
+			createReportTaskSpec(configState, executionState, spec.relative);
+		}
+	);
 }

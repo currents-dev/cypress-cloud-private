@@ -14,6 +14,7 @@ import fs from "fs";
 		ciBuildId,
 		projectId,
 		recordKey,
+		batchSize: 4,
 	});
 
 	const headers = new Headers({
@@ -21,7 +22,7 @@ import fs from "fs";
 	});
 
 	fs.writeFile(
-		"data-references/ccy-1.10-cypress-13/cypress-cloud-output-reference.json",
+		"data-references/ccy-1.9.4-cypress-12/cypress-cloud-output-reference.json",
 		JSON.stringify(result),
 		(err) => {
 			if (err) throw err;
@@ -44,7 +45,7 @@ import fs from "fs";
 		.then((data) => {
 			console.log(data);
 			fs.writeFile(
-				"data-references/ccy-1.10-cypress-13/currents-api-output-reference.json",
+				"data-references/ccy-1.9.4-cypress-12/currents-api-output-reference.json",
 				JSON.stringify(data),
 				(err) => {
 					if (err) throw err;
