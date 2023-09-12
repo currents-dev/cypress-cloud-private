@@ -1,0 +1,41 @@
+name: e2e-cypress-13-ccy-1.10
+
+on:
+    push:
+
+jobs:
+    e2e-cypress-13-ccy-1.10:
+        if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+        runs-on: ubuntu-latest
+        env:
+            DEBUG: currents:*
+
+        strategy:
+            matrix:
+                node-version: ["18"]
+
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Install Cypress 13.1.0
+              run: cd ./packages/cypress-cloud | npm install cypress@13.1.0
+
+            - name: Build
+              run: npm run build
+
+            - name: Run compatibility tests
+              working-directory: ./e2e/cypress-13-demo
+              env:
+                  CURRENTS_API_KEY: YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9
+                  CURRENTS_RUN_BASE_URL: https://api.currents.dev/v1/runs/
+                  CURRENTS_PROJECT_ID: 2cI1I5
+                  CURRENTS_RECORD_KEY: YakSabgBLb7D40nZ
+
+              run: >
+                  npm run test

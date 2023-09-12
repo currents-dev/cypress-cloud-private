@@ -460,7 +460,14 @@ async function getApiData(runUrl: string) {
 					.green
 			);
 		}
+
+		if (currentsApiErrors.length > 0 || cypressCloudErrors.length > 0) {
+			process.exit(1);
+		} else {
+			process.exit(0);
+		}
 	} catch (err) {
 		console.error("Process error:", err);
+		process.exit(1);
 	}
 })();
