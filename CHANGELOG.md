@@ -1,5 +1,20 @@
 
 
+# [1.10.0-beta.4](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.3...v1.10.0-beta.4) (2023-09-11)
+
+
+### Bug Fixes
+
+* backfill config ([ed8a777](https://github.com/currents-dev/cypress-cloud/commit/ed8a777f6299f0778eeabe96534b52bcd3472d0f))
+* coverage uploads ([6a26e40](https://github.com/currents-dev/cypress-cloud/commit/6a26e4077cab73f75c64235472e8695ebcf14087))
+
+# [1.10.0-beta.3](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.2...v1.10.0-beta.3) (2023-09-08)
+
+
+### Bug Fixes
+
+* issue 179 fixes ([cf8ca5d](https://github.com/currents-dev/cypress-cloud/commit/cf8ca5d5f71b69a6fc7d1098b1bb0b42d27427d2))
+
 # [1.10.0-beta.2](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.1...v1.10.0-beta.2) (2023-09-06)
 
 

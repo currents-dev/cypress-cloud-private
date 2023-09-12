@@ -1,5 +1,5 @@
 import { parseISO } from "date-fns";
-import * as _ from "lodash";
+import _ from "lodash";
 import { SpecResult } from "../runner/spec.type";
 import { ExecutionState } from "../state";
 

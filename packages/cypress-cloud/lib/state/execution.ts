@@ -85,8 +85,8 @@ export type ScreenshotData = {
 };
 
 export class ExecutionState {
-  private attemptsData?: AttemptData[];
-  private screenshotsData?: ScreenshotData[];
+  private attemptsData: AttemptData[] = [];
+  private screenshotsData: ScreenshotData[] = [];
   private currentTestID?: string;
   private state: Record<InstanceId, InstanceExecutionState> = {};
 
@@ -199,12 +199,14 @@ export class ExecutionState {
 
     // use spec:after results - it can become available before run results
     if (i.specAfterResults) {
+      debug('Using spec:after results for %s "%s"', instanceId, i.spec);
       return backfillException(
         specResultsToCypressResults(configState, i.specAfterResults)
       );
     }
 
     if (i.runResults) {
+      debug('Using runResults for %s "%s"', instanceId, i.spec);
       return backfillException(i.runResults);
     }
 
@@ -216,9 +218,6 @@ export class ExecutionState {
   }
 
   public setAttemptsData(attemptDetails: AttemptData) {
-    if (!this.attemptsData) {
-      this.attemptsData = [];
-    }
     this.attemptsData.push(attemptDetails);
   }
 
@@ -226,14 +225,7 @@ export class ExecutionState {
     return this.attemptsData;
   }
 
-  public cleanAttemptsData() {
-    this.attemptsData = [];
-  }
-
   public setScreenshotsData(screenshotsData: ScreenshotData) {
-    if (!this.screenshotsData) {
-      this.screenshotsData = [];
-    }
     this.screenshotsData.push(screenshotsData);
   }
 
@@ -247,9 +239,5 @@ export class ExecutionState {
 
   public getCurrentTestID(): string | undefined {
     return this.currentTestID;
-  }
-
-  public cleanScreenshotsData() {
-    this.screenshotsData = [];
   }
 }
