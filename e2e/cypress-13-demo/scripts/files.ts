@@ -2,12 +2,12 @@ import { run } from "cypress-cloud";
 import fs from "fs";
 
 (async function runTests() {
-	const projectId = process.env.CURRENTS_PROJECT_ID || "2cI1I5";
-	const recordKey = process.env.CURRENTS_RECORD_KEY || "YakSabgBLb7D40nZ";
-	const apiKey =
-		process.env.CURRENTS_API_KEY ||
-		"YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9";
-	const apiUrl = "https://api.currents.dev/v1/runs/";
+	const projectId = process.env.CURRENTS_PROJECT_ID || "projectId";
+	const recordKey = process.env.CURRENTS_RECORD_KEY || "recordKey";
+	const apiKey = process.env.CURRENTS_API_KEY || "apiKey";
+	const apiUrl =
+		process.env.CURRENTS_RUN_BASE_URL ||
+		"https://api.currents.dev/v1/runs/";
 
 	const ciBuildId = `run-api-smoke-${new Date().toISOString()}`;
 	const result: any = await run({

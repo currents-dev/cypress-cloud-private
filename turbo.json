@@ -22,6 +22,7 @@
         "CURRENTS_API_URL",
         "CURRENTS_RECORD_KEY",
         "CURRENTS_API_KEY",
+        "CURRENTS_RUN_BASE_URL",
         "TF_BUILD",
         "TF_BUILD_BUILDNUMBER",
         "AZURE_HTTP_USER_AGENT",
