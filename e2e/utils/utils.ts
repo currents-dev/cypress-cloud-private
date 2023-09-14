@@ -458,6 +458,14 @@ export const avoidableApiPropertiesCy13: AvoidableProperty[] = [
 		mustHave: true,
 		isRegex: true,
 	},
+	{
+		property: "data.meta.platform.osName",
+		mustHave: true,
+	},
+	{
+		property: "data.meta.platform.osVersion",
+		mustHave: true,
+	},
 ];
 
 export const avoidedButNeedePropertiesCy13: AvoidableProperty[] = [
