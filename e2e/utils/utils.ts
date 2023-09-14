@@ -169,6 +169,18 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		property: "spec.name",
 		mustHave: false,
 	},
+	{
+		property: "runs[3].tests[0].testId",
+		mustHave: true,
+	},
+	{
+		property: "runs[3].tests[0].body",
+		mustHave: false,
+	},
+	{
+		property: "runs[3].tests[0].attempts[0]",
+		mustHave: false,
+	},
 ];
 
 export const avoidableApiPropertiesCy13: AvoidableProperty[] = [
@@ -612,7 +624,7 @@ export async function runTests(filePath: string) {
 		ciBuildId,
 		projectId,
 		recordKey,
-		batchSize: 4,
+		batchSize: 5,
 	});
 
 	writeFile(filePath, result);
