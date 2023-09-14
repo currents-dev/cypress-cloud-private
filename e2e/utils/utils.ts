@@ -142,16 +142,203 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		mustHave: false,
 	},
 	{
-		property: "runs[3].tests[0].testId",
+		property: "resolved.videoCompression.value",
 		mustHave: true,
 	},
 	{
-		property: "runs[3].tests[0].body",
+		property: "config.resolved.videoUploadOnPasses",
 		mustHave: false,
 	},
 	{
-		property: "runs[3].tests[0].attempts[0]",
+		property: "config.videoCompression",
+		mustHave: true,
+	},
+	{
+		property: "error.codeFrame.absoluteFile",
+		mustHave: true,
+	},
+	{
+		property: "config.resolved.video.from",
+		mustHave: true,
+	},
+	{
+		property: /runs\[\d+\]\.hooks/,
 		mustHave: false,
+		isRegex: true,
+	},
+	{
+		property: /runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings/,
+		mustHave: false,
+		isRegex: true,
+	},
+	{
+		property: "platform.osName",
+		mustHave: true,
+	},
+	{
+		property: "platform.osVersion",
+		mustHave: true,
+	},
+	{
+		property: "platform.osVersion",
+		mustHave: true,
+	},
+	{
+		property: "spec.absolute",
+		mustHave: true,
+	},
+	{
+		property: /runs\[\d+\]\.video/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property:
+			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.screenshots\[\d+\]\.path/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property:
+			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.screenshots\[\d+\]\.height/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property:
+			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.screenshots\[\d+\]\.width/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: "config.arch",
+		mustHave: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.name/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.displayName/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.version/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.path/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.minSupportedVersion/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.family/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.browsers\[\d+\]\.majorVersion/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: "config.configFile",
+		mustHave: true,
+	},
+	{
+		property: "config.downloadsFolder",
+		mustHave: true,
+	},
+	{
+		property: "config.fileServerFolder",
+		mustHave: true,
+	},
+	{
+		property: "config.fixturesFolder",
+		mustHave: true,
+	},
+	{
+		property: "config.platform",
+		mustHave: true,
+	},
+	{
+		property: "config.rawJson.projectRoot",
+		mustHave: true,
+	},
+	{
+		property: "config.repoRoot",
+		mustHave: true,
+	},
+	{
+		property: "config.rawJson.repoRoot",
+		mustHave: true,
+	},
+	{
+		property: "config.resolved.arch.value",
+		mustHave: true,
+	},
+	{
+		property: "config.resolved.platform.value",
+		mustHave: true,
+	},
+	{
+		property: "config.resolvedNodePath",
+		mustHave: true,
+	},
+	{
+		property: "config.resolvedNodeVersion",
+		mustHave: true,
+	},
+	{
+		property: "config.screenshotsFolder",
+		mustHave: true,
+	},
+	{
+		property: "config.supportFile",
+		mustHave: true,
+	},
+	{
+		property: "config.supportFolder",
+		mustHave: true,
+	},
+	{
+		property:
+			/config\.resolved\.browsers\.value\[\d+\]\.minSupportedVersion/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.resolved\.browsers\.value\[\d+\]\.name/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.resolved\.browsers\.value\[\d+\]\.family/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.resolved\.browsers\.value\[\d+\]\.displayName/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.resolved\.browsers\.value\[\d+\]\.version/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.resolved\.browsers\.value\[\d+\]\.majorVersion/,
+		mustHave: true,
+		isRegex: true,
 	},
 ];
 
@@ -252,53 +439,15 @@ export const avoidableApiPropertiesCy13: AvoidableProperty[] = [
 
 export const avoidedButNeedePropertiesCy13: AvoidableProperty[] = [
 	{
-		property: "resolved.video.value",
+		property: "runs[3].tests[0].body",
 		mustHave: false,
 	},
 	{
-		property: "resolved.videoCompression.value",
+		property: "runs[3].tests[0].attempts[0]",
 		mustHave: false,
 	},
 	{
-		property: "config.resolved.videoUploadOnPasses",
-		mustHave: false,
-	},
-	{
-		property: /runs\[\d+\]\.hooks/,
-		mustHave: false,
-		isRegex: true,
-	},
-	{
-		property: /runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings/,
-		mustHave: false,
-		isRegex: true,
-	},
-	{
-		property: "config.video",
-		mustHave: true,
-	},
-	{
-		property: "config.videoCompression",
-		mustHave: true,
-	},
-	{
-		property: "config.videoUploadOnPasses",
-		mustHave: true,
-	},
-	{
-		property: "error.codeFrame.absoluteFile",
-		mustHave: true,
-	},
-	{
-		property: "timings",
-		mustHave: true,
-	},
-	{
-		property: "hooks",
-		mustHave: true,
-	},
-	{
-		property: "config.resolved.video.from",
+		property: "runs[3].tests[0].testId",
 		mustHave: true,
 	},
 ];
