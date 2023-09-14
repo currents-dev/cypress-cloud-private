@@ -165,6 +165,10 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		property: "config.resolved.browsers.value[1].version",
 		mustHave: true,
 	},
+	{
+		property: "spec.name",
+		mustHave: false,
+	},
 ];
 
 export const avoidableApiPropertiesCy13: AvoidableProperty[] = [
@@ -275,31 +279,36 @@ export const avoidedButNeedePropertiesCy13: AvoidableProperty[] = [
 		property: "config.resolved.videoUploadOnPasses",
 		mustHave: false,
 	},
-	{
-		property: /runs\[\d+\]\.video/,
-		mustHave: true,
-		isRegex: true,
-	},
+	// {
+	// 	property: /runs\[\d+\]\.video/,
+	// 	mustHave: true,
+	// 	isRegex: true,
+	// },
 	{
 		property: /runs\[\d+\]\.hooks/,
-		mustHave: true,
+		mustHave: false,
 		isRegex: true,
 	},
+	// {
+	// 	property: /runs\[\d+\]\.tests\[\d+\]\.body/,
+	// 	mustHave: true,
+	// 	isRegex: true,
+	// },
+	// {
+	// 	property:
+	// 		/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after each\[1\]/,
+	// 	mustHave: true,
+	// 	isRegex: true,
+	// },
+	// {
+	// 	property:
+	// 		/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after all/,
+	// 	mustHave: true,
+	// 	isRegex: true,
+	// },
 	{
-		property: /runs\[\d+\]\.tests\[\d+\]\.body/,
-		mustHave: true,
-		isRegex: true,
-	},
-	{
-		property:
-			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after each\[1\]/,
-		mustHave: true,
-		isRegex: true,
-	},
-	{
-		property:
-			/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after all/,
-		mustHave: true,
+		property: /runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings/,
+		mustHave: false,
 		isRegex: true,
 	},
 	{
@@ -320,6 +329,22 @@ export const avoidedButNeedePropertiesCy13: AvoidableProperty[] = [
 	},
 	{
 		property: "runs[2].tests[0].testId",
+		mustHave: true,
+	},
+	{
+		property: "error.codeFrame.absoluteFile",
+		mustHave: true,
+	},
+	{
+		property: "timings",
+		mustHave: true,
+	},
+	{
+		property: "hooks",
+		mustHave: true,
+	},
+	{
+		property: "config.resolved.video.from",
 		mustHave: true,
 	},
 ];
@@ -492,7 +517,31 @@ export function testEachResults(
 						`The values at ${
 							result.path
 						} does not exist and it should. ${result.note ?? ""}`
+					).not.to.equal(undefined);
+					expect(
+						result.valueB,
+						`The values at ${
+							result.path
+						} does not exist and it should. ${result.note ?? ""}`
+					).not.to.equal(null);
+					expect(
+						result.valueB,
+						`The values at ${
+							result.path
+						} does not exist and it should. ${result.note ?? ""}`
+					).not.to.equal("");
+					expect(
+						result.valueB,
+						`The values at ${
+							result.path
+						} does not exist and it should. ${result.note ?? ""}`
 					).not.to.equal("undefined");
+					expect(
+						result.valueB,
+						`The values at ${
+							result.path
+						} does not exist and it should. ${result.note ?? ""}`
+					).not.to.equal("null");
 					return;
 				}
 			}

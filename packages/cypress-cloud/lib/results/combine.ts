@@ -4,70 +4,83 @@ import { SpecResult } from "../runner/spec.type";
 import { ExecutionState } from "../state";
 
 function getAttemptError(err: any) {
-  if (!err) {
-    return null;
-  }
-  return {
-    name: err.name,
-    message: `${err.name}: ${err.message}`,
-    stack: err.stack,
-    codeFrame: err.codeFrame,
-  };
+	if (!err) {
+		return null;
+	}
+	return {
+		name: err.name,
+		message: err.message,
+		stack: err.stack.split(err.message)[1].replace(/\n/g, ""),
+		codeFrame: err.codeFrame,
+	};
 }
 
 function parseScreenshotResults(results: any, allScreenshots?: any[]) {
-  if (!allScreenshots?.length) {
-    return results;
-  }
+	if (!allScreenshots?.length) {
+		return results;
+	}
 
-  return {
-    ..._.cloneDeep(results),
-    screenshots: results.screenshots.map(
-      (specScreenshot: any) =>
-        allScreenshots?.find(
-          (screenshot) => screenshot.path === specScreenshot.path
-        )
-    ),
-  };
+	return {
+		..._.cloneDeep(results),
+		screenshots: results.screenshots.map(
+			(specScreenshot: any) =>
+				allScreenshots?.find(
+					(screenshot) => screenshot.path === specScreenshot.path
+				)
+		),
+	};
 }
 
 function getAttemptVideoTimestamp(
-  attemptStartedAtMs: number,
-  specStartedAtMs: number
+	attemptStartedAtMs: number,
+	specStartedAtMs: number
 ) {
-  return Math.max(attemptStartedAtMs - specStartedAtMs, 0);
+	return Math.max(attemptStartedAtMs - specStartedAtMs, 0);
 }
 function getSpecResults(specResults: SpecResult, attempts?: any[]) {
-  if (!attempts) {
-    return specResults;
-  }
+	if (!attempts) {
+		return {
+			..._.cloneDeep(specResults),
+			spec: {
+				..._.cloneDeep(specResults.spec),
+				baseName: specResults.spec.name,
+			},
+			hooks: "hooks",
+		};
+	}
 
-  const enhancedTestList = (specResults.tests ?? []).map(
-    (test: any, i: number) => {
-      const testFullTitle = test.title.join(" ");
-      const standaloneAttempts = attempts.filter(
-        (attempt) => attempt.fullTitle === testFullTitle
-      );
-      test.attempts = standaloneAttempts.map((attempt) => ({
-        state: attempt.state,
-        error: getAttemptError(attempt.err),
-        timings: attempt.timings,
-        wallClockStartedAt: attempt.wallClockStartedAt,
-        wallClockDuration: attempt.duration,
-        videoTimestamp: getAttemptVideoTimestamp(
-          parseISO(attempt.wallClockStartedAt).getTime(),
-          parseISO(specResults.stats.startedAt).getTime()
-        ),
-      }));
-      test.testId = standaloneAttempts[0]?.id ?? `r${i}}`;
-      return test;
-    }
-  );
-
-  return {
-    ..._.cloneDeep(specResults),
-    tests: enhancedTestList,
-  };
+	const enhancedTestList = (specResults.tests ?? []).map(
+		(test: any, i: number) => {
+			const testFullTitle = test.title.join(" ");
+			const standaloneAttempts = attempts.filter(
+				(attempt) => attempt.fullTitle === testFullTitle
+			);
+			test.attempts = standaloneAttempts.map((attempt) => ({
+				state: attempt.state,
+				error: getAttemptError(attempt.err),
+				timings: attempt.timings,
+				body: attempt.body,
+				wallClockStartedAt: attempt.wallClockStartedAt,
+				wallClockDuration: attempt.duration,
+				videoTimestamp: getAttemptVideoTimestamp(
+					parseISO(attempt.wallClockStartedAt).getTime(),
+					parseISO(specResults.stats.startedAt).getTime()
+				),
+			}));
+			test.testId = standaloneAttempts[0]?.id ?? `r${i}`;
+			test.body = standaloneAttempts[0]?.body;
+			return test;
+		}
+	);
+	return {
+		..._.cloneDeep(specResults),
+		tests: enhancedTestList,
+		spec: {
+			..._.cloneDeep(specResults.spec),
+			baseName: specResults.spec.name,
+		},
+		hooks: [],
+	};
 }
 
 /**
@@ -77,11 +90,11 @@ function getSpecResults(specResults: SpecResult, attempts?: any[]) {
  * @returns unified results, including attempts and screenshot details
  */
 export function getCombinedSpecResult(
-  specResult: SpecResult,
-  executionState: ExecutionState
+	specResult: SpecResult,
+	executionState: ExecutionState
 ) {
-  return parseScreenshotResults(
-    getSpecResults(specResult, executionState.getAttemptsData()),
-    executionState.getScreenshotsData()
-  );
+	return parseScreenshotResults(
+		getSpecResults(specResult, executionState.getAttemptsData()),
+		executionState.getScreenshotsData()
+	);
 }

@@ -170,12 +170,12 @@ function listenToSpecEvents(
 ) {
 	const config = configState.getConfig();
 
-	pubsub.on("test:after:run", (test: string) => {
-		handleTestAfter(test, executionState);
-	});
-
 	pubsub.on("test:before:run", (test: any) => {
 		handleTestBefore(test, executionState);
+	});
+
+	pubsub.on("test:after:run", (test: string) => {
+		handleTestAfter(test, executionState);
 	});
 
 	pubsub.on("after:screenshot", (screenshot) => {
