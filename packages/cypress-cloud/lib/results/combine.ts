@@ -72,12 +72,17 @@ function getSpecResults(specResults: SpecResult, attempts?: any[]) {
 			return test;
 		}
 	);
+	const specNameSplitted = specResults.spec.name.split(".");
 	return {
 		..._.cloneDeep(specResults),
 		tests: enhancedTestList,
 		spec: {
 			..._.cloneDeep(specResults.spec),
 			baseName: specResults.spec.name,
+			specFileExtension: "." + specNameSplitted.slice(1).join("."),
+			relativeToCommonRoot: specResults.spec.name,
+			specType: "integration",
+			name: specResults.spec.relative,
 		},
 		hooks: [],
 	};

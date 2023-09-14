@@ -129,18 +129,18 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		property: "cypressVersion",
 		mustHave: true,
 	},
-	{
-		property: "specFileExtension",
-		mustHave: false,
-	},
-	{
-		property: "relativeToCommonRoot",
-		mustHave: false,
-	},
-	{
-		property: "specType",
-		mustHave: false,
-	},
+	// {
+	// 	property: "specFileExtension",
+	// 	mustHave: false,
+	// },
+	// {
+	// 	property: "relativeToCommonRoot",
+	// 	mustHave: false,
+	// },
+	// {
+	// 	property: "specType",
+	// 	mustHave: false,
+	// },
 	{
 		property: "cypressBinaryRoot",
 		mustHave: false,
