@@ -310,6 +310,14 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		mustHave: true,
 	},
 	{
+		property: "config.videosFolder",
+		mustHave: true,
+	},
+	{
+		property: "config.projectRoot",
+		mustHave: true,
+	},
+	{
 		property:
 			/config\.resolved\.browsers\.value\[\d+\]\.minSupportedVersion/,
 		mustHave: true,
@@ -337,6 +345,11 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 	},
 	{
 		property: /config\.resolved\.browsers\.value\[\d+\]\.majorVersion/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /config\.resolved\.browsers\.value\[\d+\]\.path/,
 		mustHave: true,
 		isRegex: true,
 	},
@@ -434,6 +447,16 @@ export const avoidableApiPropertiesCy13: AvoidableProperty[] = [
 	{
 		property: "screenshotURL",
 		mustHave: true,
+	},
+	{
+		property: /data\.groups\[\d+\]\.platform\.osName/,
+		mustHave: true,
+		isRegex: true,
+	},
+	{
+		property: /data\.groups\[\d+\]\.platform\.osVersion/,
+		mustHave: true,
+		isRegex: true,
 	},
 ];
 
