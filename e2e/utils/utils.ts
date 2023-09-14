@@ -82,14 +82,6 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		mustHave: true,
 	},
 	{
-		property: "error.message",
-		mustHave: true,
-	},
-	{
-		property: "error.stack",
-		mustHave: true,
-	},
-	{
 		property: "lifecycle",
 		mustHave: true,
 	},
@@ -129,18 +121,6 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		property: "cypressVersion",
 		mustHave: true,
 	},
-	// {
-	// 	property: "specFileExtension",
-	// 	mustHave: false,
-	// },
-	// {
-	// 	property: "relativeToCommonRoot",
-	// 	mustHave: false,
-	// },
-	// {
-	// 	property: "specType",
-	// 	mustHave: false,
-	// },
 	{
 		property: "cypressBinaryRoot",
 		mustHave: false,
@@ -155,14 +135,6 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 	},
 	{
 		property: "config.version",
-		mustHave: true,
-	},
-	{
-		property: "config.browsers[1].version",
-		mustHave: true,
-	},
-	{
-		property: "config.resolved.browsers.value[1].version",
 		mustHave: true,
 	},
 	{
@@ -291,33 +263,11 @@ export const avoidedButNeedePropertiesCy13: AvoidableProperty[] = [
 		property: "config.resolved.videoUploadOnPasses",
 		mustHave: false,
 	},
-	// {
-	// 	property: /runs\[\d+\]\.video/,
-	// 	mustHave: true,
-	// 	isRegex: true,
-	// },
 	{
 		property: /runs\[\d+\]\.hooks/,
 		mustHave: false,
 		isRegex: true,
 	},
-	// {
-	// 	property: /runs\[\d+\]\.tests\[\d+\]\.body/,
-	// 	mustHave: true,
-	// 	isRegex: true,
-	// },
-	// {
-	// 	property:
-	// 		/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after each\[1\]/,
-	// 	mustHave: true,
-	// 	isRegex: true,
-	// },
-	// {
-	// 	property:
-	// 		/runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings\.after all/,
-	// 	mustHave: true,
-	// 	isRegex: true,
-	// },
 	{
 		property: /runs\[\d+\]\.tests\[\d+\]\.attempts\[\d+\]\.timings/,
 		mustHave: false,
@@ -333,14 +283,6 @@ export const avoidedButNeedePropertiesCy13: AvoidableProperty[] = [
 	},
 	{
 		property: "config.videoUploadOnPasses",
-		mustHave: true,
-	},
-	{
-		property: "runs[2].tests[0].attempts[0]",
-		mustHave: true,
-	},
-	{
-		property: "runs[2].tests[0].testId",
 		mustHave: true,
 	},
 	{
