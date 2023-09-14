@@ -1,10 +1,10 @@
-name: e2e-cypress-13-ccy-1.10
+name: e2e-cypress-13-ccy-1_10
 
 on:
     push:
 
 jobs:
-    e2e-cypress-13-ccy-1.10:
+    e2e-cypress-13-ccy-1_10:
         if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
         runs-on: ubuntu-latest
         env:
