@@ -1,5 +1,12 @@
 
 
+# [1.10.0-beta.5](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.4...v1.10.0-beta.5) (2023-09-14)
+
+
+### Bug Fixes
+
+* pick test:after results explicitly ([67e6a0d](https://github.com/currents-dev/cypress-cloud/commit/67e6a0df78d3cff32d101d1bbe3f119c0766a9af))
+
 # [1.10.0-beta.4](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.3...v1.10.0-beta.4) (2023-09-11)
 
 
