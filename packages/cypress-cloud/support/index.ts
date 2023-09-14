@@ -4,6 +4,40 @@ import safeStringify from "fast-safe-stringify";
 const afterReportedTests: string[] = [];
 const beforeReportedTests: string[] = [];
 
+function pickTestData(test: Mocha.Runnable) {
+  return {
+    async: test.async,
+    body: test.body,
+    duration: test.duration,
+    // @ts-ignore
+    err: test.err,
+    // @ts-ignore
+    final: test.final,
+    // @ts-ignore
+    hooks: test.hooks,
+    // @ts-ignore
+    id: test.id,
+    // @ts-ignore
+    invocationDetails: test.invocationDetails,
+    // @ts-ignore
+    order: test.order,
+    pending: test.pending,
+    retries: test.retries(),
+    state: test.state,
+    sync: test.sync,
+    timedOut: test.timedOut,
+    // @ts-ignore
+    timings: test.timings,
+    // @ts-ignore
+    type: test.type,
+    // @ts-ignore
+    wallClockStartedAt: test.wallClockStartedAt,
+    title: test.title,
+    // @ts-ignore
+    currentRetry: test._currentRetry,
+    fullTitle: test.fullTitle(),
+  };
+}
 function sendTestAfterMetrics(test: Mocha.Runnable) {
   if (test.pending || !test.state) {
     // Test is either skipped or hasn't ran yet.
@@ -12,16 +46,9 @@ function sendTestAfterMetrics(test: Mocha.Runnable) {
   }
   // @ts-ignore
   afterReportedTests.push(getTestHash(test));
-  cy.task(
-    `currents:test:after:run`,
-    safeStringify({
-      ...test,
-      fullTitle: test.fullTitle(),
-    }),
-    {
-      log: false,
-    }
-  );
+  cy.task(`currents:test:after:run`, safeStringify(pickTestData(test)), {
+    log: false,
+  });
 }
 
 function sendTestBeforeMetrics(test: Mocha.Runnable) {

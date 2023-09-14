@@ -1,4 +1,4 @@
-import { ExecutionState } from "../state";
+import { ExecutionState, TestAfterTaskPayload } from "../state";
 
 export function handleScreenshotEvent(
   screenshot: Cypress.ScreenshotDetails,
@@ -25,46 +25,6 @@ export function handleTestAfter(
   testAttempt: string,
   executionState: ExecutionState
 ) {
-  const test = JSON.parse(testAttempt);
-  const {
-    title,
-    body,
-    retries,
-    _currentRetry,
-    pending,
-    type,
-    invocationDetails,
-    id,
-    hooks,
-    order,
-    wallClockStartedAt,
-    timings,
-    _events,
-    _eventsCount,
-    duration,
-    err,
-    state,
-    fullTitle,
-  } = test;
-  const attempt = {
-    title,
-    fullTitle,
-    body,
-    retries,
-    _currentRetry,
-    pending,
-    type,
-    invocationDetails,
-    id,
-    hooks,
-    order,
-    wallClockStartedAt,
-    timings,
-    _events,
-    _eventsCount,
-    duration,
-    err,
-    state,
-  };
-  executionState.setAttemptsData(attempt);
+  const test: TestAfterTaskPayload = JSON.parse(testAttempt);
+  executionState.setAttemptsData(test);
 }

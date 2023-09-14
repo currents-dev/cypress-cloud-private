@@ -1,9 +1,14 @@
 import { parseISO } from "date-fns";
 import _ from "lodash";
 import { SpecResult } from "../runner/spec.type";
-import { ExecutionState } from "../state";
+import {
+  AfterScreenshotPayload,
+  ExecutionState,
+  MochaError,
+  TestAfterTaskPayload,
+} from "../state";
 
-function getAttemptError(err: any) {
+function getAttemptError(err: MochaError | null) {
   if (!err) {
     return null;
   }
@@ -15,7 +20,10 @@ function getAttemptError(err: any) {
   };
 }
 
-function parseScreenshotResults(results: any, allScreenshots?: any[]) {
+function parseScreenshotResults(
+  results: ReturnType<typeof getSpecResults>,
+  allScreenshots?: AfterScreenshotPayload[]
+) {
   if (!allScreenshots?.length) {
     return results;
   }
@@ -37,7 +45,10 @@ function getAttemptVideoTimestamp(
 ) {
   return Math.max(attemptStartedAtMs - specStartedAtMs, 0);
 }
-function getSpecResults(specResults: SpecResult, attempts?: any[]) {
+function getSpecResults(
+  specResults: SpecResult,
+  attempts?: TestAfterTaskPayload[]
+) {
   if (!attempts) {
     return specResults;
   }

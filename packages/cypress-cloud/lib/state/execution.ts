@@ -26,7 +26,60 @@ type InstanceExecutionState = {
   specFileData?: SpecResult;
 };
 
-type InvocationDetails = {
+export type TestAfterTaskPayload = {
+  async: boolean;
+  body: string;
+  duration: number;
+  err: MochaError;
+  final: boolean;
+  hooks: HookData[];
+  id: string;
+  invocationDetails: InvocationDetails;
+  order: number;
+  pending: boolean;
+  retries: number;
+  state: string;
+  sync: boolean;
+  timedOut: boolean;
+  timings: Timing;
+  type: string;
+  wallClockStartedAt: string;
+  title: string;
+  currentRetry: string;
+  fullTitle: string;
+};
+
+interface ParsedStackItem {
+  message: string;
+  whitespace: string;
+  function?: string;
+  fileUrl?: string;
+  originalFile?: string;
+  relativeFile?: string;
+  absoluteFile?: string;
+  line?: number;
+  column?: number;
+}
+
+interface CodeFrame {
+  line: number;
+  column: number;
+  originalFile: string;
+  relativeFile: string;
+  absoluteFile: string;
+  frame: string;
+  language: string;
+}
+
+export interface MochaError {
+  message: string;
+  name: string;
+  stack: string;
+  parsedStack: ParsedStackItem[];
+  codeFrame: CodeFrame;
+}
+
+interface InvocationDetails {
   function: string;
   fileUrl: string;
   originalFile: string;
@@ -36,42 +89,41 @@ type InvocationDetails = {
   column: number;
   whitespace: string;
   stack: string;
-};
+}
 
-type AttepmtHook = {
+interface HookData {
   title: string;
   hookName: string;
   hookId: string;
   pending: boolean;
   body: string;
   type: string;
-  file: string | null;
+  file: null | string;
   invocationDetails: InvocationDetails;
   currentRetry: number;
   retries: number;
   _slow: number;
-};
+}
 
-export type AttemptData = {
-  title: string;
-  body: string;
-  retries: number;
-  _currentRetry: number;
-  pending: boolean;
-  type: string;
-  invocationDetails: InvocationDetails;
-  id: string;
-  hooks: AttepmtHook[];
-  order: number;
-  wallClockStartedAt: string;
-  timings: Record<string, any>;
-  _eventsCount: number;
-  duration: number;
-  err: Record<string, any>;
-  state: string;
-};
+interface TimingDetail {
+  hookId: string;
+  fnDuration: number;
+  afterFnDuration: number;
+}
 
-export type ScreenshotData = {
+interface TestTiminDetail {
+  fnDuration: number;
+  afterFnDuration: number;
+}
+
+interface Timing {
+  lifecycle: number;
+  "before each": TimingDetail[];
+  test: TestTiminDetail;
+  "after each": TimingDetail[];
+}
+
+export type AfterScreenshotPayload = {
   testAttemptIndex: number;
   size: number;
   takenAt: string;
@@ -85,8 +137,8 @@ export type ScreenshotData = {
 };
 
 export class ExecutionState {
-  private attemptsData: AttemptData[] = [];
-  private screenshotsData: ScreenshotData[] = [];
+  private attemptsData: TestAfterTaskPayload[] = [];
+  private screenshotsData: AfterScreenshotPayload[] = [];
   private currentTestID?: string;
   private state: Record<InstanceId, InstanceExecutionState> = {};
 
@@ -217,19 +269,19 @@ export class ExecutionState {
     });
   }
 
-  public setAttemptsData(attemptDetails: AttemptData) {
+  public setAttemptsData(attemptDetails: TestAfterTaskPayload) {
     this.attemptsData.push(attemptDetails);
   }
 
-  public getAttemptsData(): AttemptData[] | undefined {
+  public getAttemptsData(): TestAfterTaskPayload[] | undefined {
     return this.attemptsData;
   }
 
-  public setScreenshotsData(screenshotsData: ScreenshotData) {
+  public setScreenshotsData(screenshotsData: AfterScreenshotPayload) {
     this.screenshotsData.push(screenshotsData);
   }
 
-  public getScreenshotsData(): ScreenshotData[] | undefined {
+  public getScreenshotsData(): AfterScreenshotPayload[] | undefined {
     return this.screenshotsData;
   }
 
