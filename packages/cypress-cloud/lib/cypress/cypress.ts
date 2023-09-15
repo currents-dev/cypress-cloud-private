@@ -1,6 +1,4 @@
 import cypress from "cypress";
-console.log("resolve:", require.resolve("cypress"));
-console.log(import.meta.resolve && import.meta.resolve("cypress"));
 import {
 	CurrentsRunParameters,
 	CypressResult,
