@@ -29,5 +29,8 @@
   },
   "resolutions": {
     "debug": "^4.3.4"
+  },
+  "dependencies": {
+    "cypress": "^13.1.0"
   }
 }
