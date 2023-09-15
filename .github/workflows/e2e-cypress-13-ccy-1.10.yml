@@ -24,7 +24,7 @@ jobs:
               run: npm ci
 
             - name: Install Cypress 13.1.0
-              run: cd ./packages/cypress-cloud | npm install cypress@13.1.0
+              run: npm install cypress@13.1.0
 
             - name: Build
               run: npm run build
