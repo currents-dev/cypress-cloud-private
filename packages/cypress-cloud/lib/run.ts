@@ -125,7 +125,8 @@ export async function run(params: CurrentsRunParameters = {}) {
 	listenToSpecEvents(
 		configState,
 		executionState,
-		config.experimentalCoverageRecording
+		config.experimentalCoverageRecording,
+		config?.resolved?.version
 	);
 
 	await runTillDoneOrCancelled(
@@ -166,7 +167,8 @@ export async function run(params: CurrentsRunParameters = {}) {
 function listenToSpecEvents(
 	configState: ConfigState,
 	executionState: ExecutionState,
-	experimentalCoverageRecording?: boolean
+	experimentalCoverageRecording?: boolean,
+	cypressVersion: string
 ) {
 	const config = configState.getConfig();
 
@@ -195,7 +197,7 @@ function listenToSpecEvents(
 
 			executionState.setSpecAfter(
 				spec.relative,
-				getCombinedSpecResult(results, executionState)
+				getCombinedSpecResult(results, executionState, cypressVersion)
 			);
 			executionState.setSpecOutput(spec.relative, getCapturedOutput());
 

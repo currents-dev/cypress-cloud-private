@@ -2,6 +2,7 @@ import { parseISO } from "date-fns";
 import _ from "lodash";
 import { SpecResult } from "../runner/spec.type";
 import { ExecutionState } from "../state";
+import Cypress from "cypress";
 
 function getAttemptError(err: any) {
 	if (!err) {
@@ -37,7 +38,11 @@ function getAttemptVideoTimestamp(
 ) {
 	return Math.max(attemptStartedAtMs - specStartedAtMs, 0);
 }
-function getSpecResults(specResults: SpecResult, attempts?: any[]) {
+function getSpecResults(
+	specResults: SpecResult,
+	cypressVersion: string,
+	attempts?: any[]
+) {
 	if (!attempts) {
 		return {
 			..._.cloneDeep(specResults),
@@ -73,6 +78,18 @@ function getSpecResults(specResults: SpecResult, attempts?: any[]) {
 		}
 	);
 	const specNameSplitted = specResults.spec.name.split(".");
+	Cypress.cli.parseRunArguments;
+
+	const cypressMainVersion = cypressVersion.split(".")[0];
+
+	if (parseFloat(cypressMainVersion) <= 12) {
+		return {
+			..._.cloneDeep(specResults),
+			tests: enhancedTestList,
+			hooks: [],
+		};
+	}
+
 	return {
 		..._.cloneDeep(specResults),
 		tests: enhancedTestList,
@@ -96,10 +113,15 @@ function getSpecResults(specResults: SpecResult, attempts?: any[]) {
  */
 export function getCombinedSpecResult(
 	specResult: SpecResult,
-	executionState: ExecutionState
+	executionState: ExecutionState,
+	cypressVersion: string
 ) {
 	return parseScreenshotResults(
-		getSpecResults(specResult, executionState.getAttemptsData()),
+		getSpecResults(
+			specResult,
+			cypressVersion,
+			executionState.getAttemptsData()
+		),
 		executionState.getScreenshotsData()
 	);
 }
