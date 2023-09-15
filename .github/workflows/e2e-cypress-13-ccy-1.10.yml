@@ -32,10 +32,10 @@ jobs:
             - name: Run compatibility tests
               working-directory: ./e2e/cypress-13-demo
               env:
-                  CURRENTS_API_KEY: YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9
-                  CURRENTS_RUN_BASE_URL: https://api.currents.dev/v1/runs/
-                  CURRENTS_PROJECT_ID: 2cI1I5
-                  CURRENTS_RECORD_KEY: YakSabgBLb7D40nZ
+                  CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
+                  CURRENTS_RUN_BASE_URL: ${{ secrets.CURRENTS_RUN_BASE_URL }}
+                  CURRENTS_PROJECT_ID: ${{ secrets.CURRENTS_PROJECT_ID }}
+                  CURRENTS_RECORD_KEY: ${{ secrets.CURRENTS_RECORD_KEY }}
 
               run: >
                   npm run test
