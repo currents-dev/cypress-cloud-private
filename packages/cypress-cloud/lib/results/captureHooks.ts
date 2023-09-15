@@ -2,7 +2,7 @@ import { ExecutionState } from "../state";
 import { generateRandomString } from "../utils";
 
 export function handleScreenshotEvent(
-	screenshot: Cypress.ScreenshotDetails,
+	screenshot: Cypress.ScreenshotDetails & { testAttemptIndex: number },
 	executionState: ExecutionState
 ) {
 	const testId = executionState.getCurrentTestID();

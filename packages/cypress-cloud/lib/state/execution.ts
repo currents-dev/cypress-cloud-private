@@ -90,7 +90,9 @@ export class ExecutionState {
 	private currentTestID?: string;
 	private state: Record<InstanceId, InstanceExecutionState> = {};
 
-	public getResults(configState: ConfigState) {
+	public getResults(
+		configState: ConfigState
+	): CypressCommandLine.CypressRunResult[] {
 		return Object.values(this.state).map((i) =>
 			this.getInstanceResults(configState, i.instanceId)
 		);
@@ -185,7 +187,10 @@ export class ExecutionState {
 		i.runResultsReportedAt = new Date();
 	}
 
-	public getInstanceResults(configState: ConfigState, instanceId: string) {
+	public getInstanceResults(
+		configState: ConfigState,
+		instanceId: string
+	): CypressCommandLine.CypressRunResult {
 		const i = this.getInstance(instanceId);
 
 		if (!i) {

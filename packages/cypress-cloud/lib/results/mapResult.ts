@@ -20,7 +20,11 @@ function getScreenshot(s: SpecAfter.Screenshot): CypressScreenshot {
 function getTestAttempt(
 	attempt: SpecAfter.TestAttempt,
 	screenshots: SpecAfter.Screenshot[]
-): CypressTestAttempt {
+): CypressTestAttempt & {
+	startedAt: string;
+	duration: number;
+	screenshots: SpecAfter.Screenshot[];
+} {
 	return {
 		...attempt,
 		startedAt: attempt.wallClockStartedAt ?? attempt.startedAt,
@@ -34,8 +38,13 @@ function getTest(
 	screenshots: SpecAfter.Screenshot[]
 ): CypressTest {
 	const _screenshots = screenshots.filter((s) => s.testId === t.testId);
+	let duration = 0;
+	t.attempts.forEach((att) => {
+		duration += att.duration;
+	});
 	return {
 		...t,
+		duration,
 		attempts: t.attempts.map((a, i) =>
 			getTestAttempt(
 				a,
@@ -69,14 +78,14 @@ export function specResultsToCypressResults(
 		suites: specAfterResult.stats.suites ?? 0,
 		tests: specAfterResult.stats.tests ?? 0,
 	};
-	const config = _.cloneDeep(configState.getConfig());
+	const config = {
+		..._.cloneDeep(configState.getConfig()),
+		videoUploadOnPasses: configState.getConfig()?.video,
+	};
 	return {
 		status: "finished",
 		// @ts-ignore
-		config: {
-			...config,
-			videoUploadOnPasses: config?.video,
-		},
+		config,
 		totalDuration: stats.duration,
 		totalSuites: stats.suites,
 		totalTests: stats.tests,
@@ -110,11 +119,11 @@ export function specResultsToCypressResults(
 
 export const backfillException = (
 	result: CypressCommandLine.CypressRunResult
-) => {
+): CypressCommandLine.CypressRunResult => {
 	return {
 		...result,
 		runs: result.runs.map(backfillExceptionRun),
-	};
+	} as CypressCommandLine.CypressRunResult;
 };
 
 const backfillExceptionRun = (run: CypressRun) => {

@@ -125,8 +125,8 @@ export async function run(params: CurrentsRunParameters = {}) {
 	listenToSpecEvents(
 		configState,
 		executionState,
-		config.experimentalCoverageRecording,
-		config?.resolved?.version
+		config?.resolved?.version ?? "12",
+		config.experimentalCoverageRecording
 	);
 
 	await runTillDoneOrCancelled(
@@ -167,8 +167,8 @@ export async function run(params: CurrentsRunParameters = {}) {
 function listenToSpecEvents(
 	configState: ConfigState,
 	executionState: ExecutionState,
-	experimentalCoverageRecording?: boolean,
-	cypressVersion: string
+	cypressVersion: string,
+	experimentalCoverageRecording?: boolean
 ) {
 	const config = configState.getConfig();
 
@@ -186,13 +186,7 @@ function listenToSpecEvents(
 
 	pubsub.on(
 		"after:spec",
-		async ({
-			spec,
-			results,
-		}: {
-			spec: Cypress.Spec;
-			results: SpecResult;
-		}) => {
+		async ({ spec, results }: { spec: Cypress.Spec; results: SpecResult }) => {
 			debug("after:spec %o %o", spec, results);
 
 			executionState.setSpecAfter(
@@ -206,10 +200,7 @@ function listenToSpecEvents(
 					config?.env?.coverageFile
 				);
 				if (coverageFilePath) {
-					executionState.setSpecCoverage(
-						spec.relative,
-						coverageFilePath
-					);
+					executionState.setSpecCoverage(spec.relative, coverageFilePath);
 				}
 			}
 			createReportTaskSpec(configState, executionState, spec.relative);

@@ -318,8 +318,7 @@ export const avoidablePropertiesCy13: AvoidableProperty[] = [
 		mustHave: true,
 	},
 	{
-		property:
-			/config\.resolved\.browsers\.value\[\d+\]\.minSupportedVersion/,
+		property: /config\.resolved\.browsers\.value\[\d+\]\.minSupportedVersion/,
 		mustHave: true,
 		isRegex: true,
 	},
@@ -464,6 +463,10 @@ export const avoidableApiPropertiesCy13: AvoidableProperty[] = [
 	},
 	{
 		property: "data.meta.platform.osVersion",
+		mustHave: true,
+	},
+	{
+		property: "platform.browserVersion",
 		mustHave: true,
 	},
 ];
@@ -632,9 +635,7 @@ export function testEachResults(
 				if (!avoidableData) {
 					expect(
 						result.valueA,
-						`The values are not equal at: ${result.path}. ${
-							result.note ?? ""
-						}`
+						`The values are not equal at: ${result.path}. ${result.note ?? ""}`
 					).to.equal(result.valueB);
 					return;
 				}
@@ -642,39 +643,39 @@ export function testEachResults(
 				if (avoidableData.mustHave) {
 					expect(
 						result.valueB,
-						`The values at ${
-							result.path
-						} does not exist and it should. ${result.note ?? ""}`
+						`The values at ${result.path} does not exist and it should. ${
+							result.note ?? ""
+						}`
 					).not.to.equal("Does not exist");
 					expect(
 						result.valueB,
-						`The values at ${
-							result.path
-						} does not exist and it should. ${result.note ?? ""}`
+						`The values at ${result.path} does not exist and it should. ${
+							result.note ?? ""
+						}`
 					).not.to.equal(undefined);
 					expect(
 						result.valueB,
-						`The values at ${
-							result.path
-						} does not exist and it should. ${result.note ?? ""}`
+						`The values at ${result.path} does not exist and it should. ${
+							result.note ?? ""
+						}`
 					).not.to.equal(null);
 					expect(
 						result.valueB,
-						`The values at ${
-							result.path
-						} does not exist and it should. ${result.note ?? ""}`
+						`The values at ${result.path} does not exist and it should. ${
+							result.note ?? ""
+						}`
 					).not.to.equal("");
 					expect(
 						result.valueB,
-						`The values at ${
-							result.path
-						} does not exist and it should. ${result.note ?? ""}`
+						`The values at ${result.path} does not exist and it should. ${
+							result.note ?? ""
+						}`
 					).not.to.equal("undefined");
 					expect(
 						result.valueB,
-						`The values at ${
-							result.path
-						} does not exist and it should. ${result.note ?? ""}`
+						`The values at ${result.path} does not exist and it should. ${
+							result.note ?? ""
+						}`
 					).not.to.equal("null");
 					return;
 				}
@@ -696,8 +697,7 @@ export function getCurrentsTestsVariables() {
 		process.env.CURRENTS_API_KEY ||
 		"YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9";
 	const apiUrl =
-		process.env.CURRENTS_RUN_BASE_URL ||
-		"https://api.currents.dev/v1/runs/";
+		process.env.CURRENTS_RUN_BASE_URL || "https://api.currents.dev/v1/runs/";
 	return {
 		projectId,
 		recordKey,

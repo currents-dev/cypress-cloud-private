@@ -100,16 +100,20 @@ export interface TestAttempt {
 	error: TestError | null;
 	failedFromHookId: string | null;
 	state: TestState;
-	timings: TestAttemptTiming | null;
+	timings: TestAttemptTiming[] | null;
 	videoTimestamp: number;
 	duration: number;
 	wallClockDuration: number;
 	startedAt: string;
 	wallClockStartedAt: string;
+	screenshots?: CypressCommandLine.ScreenshotInformation[];
 }
 
-export type TestError = CypressCommandLine.TestError & {
+export type TestError = {
 	codeFrame?: TestCodeFrame | null;
+	name?: string;
+	message?: string;
+	stack?: string;
 };
 
 interface TestCodeFrame {
