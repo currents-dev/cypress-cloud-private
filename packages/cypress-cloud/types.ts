@@ -4,20 +4,6 @@ export type SpecType = "component" | "integration";
 export type ArrayItemType<T> = T extends (infer U)[] ? U : T;
 export type NonEmptyArray<T> = [T, ...T[]];
 
-export type CypressRun = ArrayItemType<
-  CypressCommandLine.CypressRunResult["runs"]
->;
-export type CypressTest = ArrayItemType<CypressRun["tests"]>;
-export type CypressTestAttempt = ArrayItemType<CypressTest["attempts"]>;
-export type CypressScreenshot = ArrayItemType<
-  // @ts-ignore
-  CypressTestAttempt["screenshots"]
->;
-
-export type CypressResult =
-  | CypressCommandLine.CypressRunResult
-  | CypressCommandLine.CypressFailedRunResult;
-
 export type Platform = {
   osName: string;
   osVersion: string;
@@ -86,7 +72,12 @@ export interface ScreenshotUploadInstruction {
   readUrl: string;
 }
 
-export type ScreenshotArtifact = CypressCommandLine.ScreenshotInformation & {
+export type ScreenshotArtifact = {
+  name: string | null;
+  takenAt: string;
+  path: string;
+  height: number;
+  width: number;
   testId: string;
   testAttemptIndex: number;
   screenshotId: string;

@@ -11,12 +11,14 @@ import { setCancellationReason } from "../cancellation";
 import { getInitialOutput } from "../capture";
 import { Standard } from "../cypress.types";
 import { isCurrents } from "../env";
+import { ConfigState } from "../state";
 import { getInstanceResultPayload, getInstanceTestsPayload } from "./api";
 const debug = Debug("currents:results");
 
 export async function getReportResultsTask(
   instanceId: string,
   results: Standard.ModuleAPI.CompletedResult,
+  configState: ConfigState,
   stdout: string,
   coverageFilePath?: string
 ) {
@@ -25,7 +27,7 @@ export async function getReportResultsTask(
     throw new Error("No run found in Cypress results");
   }
   const instanceResults = getInstanceResultPayload(run, coverageFilePath);
-  const instanceTests = getInstanceTestsPayload(run, results.config);
+  const instanceTests = getInstanceTestsPayload(run, configState);
   const { videoUploadUrl, screenshotUploadUrls, coverageUploadUrl, cloud } =
     await reportResults(instanceId, instanceTests, instanceResults);
 

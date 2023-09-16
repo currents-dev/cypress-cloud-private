@@ -87,13 +87,13 @@ export class ModuleAPIResults {
         error:
           "error" in cypressAttempt
             ? cypressAttempt.error
-            : SpecAfterResult.getDummyTestAttemptError(),
+            : SpecAfterResult.getDummyTestAttemptError(cypressAttempt.state),
         startedAt:
           "startedAt" in cypressAttempt
             ? cypressAttempt.startedAt
             : new Date().toISOString(),
 
-        duration: "duration" in cypressAttempt ? cypressAttempt.duration : -1,
+        duration: "duration" in cypressAttempt ? cypressAttempt.duration : 0,
         videoTimestamp:
           "videoTimestamp" in cypressAttempt
             ? cypressAttempt.videoTimestamp

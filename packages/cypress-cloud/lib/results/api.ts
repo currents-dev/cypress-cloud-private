@@ -6,7 +6,9 @@ import {
 } from "../api";
 
 import { Standard } from "../cypress.types";
-import { getRunScreenshots, getTestAttempt } from "./summarize";
+import { getRandomString } from "../nano";
+import { ConfigState } from "../state";
+import { getTestAttempt } from "./summarize";
 
 const debug = Debug("currents:results");
 
@@ -16,11 +18,11 @@ export const getInstanceResultPayload = (
 ): UpdateInstanceResultsPayload => {
   debug("generating instance result payload from %o", runResult);
   return {
-    stats: runResult.stats,
+    stats: StandardResultsToAPIResults.getStats(runResult.stats),
     reporterStats: runResult.reporterStats,
     exception: runResult.error ?? null,
     video: !!runResult.video, // Did the instance generate a video?
-    screenshots: getRunScreenshots(runResult.tests ?? []),
+    screenshots: StandardResultsToAPIResults.getAllScreenshots(runResult),
     hasCoverage: !!coverageFilePath,
     tests:
       (runResult.tests ?? []).map((test, i) => ({
@@ -37,11 +39,12 @@ export const getInstanceResultPayload = (
 
 export const getInstanceTestsPayload = (
   runResult: Standard.ModuleAPI.Run,
-  config: Cypress.ResolvedConfigOptions
+  config: ConfigState
 ): SetInstanceTestsPayload => {
   return {
+    // @ts-ignore
     config: {
-      ...config,
+      ...config.getConfig(),
       // @ts-ignore
       videoUploadOnPasses: config?.videoUploadOnPasses ?? false,
     },
@@ -56,3 +59,31 @@ export const getInstanceTestsPayload = (
     hooks: runResult.hooks ?? [],
   };
 };
+
+class StandardResultsToAPIResults {
+  static getAllScreenshots(
+    run: Standard.ModuleAPI.Run
+  ): UpdateInstanceResultsPayload["screenshots"] {
+    return (run.tests ?? []).flatMap((t, i) =>
+      t.attempts.flatMap((a, j) =>
+        a.screenshots.map((s) => ({
+          ...s,
+          testId: `r${i}`,
+          testAttemptIndex: j,
+          screenshotId: getRandomString(),
+        }))
+      )
+    );
+  }
+
+  static getStats(
+    stats: Standard.ModuleAPI.Run["stats"]
+  ): UpdateInstanceResultsPayload["stats"] {
+    return {
+      ...stats,
+      wallClockDuration: stats.duration,
+      wallClockStartedAt: stats.startedAt,
+      wallClockEndedAt: stats.endedAt,
+    };
+  }
+}

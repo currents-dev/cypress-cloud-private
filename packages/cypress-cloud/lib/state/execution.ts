@@ -156,7 +156,7 @@ export class ExecutionState {
     if (i.specAfterResults) {
       debug('Using spec:after results for %s "%s"', instanceId, i.spec);
       return SpecAfterToModuleAPIMapper.backfillException(
-        SpecAfterToModuleAPIMapper.convert(configState, i.specAfterResults)
+        SpecAfterToModuleAPIMapper.convert(i.specAfterResults, configState)
       );
     }
 

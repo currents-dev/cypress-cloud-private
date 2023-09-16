@@ -37,8 +37,8 @@ export class SpecAfterToModuleAPIMapper {
   }
 
   static convert(
-    configState: ConfigState,
-    specAfterResult: Standard.SpecAfter.Payload
+    specAfterResult: Standard.SpecAfter.Payload,
+    configState: ConfigState
   ): Standard.ModuleAPI.CompletedResult {
     const stats = {
       duration: specAfterResult.stats.wallClockDuration,

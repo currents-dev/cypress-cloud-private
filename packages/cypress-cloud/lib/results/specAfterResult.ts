@@ -3,6 +3,7 @@
  */
 
 import { parseISO } from "date-fns";
+import { match } from "ts-pattern";
 import { CypressTypes, Standard } from "../cypress.types";
 import { MochaError } from "../cypress.types/shared";
 import { warn } from "../log";
@@ -72,15 +73,26 @@ export class SpecAfterResult {
     return new Date();
   }
 
-  static getDummyTestAttemptError() {
-    return {
-      name: "Error",
-      message: "[cypress-cloud] Could not get cypress attempt error details",
-      stack: "",
-      codeFrame: null,
-    };
+  static getDummyTestAttemptError(
+    attemptState: "passed" | "skipped" | "pending" | "failed"
+  ) {
+    return match(attemptState)
+      .with("failed", () => ({
+        name: "Error",
+        message: "[cypress-cloud] Could not get cypress attempt error details",
+        stack: "",
+        codeFrame: null,
+      }))
+      .with("skipped", () => ({
+        name: "Error",
+        message: "The test was skipped because of a hook failure",
+        stack: "",
+        codeFrame: null,
+      }))
+      .otherwise(() => null);
   }
 
+  // TODO: handle pending and skipped
   static getTestAttemptStandard(
     mochaAttempt: ExecutionStateTestAttempt | null,
     cypressAttempt: CypressTypes.EventPayload.SpecAfter.TestAttempt,
@@ -92,7 +104,7 @@ export class SpecAfterResult {
         error:
           "error" in cypressAttempt
             ? cypressAttempt.error
-            : SpecAfterResult.getDummyTestAttemptError(),
+            : SpecAfterResult.getDummyTestAttemptError(cypressAttempt.state),
         timings: "timings" in cypressAttempt ? cypressAttempt.timings : null,
         wallClockStartedAt:
           "wallClockStartedAt" in cypressAttempt
@@ -102,7 +114,7 @@ export class SpecAfterResult {
         wallClockDuration:
           "wallClockDuration" in cypressAttempt
             ? cypressAttempt.wallClockDuration
-            : -1,
+            : 0,
         failedFromHookId:
           "failedFromHookId" in cypressAttempt
             ? cypressAttempt.failedFromHookId
@@ -199,7 +211,7 @@ export class SpecAfterResult {
   static getStatsStandard(
     stats: CypressTypes.EventPayload.SpecAfter.Stats
   ): Standard.SpecAfter.Stats {
-    return {
+    const result = {
       skipped: stats.skipped,
       suites: stats.suites,
       tests: stats.tests,
@@ -217,6 +229,12 @@ export class SpecAfterResult {
           ? stats.wallClockDuration
           : stats.duration ?? 0,
     };
+
+    // fix wrong total for crashed runs - e.g. when cypress fails to compile
+    result.tests =
+      result.passes + result.failures + result.pending + result.skipped;
+
+    return result;
   }
 
   static getScreenshotsStandard(
