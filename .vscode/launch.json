@@ -5,11 +5,38 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch ",
+
+      "program": "${workspaceFolder}/packages/cypress-cloud/dist/bin/cli.js",
+      "args": ["--parallel", "--record", "--ci-build-id", "${input:ciBuildId}"],
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "cwd": "${workspaceFolder}/examples/webapp",
+      "env": {
+        "NODE_OPTIONS": "--inspect=9229",
+        "CURRENTS_PROJECT_ID": "mMsaes",
+        "CURRENTS_RECORD_KEY": "Fgt2j7QCjNedC2zG",
+        "CURRENTS_API_URL": "http://localhost:1234/"
+      },
+      "type": "node"
+    },
+    {
       "name": "Attach",
       "port": 9229,
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "ciBuildId",
+      "type": "command",
+      "command": "shellCommand.execute",
+      "args": {
+        "command": "date +%s",
+        "cwd": "${workspaceFolder}"
+      }
     }
   ]
 }

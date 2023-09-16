@@ -1,124 +1,108 @@
-import {
-  CypressRun,
-  CypressScreenshot,
-  CypressTest,
-  CypressTestAttempt,
-} from "cypress-cloud/types";
+/**
+ * Map Module API results to after:spec results
+ */
 
-import * as SpecAfter from "../runner/spec.type";
+import { Standard } from "../cypress.types";
 import { ConfigState } from "../state";
-import { getFakeTestFromException } from "./results";
+import { getFakeTestFromException } from "./empty";
 
-function getScreenshot(s: SpecAfter.Screenshot): CypressScreenshot {
-  return {
-    ...s,
-    name: s.name ?? "screenshot",
-  };
-}
-
-function getTestAttempt(
-  attempt: SpecAfter.TestAttempt,
-  screenshots: SpecAfter.Screenshot[]
-): CypressTestAttempt {
-  return {
-    ...attempt,
-    startedAt: attempt.wallClockStartedAt ?? attempt.startedAt,
-    duration: attempt.wallClockDuration,
-    screenshots: screenshots.map(getScreenshot),
-  };
-}
-
-function getTest(
-  t: SpecAfter.Test,
-  screenshots: SpecAfter.Screenshot[]
-): CypressTest {
-  const _screenshots = screenshots.filter((s) => s.testId === t.testId);
-  return {
-    ...t,
-    attempts: t.attempts.map((a, i) =>
-      getTestAttempt(
-        a,
-        _screenshots.filter((s) => s.testAttemptIndex === i)
-      )
-    ),
-  };
-}
-
-export function specResultsToCypressResults(
-  configState: ConfigState,
-  specAfterResult: SpecAfter.SpecResult
-): CypressCommandLine.CypressRunResult {
-  const stats = {
-    duration:
-      specAfterResult.stats.duration ??
-      (specAfterResult.stats.wallClockDuration as number) ??
-      0,
-    endedAt:
-      specAfterResult.stats.endedAt ??
-      specAfterResult.stats.wallClockEndedAt ??
-      new Date().toISOString(),
-    startedAt:
-      specAfterResult.stats.startedAt ??
-      specAfterResult.stats.wallClockStartedAt ??
-      new Date().toISOString(),
-    failures: specAfterResult.stats.failures ?? 0,
-    passes: specAfterResult.stats.passes ?? 0,
-    pending: specAfterResult.stats.pending ?? 0,
-    skipped: specAfterResult.stats.skipped ?? 0,
-    suites: specAfterResult.stats.suites ?? 0,
-    tests: specAfterResult.stats.tests ?? 0,
-  };
-  return {
-    status: "finished",
-    // @ts-ignore
-    config: configState.getConfig(),
-    totalDuration: stats.duration,
-    totalSuites: stats.suites,
-    totalTests: stats.tests,
-    totalFailed: stats.failures,
-    totalPassed: stats.passes,
-    totalPending: stats.pending,
-    totalSkipped: stats.skipped ?? 0,
-    startedTestsAt: stats.startedAt,
-    endedTestsAt: stats.endedAt,
-    runs: [
-      {
-        stats,
-        reporter: specAfterResult.reporter,
-        reporterStats: specAfterResult.reporterStats ?? {},
-        spec: specAfterResult.spec,
-        error: specAfterResult.error,
-        video: specAfterResult.video,
-        // @ts-ignore
-        shouldUploadVideo: true, // not really used
-        // @ts-ignore
-        // wrong typedef for CypressCommandLine.CypressRunResult
-        // actual HookName is "before all" | "before each" | "after all" | "after each"
-        hooks: specAfterResult.hooks,
-        tests: (specAfterResult.tests ?? []).map((t) =>
-          getTest(t, specAfterResult.screenshots)
-        ),
-      },
-    ],
-  };
-}
-
-export const backfillException = (
-  result: CypressCommandLine.CypressRunResult
-) => {
-  return {
-    ...result,
-    runs: result.runs.map(backfillExceptionRun),
-  };
-};
-
-const backfillExceptionRun = (run: CypressRun) => {
-  if (!run.error) {
-    return run;
+export class SpecAfterToModuleAPIMapper {
+  static getTestAttempt(
+    attempt: Standard.SpecAfter.TestAttempt,
+    screenshots: Standard.SpecAfter.Payload["screenshots"]
+  ): Standard.ModuleAPI.TestAttempt {
+    return {
+      ...attempt,
+      duration: attempt.wallClockDuration,
+      startedAt: attempt.wallClockStartedAt,
+      screenshots,
+    };
   }
 
-  return {
-    ...run,
-    tests: [getFakeTestFromException(run.error, run.stats)],
-  };
-};
+  static getTest(
+    t: Standard.SpecAfter.Test,
+    screenshots: Standard.SpecAfter.Payload["screenshots"]
+  ): Standard.ModuleAPI.Test {
+    return {
+      ...t,
+      attempts: t.attempts.map((a, i) =>
+        SpecAfterToModuleAPIMapper.getTestAttempt(
+          a,
+          screenshots.filter(
+            (s) => s.testId === t.testId && s.testAttemptIndex === i
+          )
+        )
+      ),
+    };
+  }
+
+  static convert(
+    configState: ConfigState,
+    specAfterResult: Standard.SpecAfter.Payload
+  ): Standard.ModuleAPI.CompletedResult {
+    const stats = {
+      duration: specAfterResult.stats.wallClockDuration,
+      endedAt: specAfterResult.stats.wallClockEndedAt,
+      startedAt: specAfterResult.stats.wallClockStartedAt,
+      failures: specAfterResult.stats.failures ?? 0,
+      passes: specAfterResult.stats.passes ?? 0,
+      pending: specAfterResult.stats.pending ?? 0,
+      skipped: specAfterResult.stats.skipped ?? 0,
+      suites: specAfterResult.stats.suites ?? 0,
+      tests: specAfterResult.stats.tests ?? 0,
+    };
+    return {
+      status: "finished",
+      // @ts-ignore
+      config: configState.getConfig(),
+      totalDuration: stats.duration,
+      totalSuites: stats.suites,
+      totalTests: stats.tests,
+      totalFailed: stats.failures,
+      totalPassed: stats.passes,
+      totalPending: stats.pending,
+      totalSkipped: stats.skipped ?? 0,
+      startedTestsAt: stats.startedAt,
+      endedTestsAt: stats.endedAt,
+      runs: [
+        {
+          stats,
+          reporter: specAfterResult.reporter,
+          reporterStats: specAfterResult.reporterStats ?? null,
+          spec: specAfterResult.spec,
+          error: specAfterResult.error,
+          video: specAfterResult.video,
+          // @ts-ignore
+          shouldUploadVideo: true, // not really used
+          // @ts-ignore
+          // wrong typedef for CypressCommandLine.CypressRunResult
+          // actual HookName is "before all" | "before each" | "after all" | "after each"
+          hooks: specAfterResult.hooks,
+          tests: (specAfterResult.tests ?? []).map((t) =>
+            SpecAfterToModuleAPIMapper.getTest(t, specAfterResult.screenshots)
+          ),
+        },
+      ],
+    };
+  }
+
+  static backfillException(
+    result: Standard.ModuleAPI.CompletedResult
+  ): Standard.ModuleAPI.CompletedResult {
+    return {
+      ...result,
+      runs: result.runs.map(SpecAfterToModuleAPIMapper.backfillExceptionRun),
+    };
+  }
+
+  static backfillExceptionRun(run: Standard.ModuleAPI.Run) {
+    if (!run.error) {
+      return run;
+    }
+
+    return {
+      ...run,
+      tests: [getFakeTestFromException(run.error, run.stats)],
+    };
+  }
+}

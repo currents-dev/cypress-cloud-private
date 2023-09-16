@@ -1,0 +1,18 @@
+{
+  "async": 0,
+  "body": "function () {\n    if (i > 1) {\n      i--;\n      throw new Error(\"oh no!\");\n    }\n    return;\n  }",
+  "currentRetry": 1,
+  "fullTitle": "Retries Runs a test with retries",
+  "id": "r3",
+  "order": 1,
+  "pending": false,
+  "retries": 3,
+  "sync": true,
+  "timedOut": false,
+  "timings": {
+    "lifecycle": 22
+  },
+  "title": "Runs a test with retries",
+  "type": "test",
+  "wallClockStartedAt": "2023-09-14T22:17:56.389Z"
+}

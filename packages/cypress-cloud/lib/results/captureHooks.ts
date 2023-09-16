@@ -1,30 +1,30 @@
-import { ExecutionState, TestAfterTaskPayload } from "../state";
+import { CypressTypes } from "../cypress.types";
+import { ExecutionState } from "../state";
 
 export function handleScreenshotEvent(
-  screenshot: Cypress.ScreenshotDetails,
+  screenshot: CypressTypes.EventPayload.ScreenshotAfter,
   executionState: ExecutionState
 ) {
-  const testId = executionState.getCurrentTestID();
-  const screenshotData = {
+  executionState.addScreenshotsData({
     ...screenshot,
-    testId,
+    testId: executionState.getCurrentTestID(),
     height: screenshot.dimensions.height,
     width: screenshot.dimensions.width,
-  };
-  executionState.setScreenshotsData(screenshotData);
+  });
 }
 
 export function handleTestBefore(
   testAttempt: string,
   executionState: ExecutionState
 ) {
-  executionState.setCurrentTestID(JSON.parse(testAttempt).id);
+  const parsed: CypressTypes.EventPayload.TestBefore = JSON.parse(testAttempt);
+  executionState.setCurrentTestID(parsed.id);
 }
 
 export function handleTestAfter(
   testAttempt: string,
   executionState: ExecutionState
 ) {
-  const test: TestAfterTaskPayload = JSON.parse(testAttempt);
-  executionState.setAttemptsData(test);
+  const test: CypressTypes.EventPayload.TestAfter = JSON.parse(testAttempt);
+  executionState.addAttemptsData(test);
 }

@@ -1,18 +1,20 @@
 /// <reference types="Cypress" />
 import safeStringify from "fast-safe-stringify";
 
+localStorage.debug = "cypress:*";
+
 const afterReportedTests: string[] = [];
 const beforeReportedTests: string[] = [];
 
 function pickTestData(test: Mocha.Runnable) {
   return {
-    async: test.async,
+    async: !!test.async,
     body: test.body,
     duration: test.duration,
     // @ts-ignore
     err: test.err,
     // @ts-ignore
-    final: test.final,
+    final: !!test.final,
     // @ts-ignore
     hooks: test.hooks,
     // @ts-ignore
@@ -24,7 +26,7 @@ function pickTestData(test: Mocha.Runnable) {
     pending: test.pending,
     retries: test.retries(),
     state: test.state,
-    sync: test.sync,
+    sync: !!test.sync,
     timedOut: test.timedOut,
     // @ts-ignore
     timings: test.timings,
@@ -53,7 +55,7 @@ function sendTestAfterMetrics(test: Mocha.Runnable) {
 
 function sendTestBeforeMetrics(test: Mocha.Runnable) {
   beforeReportedTests.push(getTestHash(test));
-  cy.task(`currents:test:before:run`, safeStringify(test), {
+  cy.task(`currents:test:before:run`, safeStringify(pickTestData(test)), {
     log: false,
   });
 }

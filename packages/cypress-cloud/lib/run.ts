@@ -14,6 +14,7 @@ import {
 } from "./config";
 import { getCoverageFilePath } from "./coverage";
 import { runBareCypress } from "./cypress";
+import { CypressTypes } from "./cypress.types";
 import { activateDebug } from "./debug";
 import { isCurrents } from "./env";
 import { getGitInfo } from "./git";
@@ -21,19 +22,18 @@ import { setAPIBaseUrl, setRunId } from "./httpClient";
 import { bold, divider, info, spacer, title } from "./log";
 import { getPlatform } from "./platform";
 import { pubsub } from "./pubsub";
-import { summarizeTestResults, summaryTable } from "./results";
+import { summarizeExecution, summaryTable } from "./results";
 import {
   handleScreenshotEvent,
   handleTestAfter,
   handleTestBefore,
 } from "./results/captureHooks";
-import { getCombinedSpecResult } from "./results/combine";
+import { SpecAfterResult } from "./results/specAfterResult";
 import {
   createReportTaskSpec,
   reportTasks,
   runTillDoneOrCancelled,
 } from "./runner";
-import { SpecResult } from "./runner/spec.type";
 import { shutdown } from "./shutdown";
 import { getSpecFiles } from "./specMatcher";
 import { ConfigState, ExecutionState } from "./state";
@@ -144,7 +144,7 @@ export async function run(params: CurrentsRunParameters = {}) {
   divider();
 
   await Promise.allSettled(reportTasks);
-  const _summary = summarizeTestResults(
+  const _summary = summarizeExecution(
     executionState.getResults(configState),
     config
   );
@@ -170,12 +170,12 @@ function listenToSpecEvents(
 ) {
   const config = configState.getConfig();
 
-  pubsub.on("test:after:run", (test: string) => {
-    handleTestAfter(test, executionState);
+  pubsub.on("test:after:run", (payload: string) => {
+    handleTestAfter(payload, executionState);
   });
 
-  pubsub.on("test:before:run", (test: any) => {
-    handleTestBefore(test, executionState);
+  pubsub.on("test:before:run", (payload: string) => {
+    handleTestBefore(payload, executionState);
   });
 
   pubsub.on("after:screenshot", (screenshot) => {
@@ -184,12 +184,17 @@ function listenToSpecEvents(
 
   pubsub.on(
     "after:spec",
-    async ({ spec, results }: { spec: Cypress.Spec; results: SpecResult }) => {
+    async ({
+      spec,
+      results,
+    }: {
+      spec: CypressTypes.EventPayload.SpecAfter.Spec;
+      results: CypressTypes.EventPayload.SpecAfter.Payload;
+    }) => {
       debug("after:spec %o %o", spec, results);
-
       executionState.setSpecAfter(
         spec.relative,
-        getCombinedSpecResult(results, executionState)
+        SpecAfterResult.getSpecAfterStandard(results, executionState)
       );
       executionState.setSpecOutput(spec.relative, getCapturedOutput());
 

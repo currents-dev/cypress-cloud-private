@@ -1,12 +1,13 @@
 import _ from "lodash";
 import prettyMS from "pretty-ms";
 import { table } from "table";
+import { Standard } from "../cypress.types";
 import { cyan, gray, green, red, white } from "../log";
 
 const failureIcon = red("✖");
 const successIcon = green("✔");
 
-export const summaryTable = (r: CypressCommandLine.CypressRunResult) => {
+export const summaryTable = (r: Standard.ModuleAPI.CompletedResult) => {
   const overallSpecCount = r.runs.length;
   const failedSpecsCount = _.sum(
     r.runs.filter((v) => v.stats.failures + v.stats.skipped > 0).map(() => 1)

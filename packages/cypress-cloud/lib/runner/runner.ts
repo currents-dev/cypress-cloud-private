@@ -4,7 +4,7 @@ import {
 } from "cypress-cloud/types";
 import { getCapturedOutput, resetCapture } from "../capture";
 
-import { getCypressRunResultForSpec } from "../results";
+import { ModuleAPIResults } from "../results/moduleAPIResult";
 
 import Debug from "debug";
 import {
@@ -135,7 +135,7 @@ async function runBatch(
     batch.totalInstances
   );
 
-  const rawResult = await runSpecFileSafe(
+  const batchedResult = await runSpecFileSafe(
     {
       // use absolute paths - user can run the program from a different directory, e.g. nx or a monorepo workspace
       // cypress still report the path relative to the project root
@@ -150,10 +150,13 @@ async function runBatch(
 
   const output = getCapturedOutput();
 
-  // %state
   batch.specs.forEach((spec) => {
     executionState.setInstanceOutput(spec.instanceId, output);
-    const specRunResult = getCypressRunResultForSpec(spec.spec, rawResult);
+    const specRunResult = ModuleAPIResults.getRunResultPerSpec(
+      spec.spec,
+      batchedResult,
+      executionState
+    );
     if (!specRunResult) {
       return;
     }

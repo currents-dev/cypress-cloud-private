@@ -9,13 +9,14 @@ import {
 import { uploadArtifacts, uploadStdoutSafe } from "../artifacts";
 import { setCancellationReason } from "../cancellation";
 import { getInitialOutput } from "../capture";
+import { Standard } from "../cypress.types";
 import { isCurrents } from "../env";
-import { getInstanceResultPayload, getInstanceTestsPayload } from "./results";
+import { getInstanceResultPayload, getInstanceTestsPayload } from "./api";
 const debug = Debug("currents:results");
 
 export async function getReportResultsTask(
   instanceId: string,
-  results: CypressCommandLine.CypressRunResult,
+  results: Standard.ModuleAPI.CompletedResult,
   stdout: string,
   coverageFilePath?: string
 ) {

@@ -1,0 +1,29 @@
+{
+  "async": false,
+  "body": "function () {\n    if (i > 1) {\n      i--;\n      throw new Error(\"oh no!\");\n    }\n    return;\n  }",
+  "final": false,
+  "hooks": [],
+  "id": "r3",
+  "invocationDetails": {
+    "function": "Suite.eval",
+    "fileUrl": "https://todomvc.com/__cypress/tests?p=cypress/e2e/retries.spec.js",
+    "originalFile": "webpack://web/./cypress/e2e/retries.spec.js",
+    "relativeFile": "cypress/e2e/retries.spec.js",
+    "absoluteFile": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/retries.spec.js",
+    "line": 3,
+    "column": 2,
+    "whitespace": "    ",
+    "stack": "Error\n    at Suite.eval (https://todomvc.com/__cypress/tests?p=cypress/e2e/retries.spec.js:11:3)\n    at eval (https://todomvc.com/__cypress/tests?p=cypress/e2e/retries.spec.js:10:1)\n    at eval (https://todomvc.com/__cypress/tests?p=cypress/e2e/retries.spec.js:21:12)\n    at eval (<anonymous>)"
+  },
+  "order": 1,
+  "pending": false,
+  "retries": 3,
+  "sync": true,
+  "timedOut": false,
+  "timings": { "lifecycle": 15 },
+  "type": "test",
+  "wallClockStartedAt": "2023-09-14T22:42:19.307Z",
+  "title": "Runs a test with retries",
+  "currentRetry": 0,
+  "fullTitle": "Retries Runs a test with retries"
+}

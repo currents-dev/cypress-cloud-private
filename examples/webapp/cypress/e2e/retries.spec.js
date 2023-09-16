@@ -6,11 +6,11 @@ describe("Retries", function () {
       retries: 3,
     },
     function () {
-      throw new Error("x".repeat(1024));
-      // if (i > 1) {
-      //   i--;
-      // }
-      // return;
+      if (i > 1) {
+        i--;
+        throw new Error("oh no!");
+      }
+      return;
     }
   );
 });

@@ -1,0 +1,80 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 1,
+    "skipped": 0,
+    "failures": 0,
+    "wallClockStartedAt": "2023-09-14T22:17:50.523Z",
+    "wallClockEndedAt": "2023-09-14T22:17:50.567Z",
+    "wallClockDuration": 44
+  },
+  "reporter": "spec",
+  "reporterStats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 1,
+    "failures": 0,
+    "start": "2023-09-14T22:17:50.524Z",
+    "end": "2023-09-14T22:17:50.569Z",
+    "duration": 45
+  },
+  "hooks": [
+    {
+      "hookId": "h3",
+      "hookName": "after all",
+      "title": [
+        "\"after all\" hook"
+      ],
+      "body": "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }"
+    }
+  ],
+  "tests": [
+    {
+      "testId": "r3",
+      "title": [
+        "Pending",
+        "Pending test"
+      ],
+      "state": "pending",
+      "body": "() => {\n    expect(true).to.be.true;\n  }",
+      "displayError": null,
+      "attempts": [
+        {
+          "state": "pending",
+          "error": null,
+          "timings": {
+            "lifecycle": 31,
+            "after all": [
+              {
+                "hookId": "h3",
+                "fnDuration": 7,
+                "afterFnDuration": 0
+              }
+            ]
+          },
+          "failedFromHookId": null,
+          "wallClockStartedAt": "2023-09-14T22:17:50.527Z",
+          "wallClockDuration": 39,
+          "videoTimestamp": 1931
+        }
+      ]
+    }
+  ],
+  "error": null,
+  "video": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/videos/pending.spec.js.mp4",
+  "screenshots": [],
+  "spec": {
+    "fileExtension": ".js",
+    "baseName": "pending.spec.js",
+    "fileName": "pending",
+    "specFileExtension": ".spec.js",
+    "relativeToCommonRoot": "pending.spec.js",
+    "specType": "integration",
+    "name": "cypress/e2e/pending.spec.js",
+    "relative": "cypress/e2e/pending.spec.js",
+    "absolute": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/pending.spec.js"
+  }
+}

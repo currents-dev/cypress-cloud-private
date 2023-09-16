@@ -1,0 +1,30 @@
+{
+  "async": 0,
+  "body": "function () {\n    expect(fail).to.be.true;\n  }",
+  "currentRetry": 0,
+  "fullTitle": "Failed should fail",
+  "hooks": [],
+  "id": "r3",
+  "invocationDetails": {
+    "absoluteFile": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/failed.spec.js",
+    "column": 2,
+    "fileUrl": "https://todomvc.com/__cypress/tests?p=cypress/e2e/failed.spec.js",
+    "function": "Suite.eval",
+    "line": 2,
+    "originalFile": "webpack://web/./cypress/e2e/failed.spec.js",
+    "relativeFile": "cypress/e2e/failed.spec.js",
+    "stack": "Error\n    at Suite.eval (https://todomvc.com/__cypress/tests?p=cypress/e2e/failed.spec.js:10:3)\n    at eval (https://todomvc.com/__cypress/tests?p=cypress/e2e/failed.spec.js:9:1)\n    at eval (https://todomvc.com/__cypress/tests?p=cypress/e2e/failed.spec.js:14:12)\n    at eval (<anonymous>)",
+    "whitespace": "    "
+  },
+  "order": 1,
+  "pending": false,
+  "retries": 0,
+  "sync": true,
+  "timedOut": false,
+  "timings": {
+    "lifecycle": 22
+  },
+  "title": "should fail",
+  "type": "test",
+  "wallClockStartedAt": "2023-09-14T22:17:37.645Z"
+}
