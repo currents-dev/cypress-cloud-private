@@ -157,7 +157,7 @@ export class ExecutionState {
 
       return getFailedFakeInstanceResult(configState, {
         specs: ["unknown"],
-        error: "Cannot find execution state for instance",
+        error: `[currents] Error while processing cypress results for instance ${instanceId}. See the console output for details.`,
       });
     }
 

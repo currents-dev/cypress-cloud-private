@@ -4,7 +4,6 @@
 
 import { Standard } from "../cypress.types";
 import { ConfigState } from "../state";
-import { getFakeTestFromException } from "./empty";
 
 export class SpecAfterToModuleAPIMapper {
   static getTestAttempt(
@@ -105,4 +104,38 @@ export class SpecAfterToModuleAPIMapper {
       tests: [getFakeTestFromException(run.error, run.stats)],
     };
   }
+}
+
+/**
+ * Generates a fake test item from an exception
+ *
+ * @param error
+ * @param stats
+ * @returns
+ */
+function getFakeTestFromException(
+  error: string,
+  stats: Standard.ModuleAPI.Run["stats"]
+): Standard.ModuleAPI.Test {
+  return {
+    title: ["Unknown"],
+    body: "",
+    displayError: error.split("\n")[0],
+    state: "failed",
+    attempts: [
+      {
+        state: "failed",
+        duration: 0,
+        error: {
+          name: "Error",
+          message: error.split("\n")[0],
+          stack: error,
+          codeFrame: null,
+        },
+        screenshots: [],
+        startedAt: stats.startedAt,
+        videoTimestamp: 0,
+      },
+    ],
+  };
 }

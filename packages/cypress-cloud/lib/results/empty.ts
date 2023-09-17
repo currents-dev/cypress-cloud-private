@@ -1,40 +1,6 @@
 import { Standard } from "../cypress.types";
 import { ConfigState } from "../state";
 
-/**
- * Generates a fake test item from an exception
- *
- * @param error
- * @param stats
- * @returns
- */
-export function getFakeTestFromException(
-  error: string,
-  stats: Standard.ModuleAPI.Run["stats"]
-): Standard.ModuleAPI.Test {
-  return {
-    title: ["Unknown"],
-    body: "",
-    displayError: error.split("\n")[0],
-    state: "failed",
-    attempts: [
-      {
-        state: "failed",
-        duration: 0,
-        error: {
-          name: "Error",
-          message: error.split("\n")[0],
-          stack: error,
-          codeFrame: null,
-        },
-        screenshots: [],
-        startedAt: stats.startedAt,
-        videoTimestamp: 0,
-      },
-    ],
-  };
-}
-
 export const emptyStats = {
   totalDuration: 0,
   totalSuites: 0,
@@ -45,7 +11,10 @@ export const emptyStats = {
   totalTests: 0,
 };
 
-const getDummyFailedTest = (start: string, error: string) => ({
+const getDummyFailedTest = (
+  start: string,
+  error: string
+): Standard.ModuleAPI.Test => ({
   title: ["Unknown"],
   state: "failed",
   body: "// This test is automatically generated due to execution failure",
