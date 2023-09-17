@@ -1,4 +1,5 @@
 export type TestState = "failed" | "passed" | "pending" | "skipped";
+export type TestAttemptState = "failed" | "passed" | "pending";
 export type TestingType = "e2e" | "component";
 export interface MochaError {
   message: string;

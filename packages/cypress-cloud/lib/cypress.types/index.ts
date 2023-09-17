@@ -3,7 +3,7 @@ import { Cypress13 } from "./13";
 
 export * from "./12";
 export * from "./13";
-
+export * from "./shared";
 export namespace CypressTypes {
   export namespace EventPayload {
     export type ScreenshotAfter =

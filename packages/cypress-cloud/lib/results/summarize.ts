@@ -1,41 +1,8 @@
-import { ScreenshotArtifact } from "cypress-cloud/types";
-import Debug from "debug";
 import _ from "lodash";
-import { nanoid } from "nanoid";
-import { TestState } from "../api";
 import { MergedConfig } from "../config";
 import { Standard } from "../cypress.types";
-import { TestAttempt } from "../runner/spec.type";
 import { emptyStats } from "./empty";
 import { ModuleAPIResults } from "./moduleAPIResult";
-
-const debug = Debug("currents:results");
-
-export const getRunScreenshots = (
-  tests: CypressCommandLine.TestResult[] = []
-): ScreenshotArtifact[] => {
-  return tests.flatMap((test, i) =>
-    test.attempts.flatMap((a, ai) =>
-      (a.screenshots ?? []).flatMap((s) => ({
-        ...s,
-        testId: `r${i}`,
-        testAttemptIndex: ai,
-        screenshotId: nanoid(),
-      }))
-    )
-  );
-};
-
-export const getTestAttempt = (attempt: TestAttempt) => {
-  return {
-    ...attempt,
-    state: attempt.state as TestState,
-    // @ts-ignore
-    wallClockDuration: attempt.wallClockDuration ?? attempt.duration ?? 0,
-    // @ts-ignore
-    wallClockStartedAt: attempt.wallClockStartedAt ?? attempt.startedAt,
-  };
-};
 
 export const summarizeExecution = (
   input: Standard.ModuleAPI.CompletedResult[],

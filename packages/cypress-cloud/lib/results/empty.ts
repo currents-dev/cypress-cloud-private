@@ -1,4 +1,3 @@
-import { TestState } from "../api";
 import { Standard } from "../cypress.types";
 import { ConfigState } from "../state";
 
@@ -17,10 +16,10 @@ export function getFakeTestFromException(
     title: ["Unknown"],
     body: "",
     displayError: error.split("\n")[0],
-    state: TestState.Failed,
+    state: "failed",
     attempts: [
       {
-        state: TestState.Failed,
+        state: "failed",
         duration: 0,
         error: {
           name: "Error",
@@ -48,7 +47,7 @@ export const emptyStats = {
 
 const getDummyFailedTest = (start: string, error: string) => ({
   title: ["Unknown"],
-  state: TestState.Failed,
+  state: "failed",
   body: "// This test is automatically generated due to execution failure",
   displayError: error,
   attempts: [

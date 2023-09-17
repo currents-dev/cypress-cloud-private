@@ -2,6 +2,7 @@ import {
   MochaError,
   MochaHook,
   MochaInvocationDetails,
+  TestAttemptState,
   TestState,
   TestingType,
   Timing,
@@ -89,7 +90,7 @@ export namespace Cypress12 {
     export interface TestAttempt {
       error: TestError | null;
       failedFromHookId: string | null;
-      state: TestState;
+      state: TestAttemptState;
       timings: Timing | null;
       videoTimestamp: number;
       wallClockDuration: number;
@@ -230,7 +231,7 @@ export namespace Cypress12 {
     }
 
     export interface TestAttempt {
-      state: string;
+      state: SpecAfter.TestAttempt["state"];
       error: SpecAfter.TestAttempt["error"];
       videoTimestamp: number;
       duration: number | null;

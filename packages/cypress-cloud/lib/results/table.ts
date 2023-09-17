@@ -1,4 +1,6 @@
+import getCommonPathPrefix from "common-path-prefix";
 import _ from "lodash";
+import path from "path";
 import prettyMS from "pretty-ms";
 import { table } from "table";
 import { Standard } from "../cypress.types";
@@ -20,9 +22,11 @@ export const summaryTable = (r: Standard.ModuleAPI.CompletedResult) => {
     ? "All specs passed!"
     : "No specs executed";
 
+  const specs = r.runs.map((r) => r.spec.relative);
+  const commonPath = getCommonPath(specs);
   const data = r.runs.map((r) => [
     r.stats.failures + r.stats.skipped > 0 ? failureIcon : successIcon,
-    r.spec.relative,
+    stripCommonPath(r.spec.relative, commonPath),
     gray(prettyMS(r.stats.duration ?? 0)),
     white(r.stats.tests ?? 0),
     r.stats.passes ? green(r.stats.passes) : gray("-"),
@@ -109,3 +113,16 @@ const border = _.mapValues(
   },
   (v) => gray(v)
 );
+
+function getCommonPath(specs: string[]) {
+  if (specs.length === 0) {
+    return "";
+  }
+  if (specs.length === 1) {
+    return path.dirname(specs[0]) + path.sep;
+  }
+  return getCommonPathPrefix(specs);
+}
+function stripCommonPath(spec: string, commonPath: string) {
+  return spec.replace(commonPath, "");
+}

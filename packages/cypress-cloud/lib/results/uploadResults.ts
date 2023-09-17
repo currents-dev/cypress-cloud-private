@@ -1,10 +1,9 @@
 import Debug from "debug";
 import {
+  InstanceAPIPayload,
   reportInstanceResultsMerged,
   setInstanceTests,
-  SetInstanceTestsPayload,
   updateInstanceResults,
-  UpdateInstanceResultsPayload,
 } from "../api";
 import { uploadArtifacts, uploadStdoutSafe } from "../artifacts";
 import { setCancellationReason } from "../cancellation";
@@ -58,8 +57,8 @@ export async function getReportResultsTask(
 
 async function reportResults(
   instanceId: string,
-  instanceTests: SetInstanceTestsPayload,
-  instanceResults: UpdateInstanceResultsPayload
+  instanceTests: InstanceAPIPayload.SetInstanceTestsPayload,
+  instanceResults: InstanceAPIPayload.UpdateInstanceResultsPayload
 ) {
   debug("reporting instance %s results...", instanceId);
   if (isCurrents()) {
