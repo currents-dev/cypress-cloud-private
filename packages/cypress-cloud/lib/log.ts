@@ -5,6 +5,7 @@ const log = (...args: unknown[]) => console.log(util.format(...args));
 
 export const info = log;
 
+export const format = util.format;
 export const withError = (msg: string) =>
   chalk.bgRed.white(" ERROR ") + " " + msg;
 export const withWarning = (msg: string) =>

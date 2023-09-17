@@ -32,10 +32,19 @@ export type ExecutionStateScreenshot =
 export type ExecutionStateTestAttempt = CypressTypes.EventPayload.TestAfter;
 
 export class ExecutionState {
+  private warnings: Set<string> = new Set();
   private attemptsData: ExecutionStateTestAttempt[] = [];
   private screenshotsData: ExecutionStateScreenshot[] = [];
   private currentTestID?: string;
   private state: Record<InstanceId, InstanceExecutionState> = {};
+
+  public getWarnings() {
+    return this.warnings;
+  }
+
+  public addWarning(warning: string) {
+    this.warnings.add(warning);
+  }
 
   public getResults(
     configState: ConfigState

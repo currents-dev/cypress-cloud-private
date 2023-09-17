@@ -92,7 +92,6 @@ export class SpecAfterResult {
       .otherwise(() => null);
   }
 
-  // TODO: handle pending and skipped
   static getTestAttemptStandard(
     mochaAttempt: ExecutionStateTestAttempt | null,
     cypressAttempt: CypressTypes.EventPayload.SpecAfter.TestAttempt,

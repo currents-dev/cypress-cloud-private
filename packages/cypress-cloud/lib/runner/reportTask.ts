@@ -29,7 +29,7 @@ export const createReportTask = (
   reportTasks.push(
     getReportResultsTask(
       instanceId,
-      executionState.getInstanceResults(configState, instanceId),
+      executionState,
       configState,
       instance.output ?? "no output captured",
       instance.coverageFilePath

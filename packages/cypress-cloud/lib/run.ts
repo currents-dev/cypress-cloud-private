@@ -1,6 +1,8 @@
 import "./init";
 
+import chalk from "chalk";
 import Debug from "debug";
+import plur from "plur";
 import { getLegalNotice } from "../legal";
 import { CurrentsRunParameters } from "../types";
 import { createRun } from "./api";
@@ -19,7 +21,7 @@ import { activateDebug } from "./debug";
 import { isCurrents } from "./env";
 import { getGitInfo } from "./git";
 import { setAPIBaseUrl, setRunId } from "./httpClient";
-import { bold, divider, info, spacer, title } from "./log";
+import { bold, divider, format, info, spacer, title, warn } from "./log";
 import { getPlatform } from "./platform";
 import { pubsub } from "./pubsub";
 import { summarizeExecution, summaryTable } from "./results";
@@ -151,7 +153,10 @@ export async function run(params: CurrentsRunParameters = {}) {
 
   title("white", "Cloud Run Finished");
   console.log(summaryTable(_summary));
-  info("🏁 Recorded Run:", bold(run.runUrl));
+
+  printWarnings(executionState);
+
+  info("\n🏁 Recorded Run:", bold(run.runUrl));
 
   await shutdown();
 
@@ -161,6 +166,22 @@ export async function run(params: CurrentsRunParameters = {}) {
     ..._summary,
     runUrl: run.runUrl,
   };
+}
+
+function printWarnings(executionState: ExecutionState) {
+  const warnings = Array.from(executionState.getWarnings());
+  if (warnings.length > 0) {
+    warn(
+      `${warnings.length} ${plur(
+        "Warning",
+        warnings.length
+      )} encountered during the execution:\n${warnings
+        .map(
+          (w, i) => `\n${chalk.yellow(`[${i + 1}/${warnings.length}]`)} ${w}`
+        )
+        .join("\n")}`
+    );
+  }
 }
 
 function listenToSpecEvents(
@@ -199,11 +220,22 @@ function listenToSpecEvents(
       executionState.setSpecOutput(spec.relative, getCapturedOutput());
 
       if (experimentalCoverageRecording) {
-        const coverageFilePath = await getCoverageFilePath(
+        const { path, error } = await getCoverageFilePath(
           config?.env?.coverageFile
         );
-        if (coverageFilePath) {
-          executionState.setSpecCoverage(spec.relative, coverageFilePath);
+
+        if (!error) {
+          executionState.setSpecCoverage(spec.relative, path);
+        } else {
+          executionState.addWarning(
+            format(
+              `Error reading coverage file "%s". Coverage recording will be skipped.\n${chalk.dim(
+                `Error: %s`
+              )}`,
+              path,
+              error
+            )
+          );
         }
       }
       createReportTaskSpec(configState, executionState, spec.relative);
