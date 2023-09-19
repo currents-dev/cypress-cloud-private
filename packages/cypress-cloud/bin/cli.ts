@@ -16,10 +16,11 @@ main()
       process.exit(1);
     }
 
+    // @ts-ignore: running bare cypress in offline mode breaks the types
     if (result.status === "failed") {
       process.exit(1);
     }
-
+    // @ts-ignore: running bare cypress in offline mode breaks the types
     const overallFailed = result.totalFailed + result.totalSkipped;
     if (overallFailed > 0) {
       process.exit(overallFailed);

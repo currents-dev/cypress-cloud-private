@@ -3,6 +3,7 @@
  */
 
 import { parseISO } from "date-fns";
+import path from "path";
 import { match } from "ts-pattern";
 import { CypressTypes, Standard } from "../cypress.types";
 import { MochaError } from "../cypress.types/shared";
@@ -196,7 +197,7 @@ export class SpecAfterResult {
     spec: CypressTypes.EventPayload.SpecAfter.Spec
   ): Standard.SpecAfter.Spec {
     return {
-      name: spec.name,
+      name: path.basename(spec.name),
       relative: spec.relative,
       absolute: spec.absolute,
       fileExtension: spec.fileExtension,
