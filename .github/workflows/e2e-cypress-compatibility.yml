@@ -21,6 +21,7 @@ jobs:
         run: npm ci
 
       - name: Install Cypress ${{ matrix.cypress-version }}
+        working-directory: ./packages/cypress-cloud
         run: npm install cypress@${{ matrix.cypress-version }}
 
       - name: Build
