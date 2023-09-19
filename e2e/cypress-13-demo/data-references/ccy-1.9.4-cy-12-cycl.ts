@@ -30,7 +30,7 @@ export const specA = {
     // specType: "integration",
     fileExtension: ".js",
     fileName: "a",
-    name: "cypress/e2e/a.spec.js",
+    name: "a.spec.js",
     relative: "cypress/e2e/a.spec.js",
     absolute: expect.stringMatching("a.spec.js"),
   },
@@ -75,7 +75,7 @@ export const specA = {
           screenshots: [
             {
               screenshotId: expect.any(String),
-              name: "screenshot",
+              name: null,
               testId: "r3",
               testAttemptIndex: 0,
               takenAt: expect.any(String),
