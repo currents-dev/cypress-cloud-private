@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Run compatibility tests
-        working-directory: ./e2e/cypress-13-demo
+        working-directory: ./e2e/cypress-compatibility
         env:
           CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
           CURRENTS_RUN_BASE_URL: ${{ secrets.CURRENTS_RUN_BASE_URL }}

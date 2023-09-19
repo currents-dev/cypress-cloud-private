@@ -1,5 +1,13 @@
 # E2E Compatibility Tests
 
+## CI
+
+See GH workflow YAML file
+
+## Run Locally
+
+Install the desired cypress version localy in `packages/cypress-cloud` directory
+
 ```sh
 CURRENTS_API_BASE_URL=https://api.currents.dev/v1 \
 CURRENTS_API_KEY=<api_key>  \
