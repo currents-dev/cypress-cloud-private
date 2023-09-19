@@ -35,7 +35,7 @@ jobs:
           CURRENTS_RUN_BASE_URL: ${{ secrets.CURRENTS_RUN_BASE_URL }}
           CURRENTS_PROJECT_ID: ${{ secrets.CURRENTS_PROJECT_ID }}
           CURRENTS_RECORD_KEY: ${{ secrets.CURRENTS_RECORD_KEY }}
-          CYPRESS_VERSION: ${{ matrix.cypress-version }}
+          CURRENTS_USE_CYPRESS_VERSION: ${{ matrix.cypress-version }}
 
         run: >
           npx jest
