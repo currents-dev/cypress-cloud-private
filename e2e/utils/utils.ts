@@ -691,12 +691,11 @@ export function testEachResults(
 
 export function getCurrentsTestsVariables() {
   const projectId = process.env.CURRENTS_PROJECT_ID || "2cI1I5";
-  const recordKey = process.env.CURRENTS_RECORD_KEY || "YakSabgBLb7D40nZ";
+  const recordKey = process.env.CURRENTS_RECORD_KEY;
   const ciBuildId = `run-compat-test-${new Date().toISOString()}`;
   const apiKey =
     // eslint-disable-next-line
-    process.env.CURRENTS_API_KEY ||
-    "YpYIAerb1rWuOFrvf7ciK8Za8koKgrtRfoDPboQUOjScnBv91m4qAXSDb8Rb57m9";
+    process.env.CURRENTS_API_KEY;
   const apiUrl =
     // eslint-disable-next-line
     process.env.CURRENTS_RUN_BASE_URL || "https://api.currents.dev/v1/runs/";
