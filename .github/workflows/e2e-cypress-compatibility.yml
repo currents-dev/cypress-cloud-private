@@ -6,8 +6,6 @@ jobs:
   e2e-cypress-compatibility:
     if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     runs-on: ubuntu-latest
-    env:
-      DEBUG: currents:*
 
     strategy:
       matrix:
