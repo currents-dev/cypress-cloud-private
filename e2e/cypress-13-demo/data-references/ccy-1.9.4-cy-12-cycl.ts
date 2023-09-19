@@ -1,5 +1,24 @@
 import { expect } from "@jest/globals";
 
+const getScreenshot = ({
+  name,
+  testId,
+  testAttemptIndex,
+}: {
+  name: string | null;
+  testId: string;
+  testAttemptIndex: number;
+}) => ({
+  screenshotId: expect.any(String),
+  name,
+  testId: testId,
+  testAttemptIndex,
+  takenAt: expect.any(String),
+  path: expect.any(String),
+  height: expect.any(Number),
+  width: expect.any(Number),
+});
+
 export const specA = {
   stats: {
     duration: expect.any(Number),
@@ -195,7 +214,7 @@ export const specE = {
     // specType: "integration",
     fileExtension: ".js",
     fileName: "e",
-    name: "cypress/e2e/e.spec.js",
+    name: "e.spec.js",
     relative: "cypress/e2e/e.spec.js",
     absolute: expect.stringMatching("e.spec.js"),
   },
@@ -223,13 +242,13 @@ export const specE = {
               column: 11,
               originalFile: "cypress/e2e/e.spec.js",
               relativeFile: "e2e/cypress-13-demo/cypress/e2e/e.spec.js",
-              absoluteFile: expect.stringContaining("a.spec.js"),
+              absoluteFile: expect.stringContaining("e.spec.js"),
               frame:
                 "  1 | describe('Should throw an error', () => {\n  2 |   it('Should throw an error', () => {\n> 3 |     throw new Error(\"test error\")\n    |           ^\n  4 |   });\n  5 | });\n  6 | ",
               language: "js",
             },
           },
-          timings: null,
+          timings: expect.any(Object),
           failedFromHookId: null,
           wallClockStartedAt: expect.any(String),
           wallClockDuration: expect.any(Number),
@@ -239,13 +258,13 @@ export const specE = {
           screenshots: [
             {
               screenshotId: expect.any(String),
-              name: "screenshot",
+              name: null,
               testId: "r3",
               testAttemptIndex: 0,
               takenAt: expect.any(String),
               path: expect.any(String),
-              height: 1440,
-              width: 2560,
+              height: expect.any(Number),
+              width: expect.any(Number),
             },
           ],
         },
@@ -255,9 +274,9 @@ export const specE = {
 };
 export const specD = {
   stats: {
-    duration: 1120,
-    endedAt: "2023-09-14T03:08:39.327Z",
-    startedAt: "2023-09-14T03:08:38.207Z",
+    duration: expect.any(Number),
+    endedAt: expect.any(String),
+    startedAt: expect.any(String),
     failures: 0,
     passes: 2,
     pending: 0,
@@ -272,58 +291,25 @@ export const specD = {
     passes: 2,
     pending: 0,
     failures: 0,
-    start: "2023-09-14T03:08:38.209Z",
-    end: "2023-09-14T03:08:39.330Z",
-    duration: 1121,
+    start: expect.any(String),
+    end: expect.any(String),
+    duration: expect.any(Number),
   },
   spec: {
+    // baseName: "d.spec.js",
+    // specFileExtension: ".spec.js",
+    // relativeToCommonRoot: "d.spec.js",
+    // specType: "integration",
     fileExtension: ".js",
-    baseName: "d.spec.js",
     fileName: "d",
-    specFileExtension: ".spec.js",
-    relativeToCommonRoot: "d.spec.js",
-    specType: "integration",
-    name: "cypress/e2e/d.spec.js",
+    name: "d.spec.js",
     relative: "cypress/e2e/d.spec.js",
-    absolute:
-      "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/d.spec.js",
+    absolute: expect.stringMatching("d.spec.js"),
   },
   error: null,
-  video:
-    "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/videos/d.spec.js.mp4",
+  video: expect.any(String),
   shouldUploadVideo: true,
-  hooks: [
-    {
-      hookId: "h1",
-      hookName: "before each",
-      title: ['"before each" hook'],
-      body: '() => {\n  const currentTest = cy.state("ctx").currentTest;\n  if (currentTest) {\n    handleBefore(currentTest);\n  }\n}',
-    },
-    {
-      hookId: "h2",
-      hookName: "before each",
-      title: ['"before each" hook'],
-      body: 'function () {\n    cy.visit("/");\n}',
-    },
-    {
-      hookId: "h4",
-      hookName: "after each",
-      title: ['"after each" hook'],
-      body: "function () {\n      self.sendLogsToPrinter(self.collectorState.getCurrentLogStackIndex(), self.collectorState.getCurrentTest());\n    }",
-    },
-    {
-      hookId: "h5",
-      hookName: "after each",
-      title: ['"after each" hook'],
-      body: '() => {\n  const currentTest = cy.state("ctx").currentTest;\n  if (currentTest) {\n    handleAfter(currentTest);\n  }\n}',
-    },
-    {
-      hookId: "h3",
-      hookName: "after all",
-      title: ['"after all" hook'],
-      body: "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }",
-    },
-  ],
+  hooks: null,
   tests: [
     {
       testId: "r3",
@@ -338,34 +324,23 @@ export const specD = {
         {
           state: "passed",
           error: null,
-          timings: {
-            lifecycle: 37,
-            "before each": [
-              { hookId: "h1", fnDuration: 12, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 155, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 735, afterFnDuration: 0 },
-            "after each": [
-              { hookId: "h4", fnDuration: 13, afterFnDuration: 1 },
-              { hookId: "h5", fnDuration: 10, afterFnDuration: 1 },
-            ],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:38.219Z",
-          wallClockDuration: 980,
-          videoTimestamp: 1209,
-          startedAt: "2023-09-14T03:08:38.219Z",
-          duration: 980,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [
             {
-              screenshotId: "5n5yz",
+              screenshotId: expect.any(String),
               name: "internal-assert-screenshot",
               testId: "r3",
               testAttemptIndex: 0,
-              takenAt: "2023-09-14T03:08:38.441Z",
-              path: "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/screenshots/d.spec.js/internal-assert-screenshot.png",
-              height: 1320,
-              width: 2000,
+              takenAt: expect.any(String),
+              path: expect.any(String),
+              height: expect.any(Number),
+              width: expect.any(Number),
             },
           ],
         },
@@ -384,25 +359,13 @@ export const specD = {
         {
           state: "passed",
           error: null,
-          timings: {
-            lifecycle: 33,
-            "before each": [
-              { hookId: "h1", fnDuration: 6, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 55, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 2, afterFnDuration: 0 },
-            "after each": [
-              { hookId: "h4", fnDuration: 12, afterFnDuration: 0 },
-              { hookId: "h5", fnDuration: 8, afterFnDuration: 1 },
-            ],
-            "after all": [{ hookId: "h3", fnDuration: 4, afterFnDuration: 0 }],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:39.201Z",
-          wallClockDuration: 125,
-          videoTimestamp: 2191,
-          startedAt: "2023-09-14T03:08:39.201Z",
-          duration: 125,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [],
         },
       ],
@@ -411,9 +374,9 @@ export const specD = {
 };
 export const specC = {
   stats: {
-    duration: 68,
-    endedAt: "2023-09-14T03:08:42.351Z",
-    startedAt: "2023-09-14T03:08:42.283Z",
+    duration: expect.any(Number),
+    endedAt: expect.any(String),
+    startedAt: expect.any(String),
     failures: 0,
     passes: 0,
     pending: 1,
@@ -428,55 +391,45 @@ export const specC = {
     passes: 0,
     pending: 1,
     failures: 0,
-    start: "2023-09-14T03:08:42.285Z",
-    end: "2023-09-14T03:08:42.355Z",
-    duration: 70,
+    start: expect.any(String),
+    end: expect.any(String),
+    duration: expect.any(Number),
   },
   spec: {
+    // baseName: "c.spec.js",
+    // specFileExtension: ".spec.js",
+    // relativeToCommonRoot: "c.spec.js",
+    // specType: "integration",
     fileExtension: ".js",
-    baseName: "c.spec.js",
     fileName: "c",
-    specFileExtension: ".spec.js",
-    relativeToCommonRoot: "c.spec.js",
-    specType: "integration",
-    name: "cypress/e2e/c.spec.js",
+    name: "c.spec.js",
     relative: "cypress/e2e/c.spec.js",
-    absolute:
-      "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/c.spec.js",
+    absolute: expect.stringMatching("c.spec.js"),
   },
   error: null,
-  video:
-    "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/videos/c.spec.js.mp4",
+  video: expect.any(String),
   shouldUploadVideo: true,
-  hooks: [
-    {
-      hookId: "h3",
-      hookName: "after all",
-      title: ['"after all" hook'],
-      body: "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }",
-    },
-  ],
+  hooks: null,
   tests: [
     {
-      testId: "r3",
+      // pending test do not emit "beforeEach" so we can't get the details for cy13
+      testId: expect.stringMatching(/r\d{1,2}/),
       title: ["Ignored test", "should be a skipped test"],
       state: "pending",
-      body: "() => {\n    cy.wrap(false).should('be.true');\n  }",
+      // pending test do not emit "beforeEach" so we can't get the details for cy13
+      body: expect.any(String),
       displayError: null,
       attempts: [
         {
           state: "pending",
           error: null,
-          timings: {
-            lifecycle: 36,
-            "after all": [{ hookId: "h3", fnDuration: 5, afterFnDuration: 0 }],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:42.308Z",
-          wallClockDuration: 42,
-          videoTimestamp: 1167,
-          startedAt: "2023-09-14T03:08:42.308Z",
-          duration: 42,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [],
         },
       ],
@@ -485,9 +438,9 @@ export const specC = {
 };
 export const specB = {
   stats: {
-    duration: 18120,
-    endedAt: "2023-09-14T03:09:02.909Z",
-    startedAt: "2023-09-14T03:08:44.789Z",
+    duration: expect.any(Number),
+    endedAt: expect.any(String),
+    startedAt: expect.any(String),
     failures: 1,
     passes: 2,
     pending: 0,
@@ -502,58 +455,25 @@ export const specB = {
     passes: 2,
     pending: 0,
     failures: 1,
-    start: "2023-09-14T03:08:44.790Z",
-    end: "2023-09-14T03:09:02.913Z",
-    duration: 18123,
+    start: expect.any(String),
+    end: expect.any(String),
+    duration: expect.any(Number),
   },
   spec: {
+    // baseName: "b.spec.js",
+    // specFileExtension: ".spec.js",
+    // relativeToCommonRoot: "b.spec.js",
+    // specType: "integration",
     fileExtension: ".js",
-    baseName: "b.spec.js",
     fileName: "b",
-    specFileExtension: ".spec.js",
-    relativeToCommonRoot: "b.spec.js",
-    specType: "integration",
-    name: "cypress/e2e/b.spec.js",
+    name: "b.spec.js",
     relative: "cypress/e2e/b.spec.js",
-    absolute:
-      "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+    absolute: expect.stringMatching("b.spec.js"),
   },
   error: null,
-  video:
-    "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/videos/b.spec.js.mp4",
+  video: expect.any(String),
   shouldUploadVideo: true,
-  hooks: [
-    {
-      hookId: "h1",
-      hookName: "before each",
-      title: ['"before each" hook'],
-      body: '() => {\n  const currentTest = cy.state("ctx").currentTest;\n  if (currentTest) {\n    handleBefore(currentTest);\n  }\n}',
-    },
-    {
-      hookId: "h2",
-      hookName: "before each",
-      title: ['"before each" hook'],
-      body: 'function () {\n    cy.visit("/");\n}',
-    },
-    {
-      hookId: "h4",
-      hookName: "after each",
-      title: ['"after each" hook'],
-      body: "function () {\n      self.sendLogsToPrinter(self.collectorState.getCurrentLogStackIndex(), self.collectorState.getCurrentTest());\n    }",
-    },
-    {
-      hookId: "h5",
-      hookName: "after each",
-      title: ['"after each" hook'],
-      body: '() => {\n  const currentTest = cy.state("ctx").currentTest;\n  if (currentTest) {\n    handleAfter(currentTest);\n  }\n}',
-    },
-    {
-      hookId: "h3",
-      hookName: "after all",
-      title: ['"after all" hook'],
-      body: "function () {\n      // Need to wait otherwise some last commands get omitted from logs.\n      cy.task(CONSTANTS.TASK_NAME_OUTPUT, null, {log: false});\n    }",
-    },
-  ],
+  hooks: null,
   tests: [
     {
       testId: "r3",
@@ -572,49 +492,31 @@ export const specB = {
             name: "AssertionError",
             message:
               "Timed out retrying after 4000ms: expected false to be true",
-            stack:
-              "    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+            stack: expect.any(String),
             codeFrame: {
               line: 6,
               column: 20,
               originalFile: "cypress/e2e/b.spec.js",
               relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
-              absoluteFile:
-                "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
               language: "js",
             },
           },
-          timings: {
-            lifecycle: 26,
-            "before each": [
-              { hookId: "h1", fnDuration: 10, afterFnDuration: 1 },
-              { hookId: "h2", fnDuration: 129, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 4012, afterFnDuration: 274 },
-            "after each": [
-              { hookId: "h4", fnDuration: 25, afterFnDuration: 1 },
-              { hookId: "h5", fnDuration: 43, afterFnDuration: 0 },
-            ],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:44.800Z",
-          wallClockDuration: 4526,
-          videoTimestamp: 1156,
-          startedAt: "2023-09-14T03:08:44.800Z",
-          duration: 4526,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [
-            {
-              screenshotId: "mkbvr",
-              name: "screenshot",
+            getScreenshot({
+              name: null,
               testId: "r3",
               testAttemptIndex: 0,
-              takenAt: "2023-09-14T03:08:48.985Z",
-              path: "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should try 2 times (failed).png",
-              height: 1440,
-              width: 2560,
-            },
+            }),
           ],
         },
         {
@@ -623,49 +525,31 @@ export const specB = {
             name: "AssertionError",
             message:
               "Timed out retrying after 4000ms: expected false to be true",
-            stack:
-              "    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+            stack: expect.any(String),
             codeFrame: {
               line: 6,
               column: 20,
               originalFile: "cypress/e2e/b.spec.js",
               relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
-              absoluteFile:
-                "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
               language: "js",
             },
           },
-          timings: {
-            lifecycle: 29,
-            "before each": [
-              { hookId: "h1", fnDuration: 10, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 55, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 3991, afterFnDuration: 238 },
-            "after each": [
-              { hookId: "h4", fnDuration: 12, afterFnDuration: 1 },
-              { hookId: "h5", fnDuration: 22, afterFnDuration: 0 },
-            ],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:49.350Z",
-          wallClockDuration: 4360,
-          videoTimestamp: 5706,
-          startedAt: "2023-09-14T03:08:49.350Z",
-          duration: 4360,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [
-            {
-              screenshotId: "g496m",
-              name: "screenshot",
+            getScreenshot({
+              name: null,
               testId: "r3",
               testAttemptIndex: 1,
-              takenAt: "2023-09-14T03:08:53.437Z",
-              path: "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should try 2 times (failed) (attempt 2).png",
-              height: 1440,
-              width: 2560,
-            },
+            }),
           ],
         },
         {
@@ -674,49 +558,31 @@ export const specB = {
             name: "AssertionError",
             message:
               "Timed out retrying after 4000ms: expected false to be true",
-            stack:
-              "    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+            stack: expect.any(String),
             codeFrame: {
               line: 6,
               column: 20,
               originalFile: "cypress/e2e/b.spec.js",
               relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
-              absoluteFile:
-                "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
               language: "js",
             },
           },
-          timings: {
-            lifecycle: 51,
-            "before each": [
-              { hookId: "h1", fnDuration: 8, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 56, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 3998, afterFnDuration: 213 },
-            "after each": [
-              { hookId: "h4", fnDuration: 21, afterFnDuration: 0 },
-              { hookId: "h5", fnDuration: 61, afterFnDuration: 0 },
-            ],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:53.724Z",
-          wallClockDuration: 4415,
-          videoTimestamp: 10080,
-          startedAt: "2023-09-14T03:08:53.724Z",
-          duration: 4415,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [
-            {
-              screenshotId: "inwwk",
-              name: "screenshot",
+            getScreenshot({
+              name: null,
               testId: "r3",
               testAttemptIndex: 2,
-              takenAt: "2023-09-14T03:08:57.842Z",
-              path: "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should try 2 times (failed) (attempt 3).png",
-              height: 1440,
-              width: 2560,
-            },
+            }),
           ],
         },
       ],
@@ -734,24 +600,13 @@ export const specB = {
         {
           state: "passed",
           error: null,
-          timings: {
-            lifecycle: 35,
-            "before each": [
-              { hookId: "h1", fnDuration: 11, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 89, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 3, afterFnDuration: 0 },
-            "after each": [
-              { hookId: "h4", fnDuration: 12, afterFnDuration: 0 },
-              { hookId: "h5", fnDuration: 9, afterFnDuration: 0 },
-            ],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:58.160Z",
-          wallClockDuration: 164,
-          videoTimestamp: 14516,
-          startedAt: "2023-09-14T03:08:58.160Z",
-          duration: 164,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [],
         },
       ],
@@ -772,73 +627,43 @@ export const specB = {
             name: "AssertionError",
             message:
               "Timed out retrying after 4000ms: expected false to be true",
-            stack:
-              "    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:16:21)",
+            stack: expect.any(String),
             codeFrame: {
               line: 16,
               column: 22,
               originalFile: "cypress/e2e/b.spec.js",
               relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
-              absoluteFile:
-                "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  14 |     if (attempt === 0) {\n  15 |       attempt++;\n> 16 |       cy.wrap(false).should('be.true');  // This will fail on the first attempt\n     |                      ^\n  17 |     } else {\n  18 |       cy.wrap(true).should('be.true');   // This will pass on the second attempt\n  19 |     }",
               language: "js",
             },
           },
-          timings: {
-            lifecycle: 21,
-            "before each": [
-              { hookId: "h1", fnDuration: 8, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 54, afterFnDuration: 0 },
-            ],
-            test: { fnDuration: 3991, afterFnDuration: 234 },
-            "after each": [
-              { hookId: "h4", fnDuration: 14, afterFnDuration: 1 },
-              { hookId: "h5", fnDuration: 44, afterFnDuration: 0 },
-            ],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:08:58.325Z",
-          wallClockDuration: 4371,
-          videoTimestamp: 14681,
-          startedAt: "2023-09-14T03:08:58.325Z",
-          duration: 4371,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [
-            {
-              screenshotId: "xa6yo",
-              name: "screenshot",
+            getScreenshot({
+              name: null,
               testId: "r5",
               testAttemptIndex: 0,
-              takenAt: "2023-09-14T03:09:02.403Z",
-              path: "/Users/miguelangarano/Documents/GitHub/cypress-cloud-private-fix-cypress-13/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should fail on the first attempt and pass on the second (failed).png",
-              height: 1440,
-              width: 2560,
-            },
+            }),
           ],
         },
         {
           state: "passed",
           error: null,
-          timings: {
-            lifecycle: 50,
-            "before each": [
-              { hookId: "h1", fnDuration: 8, afterFnDuration: 0 },
-              { hookId: "h2", fnDuration: 103, afterFnDuration: 1 },
-            ],
-            test: { fnDuration: 3, afterFnDuration: 0 },
-            "after each": [
-              { hookId: "h4", fnDuration: 11, afterFnDuration: 0 },
-              { hookId: "h5", fnDuration: 14, afterFnDuration: 0 },
-            ],
-            "after all": [{ hookId: "h3", fnDuration: 5, afterFnDuration: 0 }],
-          },
+          timings: expect.any(Object),
           failedFromHookId: null,
-          wallClockStartedAt: "2023-09-14T03:09:02.705Z",
-          wallClockDuration: 202,
-          videoTimestamp: 19061,
-          startedAt: "2023-09-14T03:09:02.705Z",
-          duration: 202,
+          wallClockStartedAt: expect.any(String),
+          wallClockDuration: expect.any(Number),
+          videoTimestamp: expect.any(Number),
+          startedAt: expect.any(String),
+          duration: expect.any(Number),
           screenshots: [],
         },
       ],
@@ -1134,4 +959,12 @@ export const all = {
   config,
   status: "finished",
   runUrl: "https://app.currents.dev/run/7dc0426fc25d30fe",
+};
+
+export const specs = {
+  "a.spec.js": specA,
+  "b.spec.js": specB,
+  "c.spec.js": specC,
+  "d.spec.js": specD,
+  "e.spec.js": specE,
 };

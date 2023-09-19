@@ -690,7 +690,7 @@ export function testEachResults(
 }
 
 export function getCurrentsTestsVariables() {
-  const projectId = process.env.CURRENTS_PROJECT_ID || "2cI1I5";
+  const projectId = process.env.CURRENTS_PROJECT_ID;
   const recordKey = process.env.CURRENTS_RECORD_KEY;
   const ciBuildId = `run-compat-test-${new Date().toISOString()}`;
   const apiKey =
@@ -759,8 +759,6 @@ export async function runCypressCloud() {
   const { projectId, recordKey, ciBuildId } = getCurrentsTestsVariables();
   return await run({
     ciBuildId,
-    projectId,
-    recordKey,
     batchSize: 5,
   });
 }

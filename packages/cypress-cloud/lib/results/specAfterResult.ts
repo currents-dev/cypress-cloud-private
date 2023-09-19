@@ -181,7 +181,7 @@ export class SpecAfterResult {
       return {
         body: "body" in test ? test.body : mochaAttempts[0]?.body ?? "",
         testId:
-          "testId" in test ? test.testId : mochaAttempts[0]?.id ?? `r${i}}`,
+          "testId" in test ? test.testId : mochaAttempts[0]?.id ?? `r${i}`,
         title: test.title,
         displayError: test.displayError,
         state: test.state,

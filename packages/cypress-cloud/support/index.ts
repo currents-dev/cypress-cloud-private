@@ -1,8 +1,6 @@
 /// <reference types="Cypress" />
 import safeStringify from "fast-safe-stringify";
 
-localStorage.debug = "cypress:*";
-
 const afterReportedTests: string[] = [];
 const beforeReportedTests: string[] = [];
 
