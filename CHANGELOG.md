@@ -1,48 +1,15 @@
-# [1.10.0-beta.5](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.4...v1.10.0-beta.5) (2023-09-14)
-
-### Bug Fixes
-
-- pick test:after results explicitly ([67e6a0d](https://github.com/currents-dev/cypress-cloud/commit/67e6a0df78d3cff32d101d1bbe3f119c0766a9af))
-
-# [1.10.0-beta.4](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.3...v1.10.0-beta.4) (2023-09-11)
-
-### Bug Fixes
-
-- backfill config ([ed8a777](https://github.com/currents-dev/cypress-cloud/commit/ed8a777f6299f0778eeabe96534b52bcd3472d0f))
-- coverage uploads ([6a26e40](https://github.com/currents-dev/cypress-cloud/commit/6a26e4077cab73f75c64235472e8695ebcf14087))
-
-# [1.10.0-beta.3](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.2...v1.10.0-beta.3) (2023-09-08)
-
-### Bug Fixes
-
-- issue 179 fixes ([cf8ca5d](https://github.com/currents-dev/cypress-cloud/commit/cf8ca5d5f71b69a6fc7d1098b1bb0b42d27427d2))
-
-# [1.10.0-beta.2](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.1...v1.10.0-beta.2) (2023-09-06)
-
-### Bug Fixes
-
-- combine standalone with spec:after results ([0d7b2eb](https://github.com/currents-dev/cypress-cloud/commit/0d7b2eb02ee8aeb0e6ff0627f3afbf0d641bd581))
-- set test id for pending tests ([f37312e](https://github.com/currents-dev/cypress-cloud/commit/f37312e0651954481b1e3fb89552606bea3dde38))
+# [2.0.0-beta.0](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.1...v2.0.0-beta.0) (2023-09-19)
 
 ### Features
 
-- support cypres@13+ ([45fd903](https://github.com/currents-dev/cypress-cloud/commit/45fd9036ad686f7edfcb7859db64ce79692dd429))
-
-# [1.10.0-beta.1](https://github.com/currents-dev/cypress-cloud/compare/v1.10.0-beta.0...v1.10.0-beta.1) (2023-09-06)
-
-### Bug Fixes
-
-- combine standalone with spec:after results ([0d7b2eb](https://github.com/currents-dev/cypress-cloud/commit/0d7b2eb02ee8aeb0e6ff0627f3afbf0d641bd581))
-
-### Features
-
-- support cypres@13+ ([45fd903](https://github.com/currents-dev/cypress-cloud/commit/45fd9036ad686f7edfcb7859db64ce79692dd429))
-
-# [1.10.0-beta.0](https://github.com/currents-dev/cypress-cloud/compare/v1.9.3...v1.10.0-beta.0) (2023-08-25)
-
-### Features
-
+- Support cypress@13 ([693bf4d](https://github.com/currents-dev/cypress-cloud/commit/693bf4d5a35ef809022e000d7767e82bc8defbc7))
 - [CSR-213] Support Code Coverage ([#174](https://github.com/currents-dev/cypress-cloud/issues/174)) ([b29d738](https://github.com/currents-dev/cypress-cloud/commit/b29d738f9a5d54e3214dfd05b66fc053aa3194a8))
+
+### BREAKING CHANGES
+
+- Dropping support for NodeJS 14, the minimal supported version is NodeJS 16+
+- The return type of `run` API call changes to support cypress 12 and 13 formats
+- Bumping major version to emphasize the required addition of support file
 
 ## [1.9.3](https://github.com/currents-dev/cypress-cloud/compare/v1.9.2...v1.9.3) (2023-07-27)
 
