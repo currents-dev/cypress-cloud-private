@@ -12,7 +12,8 @@ const testSpecs = [
 ];
 let result: any = null;
 
-describe("Cypress 13 compatible output", () => {
+// eslint-disable-next-line
+describe(`Cypress ${process.env.CYPRESS_VERSION} compatibility`, () => {
   jest.setTimeout(60 * 1000 * 5);
 
   beforeAll(async () => {

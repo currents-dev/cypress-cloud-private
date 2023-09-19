@@ -1,10 +1,9 @@
-name: e2e-cypress-13-ccy-1_10
-
+name: e2e-cypress-compatibility
 on:
   push:
 
 jobs:
-  e2e-cypress-13-ccy-1_10:
+  e2e-cypress-compatibility:
     if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     runs-on: ubuntu-latest
     env:
@@ -12,19 +11,19 @@ jobs:
 
     strategy:
       matrix:
-        node-version: ["18"]
+        cypress-version: ["13", "12"]
 
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "18"
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Cypress 13
-        run: npm install cypress@13
+      - name: Install Cypress ${{ matrix.cypress-version }}
+        run: npm install cypress@${{ matrix.cypress-version }}
 
       - name: Build
         run: npm run build
@@ -36,6 +35,7 @@ jobs:
           CURRENTS_RUN_BASE_URL: ${{ secrets.CURRENTS_RUN_BASE_URL }}
           CURRENTS_PROJECT_ID: ${{ secrets.CURRENTS_PROJECT_ID }}
           CURRENTS_RECORD_KEY: ${{ secrets.CURRENTS_RECORD_KEY }}
+          CYPRESS_VERSION: ${{ matrix.cypress-version }}
 
         run: >
           npx jest
