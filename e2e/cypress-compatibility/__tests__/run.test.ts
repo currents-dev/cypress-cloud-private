@@ -33,10 +33,15 @@ describe(`Cypress ${cypressVersion} compatibility`, () => {
       });
     });
 
+    it("should have the right cypress version", async () => {
+      expect(result.config).toMatchObject({
+        version: expect.stringContaining(`${cypressVersion}`),
+      });
+    });
+
     it("should have compatible config", async () => {
       expect(result.config).toMatchObject({
         video: config.video,
-        version: expect.stringContaining(`${cypressVersion}`),
       });
     });
 
@@ -50,7 +55,7 @@ describe(`Cypress ${cypressVersion} compatibility`, () => {
         // @ts-ignore
         const actual = result.runs.find(
           // @ts-ignore
-          (run) => run.spec.name === spec
+          (run) => run.spec.name.match(`${spec}`)
         );
 
         // @ts-ignore
