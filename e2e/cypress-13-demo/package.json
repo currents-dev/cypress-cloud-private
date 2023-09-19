@@ -5,7 +5,7 @@
   "scripts": {
     "files": "ts-node scripts/files.ts",
     "validate": "ts-node scripts/validate.ts",
-    "test": "ts-node scripts/test.ts"
+    "runtest": "ts-node scripts/test.ts"
   },
   "dependencies": {
     "colors": "^1.4.0",
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.12",
-    "cypress": "13.1.0",
+    "cypress": "^13.1.0",
     "tsconfig": "*",
     "typescript": "^4.7.4"
   }

@@ -99,7 +99,10 @@ function compareObjectsRecursively(
       "validation-results/currents-api-validation.json",
       JSON.stringify(apiComparisonResult),
       (err) => {
-        if (err) throw err;
+        if (err) {
+          console.log("FILE ERROR::", err);
+          throw err;
+        }
         console.log("file saved");
       }
     );

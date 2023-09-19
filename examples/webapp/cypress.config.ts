@@ -9,7 +9,7 @@ module.exports = defineConfig({
       : "l4zuz8",
     baseUrl: "https://todomvc.com/examples/vanillajs",
     supportFile: "cypress/support/e2e.ts",
-    specPattern: "cypress/e2e/*.js",
+    specPattern: ["cypress/e2e/*.js", "cypress/e2e_smoke/*.js"],
     setupNodeEvents(on, config) {
       require("@cypress/grep/src/plugin")(config);
       return currents(on, config);
