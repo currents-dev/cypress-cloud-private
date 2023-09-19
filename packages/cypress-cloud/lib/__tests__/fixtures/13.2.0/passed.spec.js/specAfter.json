@@ -1,1 +1,51 @@
-{"error":null,"reporter":"spec","reporterStats":{"suites":1,"tests":1,"passes":1,"pending":0,"failures":0,"start":"2023-09-18T23:17:05.312Z","end":"2023-09-18T23:17:06.413Z","duration":1101},"screenshots":[{"height":1320,"name":null,"path":"/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/passed.spec.js/Passed -- should pass.png","takenAt":"2023-09-18T23:17:05.774Z","width":2000}],"spec":{"absolute":"/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/passed.spec.js","fileExtension":".js","fileName":"passed","name":"passed.spec.js","relative":"cypress/e2e/passed.spec.js"},"stats":{"duration":1103,"endedAt":"2023-09-18T23:17:06.411Z","failures":0,"passes":1,"pending":0,"skipped":0,"startedAt":"2023-09-18T23:17:05.308Z","suites":1,"tests":1},"tests":[{"attempts":[{"state":"passed"}],"displayError":null,"duration":1098,"state":"passed","title":["Passed","should pass"]}],"video":"/Users/agoldis/cypress-cloud/examples/webapp/cypress/videos/passed.spec.js.mp4"}
+{
+  "error": null,
+  "reporter": "spec",
+  "reporterStats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-09-18T23:17:05.312Z",
+    "end": "2023-09-18T23:17:06.413Z",
+    "duration": 1101
+  },
+  "screenshots": [
+    {
+      "height": 1320,
+      "name": "custom-screenshot",
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/passed.spec.js/Passed -- should pass.png",
+      "takenAt": "2023-09-18T23:17:05.774Z",
+      "width": 2000
+    }
+  ],
+  "spec": {
+    "absolute": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/passed.spec.js",
+    "fileExtension": ".js",
+    "fileName": "passed",
+    "name": "passed.spec.js",
+    "relative": "cypress/e2e/passed.spec.js"
+  },
+  "stats": {
+    "duration": 1103,
+    "endedAt": "2023-09-18T23:17:06.411Z",
+    "failures": 0,
+    "passes": 1,
+    "pending": 0,
+    "skipped": 0,
+    "startedAt": "2023-09-18T23:17:05.308Z",
+    "suites": 1,
+    "tests": 1
+  },
+  "tests": [
+    {
+      "attempts": [{ "state": "passed" }],
+      "displayError": null,
+      "duration": 1098,
+      "state": "passed",
+      "title": ["Passed", "should pass"]
+    }
+  ],
+  "video": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/videos/passed.spec.js.mp4"
+}

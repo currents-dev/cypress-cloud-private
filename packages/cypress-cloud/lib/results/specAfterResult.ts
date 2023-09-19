@@ -3,7 +3,6 @@
  */
 
 import { parseISO } from "date-fns";
-import path from "path";
 import { match } from "ts-pattern";
 import { CypressTypes, Standard } from "../cypress.types";
 import { MochaError } from "../cypress.types/shared";
@@ -159,7 +158,6 @@ export class SpecAfterResult {
     specAfterResults: CypressTypes.EventPayload.SpecAfter.Payload,
     attempts: ExecutionState["attemptsData"]
   ) {
-    debugger;
     const standardTestList: Standard.SpecAfter.Payload["tests"] = (
       specAfterResults.tests ?? []
     ).map((test, i) => {
@@ -197,7 +195,7 @@ export class SpecAfterResult {
     spec: CypressTypes.EventPayload.SpecAfter.Spec
   ): Standard.SpecAfter.Spec {
     return {
-      name: path.basename(spec.name),
+      name: spec.name,
       relative: spec.relative,
       absolute: spec.absolute,
       fileExtension: spec.fileExtension,
@@ -261,7 +259,7 @@ export class SpecAfterResult {
       return {
         height: specScreenshot.height,
         width: specScreenshot.width,
-        name: specScreenshot.name,
+        name: specScreenshot.name ?? es?.name ?? null,
         path: specScreenshot.path,
         takenAt: specScreenshot.takenAt,
         testAttemptIndex:

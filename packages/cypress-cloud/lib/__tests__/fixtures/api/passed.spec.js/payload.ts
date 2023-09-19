@@ -45,7 +45,7 @@ export const results = {
     {
       height: 1320,
       width: 2000,
-      name: null,
+      name: "custom-screenshot",
       path: "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/passed.spec.js/Passed -- should pass.png",
       takenAt: expect.any(String),
       testAttemptIndex: 0,

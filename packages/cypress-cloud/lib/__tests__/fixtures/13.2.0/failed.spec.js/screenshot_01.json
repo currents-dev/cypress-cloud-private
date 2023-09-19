@@ -1,1 +1,16 @@
-{"testAttemptIndex":0,"size":331875,"takenAt":"2023-09-18T08:28:58.691Z","dimensions":{"width":2560,"height":1440},"multipart":false,"specName":"failed.spec.js","testFailure":true,"path":"/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/failed.spec.js/Failed -- should fail (failed).png","scaled":true,"blackout":[],"duration":215,"testId":"r3","height":1440,"width":2560}
+{
+  "testAttemptIndex": 0,
+  "size": 331875,
+  "takenAt": "2023-09-18T08:28:58.691Z",
+  "dimensions": { "width": 2560, "height": 1440 },
+  "multipart": false,
+  "specName": "failed.spec.js",
+  "testFailure": true,
+  "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/failed.spec.js/Failed -- should fail (failed).png",
+  "scaled": true,
+  "blackout": [],
+  "duration": 215,
+  "testId": "r3",
+  "height": 1440,
+  "width": 2560
+}
