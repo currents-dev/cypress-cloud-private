@@ -755,3 +755,13 @@ export async function runTests(filePath: string) {
 
   return result;
 }
+
+export async function runCypressCloud() {
+  const { projectId, recordKey, ciBuildId } = getCurrentsTestsVariables();
+  return await run({
+    ciBuildId,
+    projectId,
+    recordKey,
+    batchSize: 5,
+  });
+}

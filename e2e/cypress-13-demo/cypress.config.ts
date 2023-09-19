@@ -8,8 +8,6 @@ module.exports = defineConfig({
     supportFile: "cypress/support/e2e.ts",
     specPattern: "cypress/*/**/*.spec.js",
     setupNodeEvents(on, config) {
-      require("@cypress/grep/src/plugin")(config);
-      // require("cypress-terminal-report/src/installLogsPrinter")(on);
       return currents(on, config);
     },
   },
