@@ -1,16 +1,11 @@
 import {
-  createInstance,
-  CreateInstancePayload,
-  CreateInstanceResponse,
-  createRun,
   CreateRunPayload,
   CreateRunResponse,
+  InstanceAPIPayload,
+  createInstance,
+  createRun,
   setInstanceTests,
-  SetInstanceTestsPayload,
-  TestState,
   updateInstanceResults,
-  UpdateInstanceResultsPayload,
-  UpdateInstanceResultsResponse,
   updateInstanceStdout,
 } from "cypress-cloud/lib/api";
 import { getAPIBaseUrl } from "cypress-cloud/lib/httpClient/config";
@@ -78,7 +73,7 @@ describe("cloud/api", () => {
   });
 
   describe("createInstance", () => {
-    let payload: CreateInstancePayload;
+    let payload: InstanceAPIPayload.CreateInstancePayload;
 
     beforeEach(() => {
       payload = {
@@ -95,7 +90,7 @@ describe("cloud/api", () => {
     });
 
     it("POST /runs/:id/instances + returns CreateInstanceResponse", async () => {
-      const result: CreateInstanceResponse = {
+      const result: InstanceAPIPayload.CreateInstanceResponse = {
         spec: null,
         instanceId: null,
         claimedInstances: 10,
@@ -112,7 +107,7 @@ describe("cloud/api", () => {
   });
 
   describe("setInstanceTests", () => {
-    let payload: SetInstanceTestsPayload;
+    let payload: InstanceAPIPayload.SetInstanceTestsPayload;
 
     beforeEach(() => {
       payload = {
@@ -138,7 +133,7 @@ describe("cloud/api", () => {
   });
 
   describe("updateInstanceResults", () => {
-    let payload: UpdateInstanceResultsPayload;
+    let payload: InstanceAPIPayload.UpdateInstanceResultsPayload;
 
     beforeEach(() => {
       payload = {
@@ -156,11 +151,11 @@ describe("cloud/api", () => {
         tests: [
           {
             clientId: "r3",
-            state: TestState.Pending,
+            state: "pending",
             displayError: null,
             attempts: [
               {
-                state: TestState.Pending,
+                state: "pending",
                 error: null,
                 wallClockStartedAt: null,
                 wallClockDuration: null,
@@ -170,11 +165,11 @@ describe("cloud/api", () => {
           },
           {
             clientId: "r4",
-            state: TestState.Passed,
+            state: "passed",
             displayError: null,
             attempts: [
               {
-                state: TestState.Passed,
+                state: "passed",
                 error: null,
                 wallClockStartedAt: "2022-12-11T08:46:31.893Z",
                 wallClockDuration: 18625,
@@ -200,7 +195,7 @@ describe("cloud/api", () => {
     });
 
     it("POST /instances/:id/results + returning UpdateInstanceResultsResponse", async () => {
-      const result: UpdateInstanceResultsResponse = {
+      const result: InstanceAPIPayload.UpdateInstanceResultsResponse = {
         screenshotUploadUrls: [],
         videoUploadUrl: null,
       };

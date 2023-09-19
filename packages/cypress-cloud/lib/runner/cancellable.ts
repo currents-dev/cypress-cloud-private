@@ -1,6 +1,6 @@
 import { BPromise } from "../lang";
 import { warn } from "../log";
-import { Event, pubsub } from "../pubsub";
+import { Event, getPubSub } from "../pubsub";
 import { runTillDone } from "./runner";
 
 let cancellable: {
@@ -36,8 +36,8 @@ export async function runTillDoneOrCancelled(
       );
     });
 
-    pubsub.addListener(Event.RUN_CANCELLED, onRunCancelled);
+    getPubSub().addListener(Event.RUN_CANCELLED, onRunCancelled);
   }).finally(() => {
-    pubsub.removeListener(Event.RUN_CANCELLED, onRunCancelled);
+    getPubSub().removeListener(Event.RUN_CANCELLED, onRunCancelled);
   });
 }

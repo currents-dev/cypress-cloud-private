@@ -6,7 +6,7 @@ const cypressPkg = require("cypress/package.json");
 const pkg = require("cypress-cloud/package.json");
 
 import { initCapture } from "./capture";
-import { setCurrentsVersion, setCypressVersion } from "./httpClient";
+import { setCurrentsVersion, setCypressVersion } from "./state/global";
 
 initCapture();
 setCypressVersion(cypressPkg.version);

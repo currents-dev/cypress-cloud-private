@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { warn } from "cypress-cloud/lib/log";
-import { Event, pubsub } from "cypress-cloud/lib/pubsub";
+import { Event, getPubSub } from "cypress-cloud/lib/pubsub";
 import { random } from "lodash";
 import { runTillDoneOrCancelled } from "../cancellable";
 import { runTillDone } from "../runner";
@@ -31,7 +31,7 @@ describe("runTillDoneOrCancelled", () => {
     await runTillDoneOrCancelled({});
     expect(runTillDone).toHaveBeenCalled();
     expect(result).toEqual(_result);
-    expect(pubsub.listeners(Event.RUN_CANCELLED)).toHaveLength(0);
+    expect(getPubSub().listeners(Event.RUN_CANCELLED)).toHaveLength(0);
   });
 
   it("rejects when runTillDone rejects", async () => {
@@ -41,7 +41,7 @@ describe("runTillDoneOrCancelled", () => {
     // @ts-expect-error
     await expect(runTillDoneOrCancelled()).rejects.toThrow();
     await new Promise((resolve) => setTimeout(resolve, 100));
-    expect(pubsub.listeners(Event.RUN_CANCELLED)).toHaveLength(0);
+    expect(getPubSub().listeners(Event.RUN_CANCELLED)).toHaveLength(0);
   });
 
   it("cancels the run when the RUN_CANCELLED event is emitted", async () => {
@@ -58,13 +58,13 @@ describe("runTillDoneOrCancelled", () => {
 
     // schedule firing the event
     setTimeout(() => {
-      pubsub.emit(Event.RUN_CANCELLED, cancelReason);
+      getPubSub().emit(Event.RUN_CANCELLED, cancelReason);
     }, 100);
 
     // @ts-expect-error
     await runTillDoneOrCancelled();
     expect(runTillDone).toHaveBeenCalled();
     expect(warn).toHaveBeenCalledWith(expect.any(String), cancelReason);
-    expect(pubsub.listeners(Event.RUN_CANCELLED)).toHaveLength(0);
+    expect(getPubSub().listeners(Event.RUN_CANCELLED)).toHaveLength(0);
   });
 });

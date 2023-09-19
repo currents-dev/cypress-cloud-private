@@ -4,11 +4,9 @@ import {
 } from "cypress-cloud/types";
 import Debug from "debug";
 import _ from "lodash";
-import { customAlphabet } from "nanoid";
 import { getCypressRunAPIParams } from "../config";
+import { getRandomString } from "../nano";
 const debug = Debug("currents:boot");
-
-const getDummySpec = customAlphabet("abcdefghijklmnopqrstuvwxyz", 10);
 
 export function getBootstrapArgs({
   params,
@@ -40,7 +38,7 @@ export function getBootstrapArgs({
       return [
         ...args,
         "--spec",
-        getDummySpec(),
+        getRandomString(),
         params.testingType === "component" ? "--component" : "--e2e",
       ];
     })

@@ -1,15 +1,8 @@
 import { makeRequest } from "../httpClient";
 import {
-  CreateInstanceCyPayload,
-  CreateInstancePayload,
-  CreateInstanceResponse,
-  CreateInstancesResponse,
   CreateRunPayload,
   CreateRunResponse,
-  SetInstanceTestsPayload,
-  UpdateInstanceResultsMergedPayload,
-  UpdateInstanceResultsPayload,
-  UpdateInstanceResultsResponse,
+  InstanceAPIPayload,
 } from "./types";
 import { printWarnings } from "./warnings";
 
@@ -32,10 +25,10 @@ export const createInstance = async ({
   groupId,
   machineId,
   platform,
-}: CreateInstancePayload) => {
+}: InstanceAPIPayload.CreateInstancePayload) => {
   const response = await makeRequest<
-    CreateInstanceResponse,
-    CreateInstancePayload
+    InstanceAPIPayload.CreateInstanceResponse,
+    InstanceAPIPayload.CreateInstancePayload
   >({
     method: "POST",
     url: `runs/${runId}/instances`,
@@ -50,10 +43,12 @@ export const createInstance = async ({
   return response.data;
 };
 
-export const createBatchedInstances = async (data: CreateInstanceCyPayload) => {
+export const createBatchedInstances = async (
+  data: InstanceAPIPayload.CreateInstanceCyPayload
+) => {
   const respone = await makeRequest<
-    CreateInstancesResponse,
-    CreateInstanceCyPayload
+    InstanceAPIPayload.CreateInstancesResponse,
+    InstanceAPIPayload.CreateInstanceCyPayload
   >({
     method: "POST",
     url: `runs/${data.runId}/cy/instances`,
@@ -65,9 +60,9 @@ export const createBatchedInstances = async (data: CreateInstanceCyPayload) => {
 
 export const setInstanceTests = (
   instanceId: string,
-  payload: SetInstanceTestsPayload
+  payload: InstanceAPIPayload.SetInstanceTestsPayload
 ) =>
-  makeRequest<{}, SetInstanceTestsPayload>({
+  makeRequest<{}, InstanceAPIPayload.SetInstanceTestsPayload>({
     method: "POST",
     url: `instances/${instanceId}/tests`,
     data: payload,
@@ -75,9 +70,12 @@ export const setInstanceTests = (
 
 export const updateInstanceResults = (
   instanceId: string,
-  payload: UpdateInstanceResultsPayload
+  payload: InstanceAPIPayload.UpdateInstanceResultsPayload
 ) =>
-  makeRequest<UpdateInstanceResultsResponse, UpdateInstanceResultsPayload>({
+  makeRequest<
+    InstanceAPIPayload.UpdateInstanceResultsResponse,
+    InstanceAPIPayload.UpdateInstanceResultsPayload
+  >({
     method: "POST",
     url: `instances/${instanceId}/results`,
     data: payload,
@@ -85,11 +83,11 @@ export const updateInstanceResults = (
 
 export const reportInstanceResultsMerged = (
   instanceId: string,
-  payload: UpdateInstanceResultsMergedPayload
+  payload: InstanceAPIPayload.UpdateInstanceResultsMergedPayload
 ) =>
   makeRequest<
-    UpdateInstanceResultsResponse,
-    UpdateInstanceResultsMergedPayload
+    InstanceAPIPayload.UpdateInstanceResultsResponse,
+    InstanceAPIPayload.UpdateInstanceResultsMergedPayload
   >({
     method: "POST",
     url: `instances/${instanceId}/cy/results`,

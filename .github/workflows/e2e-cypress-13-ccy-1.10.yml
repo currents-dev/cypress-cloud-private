@@ -1,0 +1,41 @@
+name: e2e-cypress-13-ccy-1_10
+
+on:
+  push:
+
+jobs:
+  e2e-cypress-13-ccy-1_10:
+    if: "!contains(toJSON(github.event.commits.*.message), '[skip ci]')"
+    runs-on: ubuntu-latest
+    env:
+      DEBUG: currents:*
+
+    strategy:
+      matrix:
+        node-version: ["18"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Cypress 13
+        run: npm install cypress@13
+
+      - name: Build
+        run: npm run build
+
+      - name: Run compatibility tests
+        working-directory: ./e2e/cypress-13-demo
+        env:
+          CURRENTS_API_KEY: ${{ secrets.CURRENTS_API_KEY }}
+          CURRENTS_RUN_BASE_URL: ${{ secrets.CURRENTS_RUN_BASE_URL }}
+          CURRENTS_PROJECT_ID: ${{ secrets.CURRENTS_PROJECT_ID }}
+          CURRENTS_RECORD_KEY: ${{ secrets.CURRENTS_RECORD_KEY }}
+
+        run: >
+          npx jest

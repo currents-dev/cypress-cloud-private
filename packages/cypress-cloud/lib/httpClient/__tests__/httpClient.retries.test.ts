@@ -5,7 +5,6 @@ import { makeRequest } from "../httpClient";
 
 jest.mock("../config");
 jest.mock("cypress-cloud/lib/log");
-
 (getAPIBaseUrl as jest.Mock).mockReturnValue("http://localhost:1234");
 const apiMock = nock(getAPIBaseUrl()).persist();
 

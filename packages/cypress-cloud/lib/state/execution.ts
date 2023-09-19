@@ -1,13 +1,10 @@
 import { InstanceId } from "cypress-cloud/types";
 import { error, warn } from "../log";
-import { getFailedDummyResult } from "../results";
-import {
-  backfillException,
-  specResultsToCypressResults,
-} from "../results/mapResult";
-import { SpecResult } from "../runner/spec.type";
+import { getFailedFakeInstanceResult } from "../results/empty";
+import { SpecAfterToModuleAPIMapper } from "../results/mapResult";
 
 import Debug from "debug";
+import { CypressTypes, Standard } from "../cypress.types";
 import { ConfigState } from "./config";
 const debug = Debug("currents:state");
 
@@ -17,18 +14,41 @@ type InstanceExecutionState = {
   output?: string;
   specBefore?: Date;
   createdAt: Date;
-  runResults?: CypressCommandLine.CypressRunResult;
+  runResults?: Standard.ModuleAPI.CompletedResult;
   runResultsReportedAt?: Date;
   specAfter?: Date;
-  specAfterResults?: SpecResult;
+  specAfterResults?: Standard.SpecAfter.Payload;
   reportStartedAt?: Date;
   coverageFilePath?: string;
 };
 
+export type ExecutionStateScreenshot =
+  CypressTypes.EventPayload.ScreenshotAfter & {
+    testId?: string;
+    testAttemptIndex: number;
+    width: number;
+    height: number;
+  };
+export type ExecutionStateTestAttempt = CypressTypes.EventPayload.TestAfter;
+
 export class ExecutionState {
+  private warnings: Set<string> = new Set();
+  private attemptsData: ExecutionStateTestAttempt[] = [];
+  private screenshotsData: ExecutionStateScreenshot[] = [];
+  private currentTestID?: string;
   private state: Record<InstanceId, InstanceExecutionState> = {};
 
-  public getResults(configState: ConfigState) {
+  public getWarnings() {
+    return this.warnings;
+  }
+
+  public addWarning(warning: string) {
+    this.warnings.add(warning);
+  }
+
+  public getResults(
+    configState: ConfigState
+  ): Standard.ModuleAPI.CompletedResult[] {
     return Object.values(this.state).map((i) =>
       this.getInstanceResults(configState, i.instanceId)
     );
@@ -78,7 +98,7 @@ export class ExecutionState {
     i.coverageFilePath = coverageFilePath;
   }
 
-  public setSpecAfter(spec: string, results: SpecResult) {
+  public setSpecAfter(spec: string, results: Standard.SpecAfter.Payload) {
     const i = this.getSpec(spec);
     if (!i) {
       warn('Cannot find execution state for spec "%s"', spec);
@@ -111,49 +131,77 @@ export class ExecutionState {
   }
 
   public setInstanceResult(
-    configState: ConfigState,
     instanceId: string,
-    results: CypressCommandLine.CypressRunResult
+    runResults: Standard.ModuleAPI.CompletedResult
   ) {
     const i = this.state[instanceId];
     if (!i) {
       warn('Cannot find execution state for instance "%s"', instanceId);
       return;
     }
-    i.runResults = results;
+    i.runResults = {
+      ...runResults,
+      status: "finished",
+    };
     i.runResultsReportedAt = new Date();
   }
 
   public getInstanceResults(
     configState: ConfigState,
     instanceId: string
-  ): CypressCommandLine.CypressRunResult {
+  ): Standard.ModuleAPI.CompletedResult {
     const i = this.getInstance(instanceId);
 
     if (!i) {
       error('Cannot find execution state for instance "%s"', instanceId);
 
-      return getFailedDummyResult(configState, {
+      return getFailedFakeInstanceResult(configState, {
         specs: ["unknown"],
-        error: "Cannot find execution state for instance",
+        error: `[currents] Error while processing cypress results for instance ${instanceId}. See the console output for details.`,
       });
     }
 
     // use spec:after results - it can become available before run results
     if (i.specAfterResults) {
-      return backfillException(
-        specResultsToCypressResults(configState, i.specAfterResults)
+      debug('Using spec:after results for %s "%s"', instanceId, i.spec);
+      return SpecAfterToModuleAPIMapper.backfillException(
+        SpecAfterToModuleAPIMapper.convert(i.specAfterResults, configState)
       );
     }
 
     if (i.runResults) {
-      return backfillException(i.runResults);
+      debug('Using runResults for %s "%s"', instanceId, i.spec);
+      return SpecAfterToModuleAPIMapper.backfillException(i.runResults);
     }
 
     debug('No results detected for "%s"', i.spec);
-    return getFailedDummyResult(configState, {
+    return getFailedFakeInstanceResult(configState, {
       specs: [i.spec],
       error: `No results detected for the spec file. That usually happens because of cypress crash. See the console output for details.`,
     });
+  }
+
+  public addAttemptsData(attemptDetails: CypressTypes.EventPayload.TestAfter) {
+    this.attemptsData.push(attemptDetails);
+  }
+
+  public getAttemptsData() {
+    return this.attemptsData;
+  }
+
+  public addScreenshotsData(screenshotsData: ExecutionStateScreenshot) {
+    this.screenshotsData.push(screenshotsData);
+  }
+
+  public getScreenshotsData() {
+    return this.screenshotsData;
+  }
+
+  public setCurrentTestID(testID: string) {
+    this.currentTestID = testID;
+  }
+
+  public getCurrentTestID() {
+    return this.currentTestID;
   }
 }

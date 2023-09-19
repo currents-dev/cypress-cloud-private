@@ -1,0 +1,51 @@
+{
+  "error": null,
+  "reporter": "spec",
+  "reporterStats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2023-09-18T08:28:58.143Z",
+    "end": "2023-09-18T08:28:58.958Z",
+    "duration": 815
+  },
+  "screenshots": [
+    {
+      "height": 1440,
+      "name": null,
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/failed.spec.js/Failed -- should fail (failed).png",
+      "takenAt": "2023-09-18T08:28:58.691Z",
+      "width": 2560
+    }
+  ],
+  "spec": {
+    "absolute": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/failed.spec.js",
+    "fileExtension": ".js",
+    "fileName": "failed",
+    "name": "failed.spec.js",
+    "relative": "cypress/e2e/failed.spec.js"
+  },
+  "stats": {
+    "duration": 816,
+    "endedAt": "2023-09-18T08:28:58.956Z",
+    "failures": 1,
+    "passes": 0,
+    "pending": 0,
+    "skipped": 0,
+    "startedAt": "2023-09-18T08:28:58.140Z",
+    "suites": 1,
+    "tests": 1
+  },
+  "tests": [
+    {
+      "attempts": [{ "state": "failed" }],
+      "displayError": "ReferenceError: fail is not defined\n    at Context.eval (webpack://web/./cypress/e2e/failed.spec.js:3:11)",
+      "duration": 785,
+      "state": "failed",
+      "title": ["Failed", "should fail"]
+    }
+  ],
+  "video": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/videos/failed.spec.js.mp4"
+}

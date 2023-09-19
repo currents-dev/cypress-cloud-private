@@ -1,12 +1,15 @@
+import getCommonPathPrefix from "common-path-prefix";
 import _ from "lodash";
+import path from "path";
 import prettyMS from "pretty-ms";
 import { table } from "table";
+import { Standard } from "../cypress.types";
 import { cyan, gray, green, red, white } from "../log";
 
 const failureIcon = red("✖");
 const successIcon = green("✔");
 
-export const summaryTable = (r: CypressCommandLine.CypressRunResult) => {
+export const summaryTable = (r: Standard.ModuleAPI.CompletedResult) => {
   const overallSpecCount = r.runs.length;
   const failedSpecsCount = _.sum(
     r.runs.filter((v) => v.stats.failures + v.stats.skipped > 0).map(() => 1)
@@ -19,10 +22,12 @@ export const summaryTable = (r: CypressCommandLine.CypressRunResult) => {
     ? "All specs passed!"
     : "No specs executed";
 
+  const specs = r.runs.map((r) => r.spec.relative);
+  const commonPath = getCommonPath(specs);
   const data = r.runs.map((r) => [
     r.stats.failures + r.stats.skipped > 0 ? failureIcon : successIcon,
-    r.spec.relativeToCommonRoot,
-    gray(prettyMS(r.stats.duration)),
+    stripCommonPath(r.spec.relative, commonPath),
+    gray(prettyMS(r.stats.duration ?? 0)),
     white(r.stats.tests ?? 0),
     r.stats.passes ? green(r.stats.passes) : gray("-"),
     r.stats.failures ? red(r.stats.failures) : gray("-"),
@@ -108,3 +113,16 @@ const border = _.mapValues(
   },
   (v) => gray(v)
 );
+
+function getCommonPath(specs: string[]) {
+  if (specs.length === 0) {
+    return "";
+  }
+  if (specs.length === 1) {
+    return path.dirname(specs[0]) + path.sep;
+  }
+  return getCommonPathPrefix(specs);
+}
+function stripCommonPath(spec: string, commonPath: string) {
+  return spec.replace(commonPath, "");
+}

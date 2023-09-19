@@ -89,6 +89,7 @@ export async function getMergedConfig(params: ValidatedCurrentsParameters) {
         projectRoot: string;
         rawJson: Record<string, unknown>;
         browsers: DetectedBrowser[];
+        version: string;
       })
     | undefined = await bootCypress(params);
 

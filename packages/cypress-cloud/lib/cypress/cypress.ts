@@ -1,14 +1,15 @@
 import cypress from "cypress";
 import {
   CurrentsRunParameters,
-  CypressResult,
   ValidatedCurrentsParameters,
 } from "cypress-cloud/types";
 import Debug from "debug";
 import _ from "lodash";
 import { getCypressRunAPIParams } from "../config";
+import { CypressTypes } from "../cypress.types";
 import { safe } from "../lang";
 import { warn } from "../log";
+import { ModuleAPIResults } from "../results/moduleAPIResult";
 import { getWSSPort } from "../ws";
 
 const debug = Debug("currents:cypress");
@@ -54,9 +55,9 @@ export async function runSpecFile(
     spec,
   };
   debug("running cypress with options %o", options);
-  const result = await cypress.run(options);
+  const result = (await cypress.run(options)) as CypressTypes.ModuleAPI.Result;
 
-  if (result.status === "failed") {
+  if (ModuleAPIResults.isFailureResult(result)) {
     warn('Cypress runner failed with message: "%s"', result.message);
     warn(
       "The following spec files will be marked as failed: %s",
@@ -73,7 +74,7 @@ export async function runSpecFile(
 export const runSpecFileSafe = (
   spec: RunCypressSpecFile,
   cypressRunOptions: ValidatedCurrentsParameters
-): Promise<CypressResult> =>
+): Promise<CypressTypes.ModuleAPI.Result> =>
   safe(
     runSpecFile,
     (error) => {

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>See JSON results comparison</title>
+    <style>
+        .isEqual {
+            background-color: rgba(0, 255, 0, 0.5);
+        }
+
+        .isNotEqual {
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Select here your JSON results file</h2>
+    <input type="file" id="resultFile" accept=".json" onchange="displayResults()">
+    <table border="1" id="resultTable">
+        <thead>
+            <tr>
+                <th>Path</th>
+                <th>Value Original</th>
+                <th>Value Modified</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+        function displayResults() {
+            const fileInput = document.getElementById('resultFile');
+            const tableBody = document.getElementById('resultTable').getElementsByTagName('tbody')[0];
+
+            const file = fileInput.files[0];
+            if (file) {
+                file.text().then(data => {
+                    const results = JSON.parse(data);
+                    tableBody.innerHTML = ''; // Limpia el contenido anterior
+
+                    results.forEach(item => {
+                        const row = tableBody.insertRow();
+                        const cellPath = row.insertCell(0);
+                        const cellValueA = row.insertCell(1);
+                        const cellValueB = row.insertCell(2);
+
+                        cellPath.textContent = item.path;
+                        cellValueA.textContent = item.valueA !== undefined ? item.valueA : "Does not exist";
+                        cellValueB.textContent = item.valueB !== undefined ? item.valueB : "Does not exist";
+
+                        row.className = item.isEqual ? 'isEqual' : 'isNotEqual';
+                    });
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>

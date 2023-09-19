@@ -4,7 +4,7 @@ import Debug from "debug";
 import { getLegalNotice } from "../legal";
 import { CurrentsRunParameters } from "../types";
 import { createRun } from "./api";
-import { cutInitialOutput, getCapturedOutput } from "./capture";
+import { cutInitialOutput } from "./capture";
 import { getCI } from "./ciProvider";
 import {
   getMergedConfig,
@@ -12,24 +12,21 @@ import {
   preprocessParams,
   validateParams,
 } from "./config";
-import { getCoverageFilePath } from "./coverage";
 import { runBareCypress } from "./cypress";
 import { activateDebug } from "./debug";
 import { isCurrents } from "./env";
 import { getGitInfo } from "./git";
-import { setAPIBaseUrl, setRunId } from "./httpClient";
+import { setAPIBaseUrl } from "./httpClient";
+import { listenToEvents } from "./listener";
 import { bold, divider, info, spacer, title } from "./log";
 import { getPlatform } from "./platform";
-import { pubsub } from "./pubsub";
-import { summarizeTestResults, summaryTable } from "./results";
-import {
-  createReportTaskSpec,
-  reportTasks,
-  runTillDoneOrCancelled,
-} from "./runner";
+import { summarizeExecution, summaryTable } from "./results";
+import { reportTasks, runTillDoneOrCancelled } from "./runner";
 import { shutdown } from "./shutdown";
 import { getSpecFiles } from "./specMatcher";
 import { ConfigState, ExecutionState } from "./state";
+import { setRunId } from "./state/global";
+import { printWarnings } from "./warnings";
 import { startWSS } from "./ws";
 
 const debug = Debug("currents:run");
@@ -37,7 +34,9 @@ const debug = Debug("currents:run");
 export async function run(params: CurrentsRunParameters = {}) {
   const executionState = new ExecutionState();
   const configState = new ConfigState();
+
   activateDebug(params.cloudDebug);
+
   debug("run params %o", params);
   params = preprocessParams(params);
   debug("params after preprocess %o", params);
@@ -115,7 +114,7 @@ export async function run(params: CurrentsRunParameters = {}) {
   cutInitialOutput();
 
   await startWSS();
-  listenToSpecEvents(
+  listenToEvents(
     configState,
     executionState,
     config.experimentalCoverageRecording
@@ -137,58 +136,24 @@ export async function run(params: CurrentsRunParameters = {}) {
   divider();
 
   await Promise.allSettled(reportTasks);
-  const _summary = summarizeTestResults(
+  const _summary = summarizeExecution(
     executionState.getResults(configState),
     config
   );
 
   title("white", "Cloud Run Finished");
   console.log(summaryTable(_summary));
-  info("🏁 Recorded Run:", bold(run.runUrl));
+
+  printWarnings(executionState);
+
+  info("\n🏁 Recorded Run:", bold(run.runUrl));
 
   await shutdown();
 
   spacer();
-  if (_summary.status === "finished") {
-    return {
-      ..._summary,
-      runUrl: run.runUrl,
-    };
-  }
 
-  return _summary;
-}
-
-function listenToSpecEvents(
-  configState: ConfigState,
-  executionState: ExecutionState,
-  experimentalCoverageRecording?: boolean
-) {
-  const config = configState.getConfig();
-  pubsub.on("test:after:run", async (test: any) => {
-    console.log("test:after:run");
-    console.log(test);
-  });
-  pubsub.on("before:spec", async ({ spec }: { spec: Cypress.Spec }) => {
-    debug("before:spec %o", spec);
-    executionState.setSpecBefore(spec.relative);
-  });
-
-  pubsub.on(
-    "after:spec",
-    async ({ spec, results }: { spec: Cypress.Spec; results: any }) => {
-      debug("after:spec %o %o", spec, results);
-      executionState.setSpecAfter(spec.relative, results);
-      executionState.setSpecOutput(spec.relative, getCapturedOutput());
-      if (experimentalCoverageRecording) {
-        const coverageFilePath = await getCoverageFilePath(
-          config?.env?.coverageFile
-        );
-        if (coverageFilePath) {
-          executionState.setSpecCoverage(spec.relative, coverageFilePath);
-        }
-      }
-      createReportTaskSpec(configState, executionState, spec.relative);
-    }
-  );
+  return {
+    ..._summary,
+    runUrl: run.runUrl,
+  };
 }

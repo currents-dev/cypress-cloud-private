@@ -1,0 +1,1008 @@
+{
+  "totalDuration": 32737,
+  "totalSuites": 5,
+  "totalPending": 1,
+  "totalFailed": 3,
+  "totalSkipped": 0,
+  "totalPassed": 4,
+  "totalTests": 8,
+  "runs": [
+    {
+      "stats": {
+        "duration": 13487,
+        "endedAt": "2023-09-19T07:24:40.659Z",
+        "startedAt": "2023-09-19T07:24:27.172Z",
+        "failures": 1,
+        "passes": 0,
+        "pending": 0,
+        "skipped": 0,
+        "suites": 1,
+        "tests": 1
+      },
+      "reporter": "spec",
+      "reporterStats": {
+        "suites": 1,
+        "tests": 1,
+        "passes": 0,
+        "pending": 0,
+        "failures": 1,
+        "start": "2023-09-19T07:24:27.176Z",
+        "end": "2023-09-19T07:24:40.665Z",
+        "duration": 13489
+      },
+      "spec": {
+        "name": "a.spec.js",
+        "relative": "cypress/e2e/a.spec.js",
+        "absolute": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+        "fileExtension": ".js",
+        "baseName": "",
+        "fileName": "a",
+        "relativeToCommonRoot": "",
+        "specFileExtension": "",
+        "specType": ""
+      },
+      "error": null,
+      "video": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/videos/a.spec.js.mp4",
+      "shouldUploadVideo": true,
+      "hooks": null,
+      "tests": [
+        {
+          "body": "() => {\n    cy.wrap(false).should('be.true');\n  }",
+          "testId": "r3",
+          "title": ["Failing test with 2 attempts", "should try 2 times"],
+          "displayError": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/a.spec.js:5:19)",
+          "state": "failed",
+          "attempts": [
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/a.spec.js:5:19)",
+                "codeFrame": {
+                  "line": 5,
+                  "column": 20,
+                  "originalFile": "cypress/e2e/a.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+                  "frame": "  3 |     retries: 2,\n  4 |   }, () => {\n> 5 |     cy.wrap(false).should('be.true');\n    |                    ^\n  6 |   });\n  7 | });\n  8 | ",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 15,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 10, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 526, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 3994, "afterFnDuration": 233 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:27.176Z",
+              "wallClockDuration": 4779,
+              "failedFromHookId": null,
+              "videoTimestamp": 4,
+              "duration": 4779,
+              "startedAt": "2023-09-19T07:24:27.176Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/a.spec.js/Failing test with 2 attempts -- should try 2 times (failed).png",
+                  "takenAt": "2023-09-19T07:24:31.724Z",
+                  "testAttemptIndex": 0,
+                  "testId": "r3",
+                  "screenshotId": "vruhkqnlka"
+                }
+              ]
+            },
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/a.spec.js:5:19)",
+                "codeFrame": {
+                  "line": 5,
+                  "column": 20,
+                  "originalFile": "cypress/e2e/a.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+                  "frame": "  3 |     retries: 2,\n  4 |   }, () => {\n> 5 |     cy.wrap(false).should('be.true');\n    |                    ^\n  6 |   });\n  7 | });\n  8 | ",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 21,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 13, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 61, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 3993, "afterFnDuration": 191 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:31.995Z",
+              "wallClockDuration": 4280,
+              "failedFromHookId": null,
+              "videoTimestamp": 4823,
+              "duration": 4280,
+              "startedAt": "2023-09-19T07:24:31.995Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/a.spec.js/Failing test with 2 attempts -- should try 2 times (failed) (attempt 2).png",
+                  "takenAt": "2023-09-19T07:24:36.086Z",
+                  "testAttemptIndex": 1,
+                  "testId": "r3",
+                  "screenshotId": "yoexfvpump"
+                }
+              ]
+            },
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/a.spec.js:5:19)",
+                "codeFrame": {
+                  "line": 5,
+                  "column": 20,
+                  "originalFile": "cypress/e2e/a.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+                  "frame": "  3 |     retries: 2,\n  4 |   }, () => {\n> 5 |     cy.wrap(false).should('be.true');\n    |                    ^\n  6 |   });\n  7 | });\n  8 | ",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 22,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 5, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 71, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 3997, "afterFnDuration": 205 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:36.303Z",
+              "wallClockDuration": 4300,
+              "failedFromHookId": null,
+              "videoTimestamp": 9131,
+              "duration": 4300,
+              "startedAt": "2023-09-19T07:24:36.303Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/a.spec.js/Failing test with 2 attempts -- should try 2 times (failed) (attempt 3).png",
+                  "takenAt": "2023-09-19T07:24:40.400Z",
+                  "testAttemptIndex": 2,
+                  "testId": "r3",
+                  "screenshotId": "pgiqyzacoa"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stats": {
+        "duration": 398,
+        "endedAt": "2023-09-19T07:24:42.954Z",
+        "startedAt": "2023-09-19T07:24:42.556Z",
+        "failures": 1,
+        "passes": 0,
+        "pending": 0,
+        "skipped": 0,
+        "suites": 1,
+        "tests": 1
+      },
+      "reporter": "spec",
+      "reporterStats": {
+        "suites": 1,
+        "tests": 1,
+        "passes": 0,
+        "pending": 0,
+        "failures": 1,
+        "start": "2023-09-19T07:24:42.559Z",
+        "end": "2023-09-19T07:24:42.956Z",
+        "duration": 397
+      },
+      "spec": {
+        "name": "e.spec.js",
+        "relative": "cypress/e2e/e.spec.js",
+        "absolute": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/e.spec.js",
+        "fileExtension": ".js",
+        "baseName": "",
+        "fileName": "e",
+        "relativeToCommonRoot": "",
+        "specFileExtension": "",
+        "specType": ""
+      },
+      "error": null,
+      "video": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/videos/e.spec.js.mp4",
+      "shouldUploadVideo": true,
+      "hooks": null,
+      "tests": [
+        {
+          "body": "() => {\n    throw new Error(\"test error\");\n  }",
+          "testId": "r3",
+          "title": ["Should throw an error", "Should throw an error"],
+          "displayError": "Error: test error\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/e.spec.js:3:10)",
+          "state": "failed",
+          "attempts": [
+            {
+              "state": "failed",
+              "error": {
+                "name": "Error",
+                "message": "test error",
+                "stack": "Error: test error\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/e.spec.js:3:10)",
+                "codeFrame": {
+                  "line": 3,
+                  "column": 11,
+                  "originalFile": "cypress/e2e/e.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/e.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/e.spec.js",
+                  "frame": "  1 | describe('Should throw an error', () => {\n  2 |   it('Should throw an error', () => {\n> 3 |     throw new Error(\"test error\")\n    |           ^\n  4 |   });\n  5 | });\n  6 | ",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 22,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 5, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 138, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 1, "afterFnDuration": 195 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:42.559Z",
+              "wallClockDuration": 367,
+              "failedFromHookId": null,
+              "videoTimestamp": 3,
+              "duration": 367,
+              "startedAt": "2023-09-19T07:24:42.559Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/e.spec.js/Should throw an error -- Should throw an error (failed).png",
+                  "takenAt": "2023-09-19T07:24:42.733Z",
+                  "testAttemptIndex": 0,
+                  "testId": "r3",
+                  "screenshotId": "orawslwmsy"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stats": {
+        "duration": 921,
+        "endedAt": "2023-09-19T07:24:45.949Z",
+        "startedAt": "2023-09-19T07:24:45.028Z",
+        "failures": 0,
+        "passes": 2,
+        "pending": 0,
+        "skipped": 0,
+        "suites": 1,
+        "tests": 2
+      },
+      "reporter": "spec",
+      "reporterStats": {
+        "suites": 1,
+        "tests": 2,
+        "passes": 2,
+        "pending": 0,
+        "failures": 0,
+        "start": "2023-09-19T07:24:45.031Z",
+        "end": "2023-09-19T07:24:45.951Z",
+        "duration": 920
+      },
+      "spec": {
+        "name": "d.spec.js",
+        "relative": "cypress/e2e/d.spec.js",
+        "absolute": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/d.spec.js",
+        "fileExtension": ".js",
+        "baseName": "",
+        "fileName": "d",
+        "relativeToCommonRoot": "",
+        "specFileExtension": "",
+        "specType": ""
+      },
+      "error": null,
+      "video": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/videos/d.spec.js.mp4",
+      "shouldUploadVideo": true,
+      "hooks": null,
+      "tests": [
+        {
+          "body": "() => {\n    // Assert that true is true\n    cy.wrap(true).should('be.true');\n\n    // Take a screenshot\n    cy.screenshot('internal-assert-screenshot');\n  }",
+          "testId": "r3",
+          "title": [
+            "Passed test with screenshot, passed test with no screenshots",
+            "should assert and take a screenshot"
+          ],
+          "displayError": null,
+          "state": "passed",
+          "attempts": [
+            {
+              "state": "passed",
+              "error": null,
+              "timings": {
+                "lifecycle": 16,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 5, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 131, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 649, "afterFnDuration": 0 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:45.038Z",
+              "wallClockDuration": 805,
+              "failedFromHookId": null,
+              "videoTimestamp": 10,
+              "duration": 805,
+              "startedAt": "2023-09-19T07:24:45.038Z",
+              "screenshots": [
+                {
+                  "height": 1320,
+                  "width": 2000,
+                  "name": "internal-assert-screenshot",
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/d.spec.js/internal-assert-screenshot.png",
+                  "takenAt": "2023-09-19T07:24:45.207Z",
+                  "testAttemptIndex": 0,
+                  "testId": "r3",
+                  "screenshotId": "qgnjtnrezy"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "() => {\n    cy.wrap(true).should('be.true');\n  }",
+          "testId": "r4",
+          "title": [
+            "Passed test with screenshot, passed test with no screenshots",
+            "should assert that true is true"
+          ],
+          "displayError": null,
+          "state": "passed",
+          "attempts": [
+            {
+              "state": "passed",
+              "error": null,
+              "timings": {
+                "lifecycle": 12,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 5, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 51, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 2, "afterFnDuration": 0 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:45.863Z",
+              "wallClockDuration": 73,
+              "failedFromHookId": null,
+              "videoTimestamp": 835,
+              "duration": 73,
+              "startedAt": "2023-09-19T07:24:45.863Z",
+              "screenshots": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stats": {
+        "duration": 14,
+        "endedAt": "2023-09-19T07:24:47.917Z",
+        "startedAt": "2023-09-19T07:24:47.903Z",
+        "failures": 0,
+        "passes": 0,
+        "pending": 1,
+        "skipped": 0,
+        "suites": 1,
+        "tests": 1
+      },
+      "reporter": "spec",
+      "reporterStats": {
+        "suites": 1,
+        "tests": 1,
+        "passes": 0,
+        "pending": 1,
+        "failures": 0,
+        "start": "2023-09-19T07:24:47.906Z",
+        "end": "2023-09-19T07:24:47.919Z",
+        "duration": 13
+      },
+      "spec": {
+        "name": "c.spec.js",
+        "relative": "cypress/e2e/c.spec.js",
+        "absolute": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/c.spec.js",
+        "fileExtension": ".js",
+        "baseName": "",
+        "fileName": "c",
+        "relativeToCommonRoot": "",
+        "specFileExtension": "",
+        "specType": ""
+      },
+      "error": null,
+      "video": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/videos/c.spec.js.mp4",
+      "shouldUploadVideo": true,
+      "hooks": null,
+      "tests": [
+        {
+          "body": "",
+          "testId": "r0",
+          "title": ["Ignored test", "should be a skipped test"],
+          "displayError": null,
+          "state": "pending",
+          "attempts": [
+            {
+              "state": "pending",
+              "error": null,
+              "timings": null,
+              "wallClockStartedAt": "2023-09-19T07:24:51.932Z",
+              "wallClockDuration": 0,
+              "failedFromHookId": null,
+              "videoTimestamp": 0,
+              "duration": 0,
+              "startedAt": "2023-09-19T07:24:51.932Z",
+              "screenshots": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "stats": {
+        "duration": 17917,
+        "endedAt": "2023-09-19T07:25:10.762Z",
+        "startedAt": "2023-09-19T07:24:52.845Z",
+        "failures": 1,
+        "passes": 2,
+        "pending": 0,
+        "skipped": 0,
+        "suites": 1,
+        "tests": 3
+      },
+      "reporter": "spec",
+      "reporterStats": {
+        "suites": 1,
+        "tests": 3,
+        "passes": 2,
+        "pending": 0,
+        "failures": 1,
+        "start": "2023-09-19T07:24:52.849Z",
+        "end": "2023-09-19T07:25:10.766Z",
+        "duration": 17917
+      },
+      "spec": {
+        "name": "b.spec.js",
+        "relative": "cypress/e2e/b.spec.js",
+        "absolute": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+        "fileExtension": ".js",
+        "baseName": "",
+        "fileName": "b",
+        "relativeToCommonRoot": "",
+        "specFileExtension": "",
+        "specType": ""
+      },
+      "error": null,
+      "video": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/videos/b.spec.js.mp4",
+      "shouldUploadVideo": true,
+      "hooks": null,
+      "tests": [
+        {
+          "body": "() => {\n    cy.wrap(false).should('be.true');\n  }",
+          "testId": "r3",
+          "title": [
+            "Failing test with 2 attempts, passed test and flaky test with 2 attempts",
+            "should try 2 times"
+          ],
+          "displayError": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+          "state": "failed",
+          "attempts": [
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+                "codeFrame": {
+                  "line": 6,
+                  "column": 20,
+                  "originalFile": "cypress/e2e/b.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "frame": "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 20,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 8, "afterFnDuration": 1 },
+                  { "hookId": "h2", "fnDuration": 137, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 4003, "afterFnDuration": 208 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:52.857Z",
+              "wallClockDuration": 4381,
+              "failedFromHookId": null,
+              "videoTimestamp": 12,
+              "duration": 4381,
+              "startedAt": "2023-09-19T07:24:52.857Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should try 2 times (failed).png",
+                  "takenAt": "2023-09-19T07:24:57.034Z",
+                  "testAttemptIndex": 0,
+                  "testId": "r3",
+                  "screenshotId": "vuoyuivqnq"
+                }
+              ]
+            },
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+                "codeFrame": {
+                  "line": 6,
+                  "column": 20,
+                  "originalFile": "cypress/e2e/b.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "frame": "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 23,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 7, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 68, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 4002, "afterFnDuration": 212 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:24:57.304Z",
+              "wallClockDuration": 4324,
+              "failedFromHookId": null,
+              "videoTimestamp": 4459,
+              "duration": 4324,
+              "startedAt": "2023-09-19T07:24:57.304Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should try 2 times (failed) (attempt 2).png",
+                  "takenAt": "2023-09-19T07:25:01.419Z",
+                  "testAttemptIndex": 1,
+                  "testId": "r3",
+                  "screenshotId": "yoloffvwpv"
+                }
+              ]
+            },
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:6:19)",
+                "codeFrame": {
+                  "line": 6,
+                  "column": 20,
+                  "originalFile": "cypress/e2e/b.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "frame": "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 58,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 8, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 64, "afterFnDuration": 1 }
+                ],
+                "test": { "fnDuration": 4005, "afterFnDuration": 192 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:25:01.697Z",
+              "wallClockDuration": 4333,
+              "failedFromHookId": null,
+              "videoTimestamp": 8852,
+              "duration": 4333,
+              "startedAt": "2023-09-19T07:25:01.697Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should try 2 times (failed) (attempt 3).png",
+                  "takenAt": "2023-09-19T07:25:05.841Z",
+                  "testAttemptIndex": 2,
+                  "testId": "r3",
+                  "screenshotId": "knlehrttfc"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "body": "() => {\n    cy.wrap(true).should('be.true');\n  }",
+          "testId": "r4",
+          "title": [
+            "Failing test with 2 attempts, passed test and flaky test with 2 attempts",
+            "should assert that true is true"
+          ],
+          "displayError": null,
+          "state": "passed",
+          "attempts": [
+            {
+              "state": "passed",
+              "error": null,
+              "timings": {
+                "lifecycle": 16,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 6, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 76, "afterFnDuration": 0 }
+                ],
+                "test": { "fnDuration": 3, "afterFnDuration": 1 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:25:06.089Z",
+              "wallClockDuration": 105,
+              "failedFromHookId": null,
+              "videoTimestamp": 13244,
+              "duration": 105,
+              "startedAt": "2023-09-19T07:25:06.089Z",
+              "screenshots": []
+            }
+          ]
+        },
+        {
+          "body": "() => {\n    if (attempt === 0) {\n      attempt++;\n      cy.wrap(false).should('be.true'); // This will fail on the first attempt\n    } else {\n      cy.wrap(true).should('be.true'); // This will pass on the second attempt\n    }\n  }",
+          "testId": "r5",
+          "title": [
+            "Failing test with 2 attempts, passed test and flaky test with 2 attempts",
+            "should fail on the first attempt and pass on the second"
+          ],
+          "displayError": null,
+          "state": "passed",
+          "attempts": [
+            {
+              "state": "failed",
+              "error": {
+                "name": "AssertionError",
+                "message": "Timed out retrying after 4000ms: expected false to be true",
+                "stack": "AssertionError: Timed out retrying after 4000ms: expected false to be true\n    at Context.eval (webpack://cypress-13-demo/./cypress/e2e/b.spec.js:16:21)",
+                "codeFrame": {
+                  "line": 16,
+                  "column": 22,
+                  "originalFile": "cypress/e2e/b.spec.js",
+                  "relativeFile": "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "absoluteFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+                  "frame": "  14 |     if (attempt === 0) {\n  15 |       attempt++;\n> 16 |       cy.wrap(false).should('be.true');  // This will fail on the first attempt\n     |                      ^\n  17 |     } else {\n  18 |       cy.wrap(true).should('be.true');   // This will pass on the second attempt\n  19 |     }",
+                  "language": "js"
+                }
+              },
+              "timings": {
+                "lifecycle": 25,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 5, "afterFnDuration": 0 },
+                  { "hookId": "h2", "fnDuration": 58, "afterFnDuration": 1 }
+                ],
+                "test": { "fnDuration": 3994, "afterFnDuration": 243 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:25:06.228Z",
+              "wallClockDuration": 4331,
+              "failedFromHookId": null,
+              "videoTimestamp": 13383,
+              "duration": 4331,
+              "startedAt": "2023-09-19T07:25:06.228Z",
+              "screenshots": [
+                {
+                  "height": 1440,
+                  "width": 2560,
+                  "name": null,
+                  "path": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots/b.spec.js/Failing test with 2 attempts, passed test and flaky test with 2 attempts -- should fail on the first attempt and pass on the second (failed).png",
+                  "takenAt": "2023-09-19T07:25:10.326Z",
+                  "testAttemptIndex": 0,
+                  "testId": "r5",
+                  "screenshotId": "yahosnemvm"
+                }
+              ]
+            },
+            {
+              "state": "passed",
+              "error": null,
+              "timings": {
+                "lifecycle": 18,
+                "before each": [
+                  { "hookId": "h1", "fnDuration": 5, "afterFnDuration": 1 },
+                  { "hookId": "h2", "fnDuration": 90, "afterFnDuration": 1 }
+                ],
+                "test": { "fnDuration": 5, "afterFnDuration": 1 }
+              },
+              "wallClockStartedAt": "2023-09-19T07:25:10.595Z",
+              "wallClockDuration": 127,
+              "failedFromHookId": null,
+              "videoTimestamp": 17750,
+              "duration": 127,
+              "startedAt": "2023-09-19T07:25:10.595Z",
+              "screenshots": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "startedTestsAt": "2023-09-19T07:24:27.172Z",
+  "endedTestsAt": "2023-09-19T07:25:10.762Z",
+  "config": {
+    "additionalIgnorePattern": [],
+    "animationDistanceThreshold": 5,
+    "arch": "arm64",
+    "autoOpen": false,
+    "baseUrl": "https://todomvc.com/examples/vanillajs",
+    "blockHosts": null,
+    "browsers": [
+      {
+        "name": "chrome",
+        "family": "chromium",
+        "channel": "stable",
+        "displayName": "Chrome",
+        "version": "117.0.5938.88",
+        "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "minSupportedVersion": 64,
+        "majorVersion": "117"
+      },
+      {
+        "name": "firefox",
+        "family": "firefox",
+        "channel": "stable",
+        "displayName": "Firefox",
+        "version": "108.0",
+        "path": "/Applications/Firefox.app/Contents/MacOS/firefox",
+        "minSupportedVersion": 86,
+        "majorVersion": "108"
+      },
+      {
+        "name": "electron",
+        "channel": "stable",
+        "family": "chromium",
+        "displayName": "Electron",
+        "version": "114.0.5735.289",
+        "path": "",
+        "majorVersion": 114
+      }
+    ],
+    "chromeWebSecurity": true,
+    "clientCertificates": [],
+    "clientRoute": "/__/",
+    "configFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress.config.ts",
+    "cypressBinaryRoot": "/Users/agoldis/Library/Caches/Cypress/13.2.0/Cypress.app/Contents/Resources/app",
+    "cypressEnv": "production",
+    "defaultCommandTimeout": 4000,
+    "devServerPublicPathRoute": "/__cypress/src",
+    "downloadsFolder": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/downloads",
+    "env": {
+      "currents_temp_file": "/var/folders/x1/tpchd48d78x5bzxvz5ws5st00000gn/T/tmp-53823-X9P5Z3dZuI35",
+      "currents_debug_enabled": false
+    },
+    "excludeSpecPattern": "*.hot-update.js",
+    "execTimeout": 60000,
+    "experimentalCspAllowList": false,
+    "experimentalFetchPolyfill": false,
+    "experimentalInteractiveRunEvents": false,
+    "experimentalMemoryManagement": false,
+    "experimentalModifyObstructiveThirdPartyCode": false,
+    "experimentalOriginDependencies": false,
+    "experimentalRunAllSpecs": false,
+    "experimentalSingleTabRunMode": false,
+    "experimentalSkipDomainInjection": null,
+    "experimentalSourceRewriting": false,
+    "experimentalStudio": false,
+    "experimentalWebKitSupport": false,
+    "fileServerFolder": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo",
+    "fixturesFolder": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/fixtures",
+    "hideCommandLog": false,
+    "hideRunnerUi": false,
+    "hosts": null,
+    "includeShadowDom": false,
+    "isInteractive": true,
+    "isTextTerminal": true,
+    "keystrokeDelay": 0,
+    "modifyObstructiveCode": true,
+    "morgan": false,
+    "namespace": "__cypress",
+    "numTestsKeptInMemory": 0,
+    "pageLoadTimeout": 60000,
+    "platform": "darwin",
+    "port": null,
+    "projectId": null,
+    "projectName": "cypress-13-demo",
+    "projectRoot": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo",
+    "protocolEnabled": false,
+    "rawJson": {
+      "video": true,
+      "e2e": {
+        "baseUrl": "https://todomvc.com/examples/vanillajs",
+        "supportFile": "cypress/support/e2e.ts",
+        "specPattern": "cypress/*/**/*.spec.js",
+        "setupNodeEvents": "[Function setupNodeEvents]"
+      },
+      "component": {
+        "specPattern": ["pages/__tests__/*.spec.tsx"],
+        "setupNodeEvents": "[Function setupNodeEvents]",
+        "devServer": { "framework": "next", "bundler": "webpack" }
+      },
+      "baseUrl": "https://todomvc.com/examples/vanillajs",
+      "supportFile": "cypress/support/e2e.ts",
+      "specPattern": "cypress/*/**/*.spec.js",
+      "setupNodeEvents": "[Function setupNodeEvents]",
+      "envFile": {},
+      "projectRoot": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo",
+      "projectName": "cypress-13-demo",
+      "repoRoot": "/Users/agoldis/cypress-cloud"
+    },
+    "redirectionLimit": 20,
+    "repoRoot": "/Users/agoldis/cypress-cloud",
+    "report": true,
+    "reporter": "spec",
+    "reporterOptions": null,
+    "reporterRoute": "/__cypress/reporter",
+    "requestTimeout": 5000,
+    "resolved": {
+      "animationDistanceThreshold": { "value": 5, "from": "default" },
+      "arch": { "value": "arm64", "from": "default" },
+      "baseUrl": {
+        "value": "https://todomvc.com/examples/vanillajs",
+        "from": "config"
+      },
+      "blockHosts": { "value": null, "from": "default" },
+      "chromeWebSecurity": { "value": true, "from": "default" },
+      "clientCertificates": { "value": [], "from": "default" },
+      "defaultCommandTimeout": { "value": 4000, "from": "default" },
+      "downloadsFolder": { "value": "cypress/downloads", "from": "default" },
+      "env": {
+        "currents_temp_file": {
+          "value": "/var/folders/x1/tpchd48d78x5bzxvz5ws5st00000gn/T/tmp-53823-X9P5Z3dZuI35",
+          "from": "cli"
+        },
+        "currents_debug_enabled": { "value": false, "from": "cli" }
+      },
+      "execTimeout": { "value": 60000, "from": "default" },
+      "experimentalCspAllowList": { "value": false, "from": "default" },
+      "experimentalFetchPolyfill": { "value": false, "from": "default" },
+      "experimentalInteractiveRunEvents": { "value": false, "from": "default" },
+      "experimentalRunAllSpecs": { "value": false, "from": "default" },
+      "experimentalMemoryManagement": { "value": false, "from": "default" },
+      "experimentalModifyObstructiveThirdPartyCode": {
+        "value": false,
+        "from": "default"
+      },
+      "experimentalSkipDomainInjection": { "value": null, "from": "default" },
+      "experimentalOriginDependencies": { "value": false, "from": "default" },
+      "experimentalSourceRewriting": { "value": false, "from": "default" },
+      "experimentalSingleTabRunMode": { "value": false, "from": "default" },
+      "experimentalStudio": { "value": false, "from": "default" },
+      "experimentalWebKitSupport": { "value": false, "from": "default" },
+      "fileServerFolder": { "value": "", "from": "default" },
+      "fixturesFolder": { "value": "cypress/fixtures", "from": "default" },
+      "excludeSpecPattern": { "value": "*.hot-update.js", "from": "default" },
+      "includeShadowDom": { "value": false, "from": "default" },
+      "keystrokeDelay": { "value": 0, "from": "default" },
+      "modifyObstructiveCode": { "value": true, "from": "default" },
+      "numTestsKeptInMemory": { "value": 0, "from": "config" },
+      "platform": { "value": "darwin", "from": "default" },
+      "pageLoadTimeout": { "value": 60000, "from": "default" },
+      "port": { "value": null, "from": "default" },
+      "projectId": { "value": null, "from": "default" },
+      "redirectionLimit": { "value": 20, "from": "default" },
+      "reporter": { "value": "spec", "from": "default" },
+      "reporterOptions": { "value": null, "from": "default" },
+      "requestTimeout": { "value": 5000, "from": "default" },
+      "resolvedNodePath": { "value": null, "from": "default" },
+      "resolvedNodeVersion": { "value": null, "from": "default" },
+      "responseTimeout": { "value": 30000, "from": "default" },
+      "retries": {
+        "value": { "runMode": 0, "openMode": 0 },
+        "from": "default"
+      },
+      "screenshotOnRunFailure": { "value": true, "from": "default" },
+      "screenshotsFolder": {
+        "value": "cypress/screenshots",
+        "from": "default"
+      },
+      "slowTestThreshold": { "value": 10000, "from": "default" },
+      "scrollBehavior": { "value": "top", "from": "default" },
+      "supportFile": { "value": "cypress/support/e2e.ts", "from": "config" },
+      "supportFolder": { "value": false, "from": "default" },
+      "taskTimeout": { "value": 60000, "from": "default" },
+      "testIsolation": { "value": true, "from": "default" },
+      "trashAssetsBeforeRuns": { "value": true, "from": "default" },
+      "userAgent": { "value": null, "from": "default" },
+      "video": { "value": true, "from": "config" },
+      "videoCompression": { "value": false, "from": "default" },
+      "videosFolder": { "value": "cypress/videos", "from": "default" },
+      "viewportHeight": { "value": 660, "from": "default" },
+      "viewportWidth": { "value": 1000, "from": "default" },
+      "waitForAnimations": { "value": true, "from": "default" },
+      "watchForFileChanges": { "value": false, "from": "config" },
+      "specPattern": { "value": "cypress/*/**/*.spec.js", "from": "config" },
+      "browsers": {
+        "value": [
+          {
+            "name": "chrome",
+            "family": "chromium",
+            "channel": "stable",
+            "displayName": "Chrome",
+            "version": "117.0.5938.88",
+            "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            "minSupportedVersion": 64,
+            "majorVersion": "117"
+          },
+          {
+            "name": "firefox",
+            "family": "firefox",
+            "channel": "stable",
+            "displayName": "Firefox",
+            "version": "108.0",
+            "path": "/Applications/Firefox.app/Contents/MacOS/firefox",
+            "minSupportedVersion": 86,
+            "majorVersion": "108"
+          },
+          {
+            "name": "electron",
+            "channel": "stable",
+            "family": "chromium",
+            "displayName": "Electron",
+            "version": "114.0.5735.289",
+            "path": "",
+            "majorVersion": 114
+          }
+        ],
+        "from": "runtime"
+      },
+      "hosts": { "value": null, "from": "default" },
+      "isInteractive": { "value": true, "from": "default" }
+    },
+    "resolvedNodePath": "/Users/agoldis/.nvm/versions/node/v18.16.1/bin/node",
+    "resolvedNodeVersion": "18.16.1",
+    "responseTimeout": 30000,
+    "retries": { "runMode": 0, "openMode": 0 },
+    "screenshotOnRunFailure": true,
+    "screenshotsFolder": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/screenshots",
+    "scrollBehavior": "top",
+    "setupNodeEvents": "[Function setupNodeEvents]",
+    "slowTestThreshold": 10000,
+    "socketId": "kckk73d8pk",
+    "socketIoCookie": "__socket",
+    "socketIoRoute": "/__socket",
+    "specPattern": "cypress/*/**/*.spec.js",
+    "supportFile": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/support/e2e.ts",
+    "supportFolder": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/support",
+    "taskTimeout": 60000,
+    "testIsolation": true,
+    "trashAssetsBeforeRuns": true,
+    "userAgent": null,
+    "version": "13.2.0",
+    "video": true,
+    "videoCompression": false,
+    "videosFolder": "/Users/agoldis/cypress-cloud/e2e/cypress-13-demo/cypress/videos",
+    "viewportHeight": 660,
+    "viewportWidth": 1000,
+    "waitForAnimations": true,
+    "watchForFileChanges": false,
+    "testingType": "e2e"
+  },
+  "status": "finished",
+  "runUrl": "https://app.currents.dev/run/ba82347246afa4bb"
+}

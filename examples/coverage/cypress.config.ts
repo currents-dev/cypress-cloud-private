@@ -14,7 +14,7 @@ export default defineConfig({
       return await cloudPlugin(on, tempConfig);
     },
     baseUrl: "http://localhost:8888",
-    videoUploadOnPasses: false,
+    // videoUploadOnPasses: false,
     supportFile: "cypress/support/e2e.js",
     specPattern: "cypress/*/**/*.cy.js",
     env: {
@@ -23,7 +23,7 @@ export default defineConfig({
         exclude: ["cypress/**/*.*"],
       },
       // set custom coverage file for cypress-cloud
-      coverageFile: "./.nyc_output/out.json",
+      coverageFile: "./.nyc_output/outXX.json",
     },
   },
 });
