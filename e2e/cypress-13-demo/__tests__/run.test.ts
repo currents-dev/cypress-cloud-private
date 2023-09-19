@@ -12,10 +12,9 @@ const testSpecs = [
 ];
 let result: any = null;
 
-describe(`Cypress ${
-  // eslint-disable-next-line
-  process.env.CURRENTS_USE_CYPRESS_VERSION ?? 13
-} compatibility`, () => {
+// eslint-disable-next-line
+const cypressVersion = process.env.CURRENTS_USE_CYPRESS_VERSION ?? 13;
+describe(`Cypress ${cypressVersion} compatibility`, () => {
   jest.setTimeout(60 * 1000 * 5);
 
   beforeAll(async () => {
@@ -37,7 +36,7 @@ describe(`Cypress ${
     it("should have compatible config", async () => {
       expect(result.config).toMatchObject({
         video: config.video,
-        version: expect.stringContaining("13."),
+        version: expect.stringContaining(`${cypressVersion}`),
       });
     });
 
