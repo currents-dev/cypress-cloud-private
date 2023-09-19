@@ -946,7 +946,7 @@ export const config = {
 };
 
 export const all = {
-  totalDuration: 33459,
+  totalDuration: expect.any(Number),
   totalSuites: 5,
   totalPending: 1,
   totalFailed: 3,
@@ -954,11 +954,11 @@ export const all = {
   totalPassed: 4,
   totalTests: 8,
   runs: [specA, specE, specD, specC, specB],
-  startedTestsAt: "2023-09-14T03:08:15.698Z",
-  endedTestsAt: "2023-09-14T03:09:02.909Z",
+  startedTestsAt: expect.any(String),
+  endedTestsAt: expect.any(String),
   config,
   status: "finished",
-  runUrl: "https://app.currents.dev/run/7dc0426fc25d30fe",
+  runUrl: expect.any(String),
 };
 
 export const specs = {

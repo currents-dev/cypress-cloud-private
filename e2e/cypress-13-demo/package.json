@@ -8,7 +8,6 @@
     "runtest": "ts-node scripts/test.ts"
   },
   "dependencies": {
-    "colors": "^1.4.0",
     "cypress-cloud": "*"
   },
   "devDependencies": {
