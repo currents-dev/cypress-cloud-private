@@ -2,7 +2,7 @@ import Debug from "debug";
 import { getCapturedOutput } from "../capture";
 import { getCoverageFilePath } from "../coverage";
 import { CypressTypes } from "../cypress.types";
-import { dim, format } from "../log";
+import { dim } from "../log";
 import { createReportTaskSpec } from "../runner";
 import { ConfigState, ExecutionState } from "../state";
 import { SpecAfterResult } from "./specAfterResult";
@@ -91,13 +91,9 @@ export async function handleSpecAfter({
       executionState.setSpecCoverage(spec.relative, path);
     } else {
       executionState.addWarning(
-        format(
-          `Error reading coverage file "%s". Coverage recording will be skipped.\n${dim(
-            `Error: %s`
-          )}`,
-          path,
+        `Error reading coverage file "${path}". Coverage recording will be skipped.\n${dim(
           error
-        )
+        )}`
       );
     }
   }

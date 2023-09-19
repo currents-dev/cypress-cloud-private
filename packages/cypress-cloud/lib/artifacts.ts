@@ -2,7 +2,7 @@ import Debug from "debug";
 import { ScreenshotArtifact, ScreenshotUploadInstruction } from "../types";
 import { updateInstanceStdout } from "./api";
 import { safe } from "./lang";
-import { format } from "./log";
+import { dim } from "./log";
 import { ExecutionState } from "./state";
 import { uploadImage, uploadJson, uploadVideo } from "./upload";
 const debug = Debug("currents:artifacts");
@@ -24,8 +24,6 @@ export async function uploadArtifacts({
   coverageFilePath,
   coverageUploadUrl,
 }: UploadArtifacts) {
-  // title("blue", "Uploading  Results");
-
   debug("uploading artifacts: %o", {
     videoPath,
     videoUploadUrl,
@@ -38,7 +36,6 @@ export async function uploadArtifacts({
   const totalUploads =
     (videoPath ? 1 : 0) + screenshots.length + (coverageUploadUrl ? 1 : 0);
   if (totalUploads === 0) {
-    // info("Nothing to upload");
     return;
   }
 
@@ -49,7 +46,7 @@ export async function uploadArtifacts({
       (e) => {
         debug("failed uploading video %s. Error: %o", videoPath, e);
         executionState.addWarning(
-          format("Failed uploading video %s. Error: %s", videoPath, e)
+          `Failed uploading video ${videoPath}.\n${dim(e)}`
         );
       },
       () => debug("success uploading", videoPath)
@@ -69,7 +66,7 @@ export async function uploadArtifacts({
             screenshotUploadUrls
           );
           executionState.addWarning(
-            format("No upload URL for screenshot: %s", screenshot.path)
+            `No upload URL for screenshot ${screenshot.path}`
           );
           return Promise.resolve();
         }
@@ -82,11 +79,7 @@ export async function uploadArtifacts({
               e
             );
             executionState.addWarning(
-              format(
-                "Failed uploading screenshot %s. Error: %s",
-                screenshot.path,
-                e
-              )
+              `Failed uploading screenshot ${screenshot.path}.\n${dim(e)}`
             );
           },
           () => debug("success uploading", screenshot.path)
@@ -104,12 +97,9 @@ export async function uploadArtifacts({
           coverageFilePath,
           e
         );
+
         executionState.addWarning(
-          format(
-            "Failed uploading coverage file %s. Error: %s",
-            coverageFilePath,
-            e
-          )
+          `Failed uploading coverage file ${coverageFilePath}.\n${dim(e)}`
         );
       },
 
