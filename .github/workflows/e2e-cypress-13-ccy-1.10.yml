@@ -23,8 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Cypress 13.1.0
-        run: npm install cypress@13.1.0
+      - name: Install Cypress 13
+        run: npm install cypress@13
 
       - name: Build
         run: npm run build
@@ -38,4 +38,4 @@ jobs:
           CURRENTS_RECORD_KEY: ${{ secrets.CURRENTS_RECORD_KEY }}
 
         run: >
-          npm run jest
+          npx jest
