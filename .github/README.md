@@ -19,7 +19,7 @@ Integrate Cypress with alternative cloud services like Currents or Sorry Cypress
 ## Requirements
 
 - Cypress version 10+
-- NodeJS 14.7.0+
+- NodeJS 16+
 
 ## Setup
 
