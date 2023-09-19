@@ -12,6 +12,7 @@
     "cypress-cloud": "*"
   },
   "devDependencies": {
+    "@swc/jest": "^0.2.29",
     "@types/node": "^17.0.12",
     "cypress": "^13.1.0",
     "jest": "^29.7.0",
