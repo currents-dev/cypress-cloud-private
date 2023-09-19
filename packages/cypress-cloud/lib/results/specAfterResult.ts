@@ -23,7 +23,8 @@ export class SpecAfterResult {
   ) {
     return {
       error: specAfterResults.error,
-      hooks: "hooks" in specAfterResults ? specAfterResults.hooks : null,
+      // hooks: "hooks" in specAfterResults ? specAfterResults.hooks : null,
+      hooks: null,
       reporter: specAfterResults.reporter,
       reporterStats: specAfterResults.reporterStats,
       spec: SpecAfterResult.getSpecStandard(specAfterResults.spec),
@@ -92,28 +93,29 @@ export class SpecAfterResult {
       .otherwise(() => null);
   }
 
-  static getTestAttemptStandard(
+  private static getTestAttemptStandard(
     mochaAttempt: ExecutionStateTestAttempt | null,
     cypressAttempt: CypressTypes.EventPayload.SpecAfter.TestAttempt,
     specStartedAt: Date
   ): Standard.SpecAfter.TestAttempt {
     if (!mochaAttempt) {
+      const error = "error" in cypressAttempt ? cypressAttempt.error : null;
+      const duration =
+        "wallClockDuration" in cypressAttempt
+          ? cypressAttempt.wallClockDuration
+          : null;
       return {
         state: cypressAttempt.state,
-        error:
-          "error" in cypressAttempt
-            ? cypressAttempt.error
-            : SpecAfterResult.getDummyTestAttemptError(cypressAttempt.state),
+        error: error
+          ? error
+          : SpecAfterResult.getDummyTestAttemptError(cypressAttempt.state),
         timings: "timings" in cypressAttempt ? cypressAttempt.timings : null,
         wallClockStartedAt:
           "wallClockStartedAt" in cypressAttempt
             ? cypressAttempt.wallClockStartedAt
             : new Date().toISOString(),
 
-        wallClockDuration:
-          "wallClockDuration" in cypressAttempt
-            ? cypressAttempt.wallClockDuration
-            : 0,
+        wallClockDuration: duration ? duration : 0,
         failedFromHookId:
           "failedFromHookId" in cypressAttempt
             ? cypressAttempt.failedFromHookId
@@ -152,10 +154,11 @@ export class SpecAfterResult {
     };
   }
 
-  static getTestStandard(
+  private static getTestStandard(
     specAfterResults: CypressTypes.EventPayload.SpecAfter.Payload,
     attempts: ExecutionState["attemptsData"]
   ) {
+    debugger;
     const standardTestList: Standard.SpecAfter.Payload["tests"] = (
       specAfterResults.tests ?? []
     ).map((test, i) => {
@@ -236,7 +239,7 @@ export class SpecAfterResult {
     return result;
   }
 
-  static getScreenshotsStandard(
+  private static getScreenshotsStandard(
     specAfterScreenshots: CypressTypes.EventPayload.SpecAfter.Payload["screenshots"],
     screenshotEvents: ExecutionState["screenshotsData"]
   ): Standard.SpecAfter.Payload["screenshots"] {

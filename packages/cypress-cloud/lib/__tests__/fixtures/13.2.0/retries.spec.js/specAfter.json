@@ -1,0 +1,62 @@
+{
+  "error": null,
+  "reporter": "spec",
+  "reporterStats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-09-18T23:16:57.176Z",
+    "end": "2023-09-18T23:16:58.239Z",
+    "duration": 1063
+  },
+  "screenshots": [
+    {
+      "height": 1440,
+      "name": null,
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed).png",
+      "takenAt": "2023-09-18T23:16:57.528Z",
+      "width": 2560
+    },
+    {
+      "height": 1440,
+      "name": null,
+      "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
+      "takenAt": "2023-09-18T23:16:57.888Z",
+      "width": 2560
+    }
+  ],
+  "spec": {
+    "absolute": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/e2e/retries.spec.js",
+    "fileExtension": ".js",
+    "fileName": "retries",
+    "name": "retries.spec.js",
+    "relative": "cypress/e2e/retries.spec.js"
+  },
+  "stats": {
+    "duration": 1065,
+    "endedAt": "2023-09-18T23:16:58.237Z",
+    "failures": 0,
+    "passes": 1,
+    "pending": 0,
+    "skipped": 0,
+    "startedAt": "2023-09-18T23:16:57.172Z",
+    "suites": 1,
+    "tests": 1
+  },
+  "tests": [
+    {
+      "attempts": [
+        { "state": "failed" },
+        { "state": "failed" },
+        { "state": "passed" }
+      ],
+      "displayError": null,
+      "duration": 1027,
+      "state": "passed",
+      "title": ["Retries", "Runs a test with retries"]
+    }
+  ],
+  "video": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/videos/retries.spec.js.mp4"
+}

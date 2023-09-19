@@ -8,15 +8,16 @@ import { ModuleAPIResults } from "../results/moduleAPIResult";
 
 import Debug from "debug";
 import {
+  InstanceAPIPayload,
   createBatchedInstances,
   createInstance,
-  CreateInstancePayload,
-  InstanceResponseSpecDetails,
 } from "../api";
 
 import { runSpecFileSafe } from "../cypress";
+import { CypressTypes } from "../cypress.types";
 import { isCurrents } from "../env";
 import { divider, info, title, warn } from "../log";
+import { pubsub } from "../pubsub";
 import { ConfigState, ExecutionState } from "../state";
 import { createReportTask, reportTasks } from "./reportTask";
 
@@ -31,7 +32,7 @@ export async function runTillDone(
     machineId,
     platform,
     specs: allSpecs,
-  }: CreateInstancePayload & {
+  }: InstanceAPIPayload.CreateInstancePayload & {
     specs: SpecWithRelativeRoot[];
   },
   params: ValidatedCurrentsParameters
@@ -72,14 +73,14 @@ async function runBatch(
       runId: string;
       groupId: string;
       machineId: string;
-      platform: CreateInstancePayload["platform"];
+      platform: InstanceAPIPayload.CreateInstancePayload["platform"];
     };
     allSpecs: SpecWithRelativeRoot[];
     params: ValidatedCurrentsParameters;
   }
 ) {
   let batch = {
-    specs: [] as InstanceResponseSpecDetails[],
+    specs: [] as InstanceAPIPayload.InstanceResponseSpecDetails[],
     claimedInstances: 0,
     totalInstances: 0,
   };
@@ -152,20 +153,42 @@ async function runBatch(
 
   batch.specs.forEach((spec) => {
     executionState.setInstanceOutput(spec.instanceId, output);
-    const specRunResult = ModuleAPIResults.getRunResultPerSpec(
-      spec.spec,
-      batchedResult,
-      executionState
-    );
-    if (!specRunResult) {
+
+    const singleSpecResult = getSingleSpecRunResult(spec.spec, batchedResult);
+    if (!singleSpecResult) {
       return;
     }
-    executionState.setInstanceResult(spec.instanceId, specRunResult);
+
+    pubsub.emit("cypress:runResult", {
+      specRelative: spec.spec,
+      instanceId: spec.instanceId,
+      runResult: singleSpecResult,
+    });
   });
 
   resetCapture();
 
   return batch.specs;
+}
+
+function getSingleSpecRunResult(
+  specRelative: string,
+  batchedResult: CypressTypes.ModuleAPI.Result
+): CypressTypes.ModuleAPI.CompletedResult | undefined {
+  if (!ModuleAPIResults.isSuccessResult(batchedResult)) {
+    // TODO: return dummy result for missing spec results?
+    return;
+  }
+
+  const run = batchedResult.runs.find((r) => r.spec.relative === specRelative);
+  if (!run) {
+    return;
+  }
+
+  return {
+    ...batchedResult,
+    runs: [run],
+  };
 }
 
 function getSpecAbsolutePath(

@@ -4,7 +4,7 @@ import { getFailedFakeInstanceResult } from "../results/empty";
 import { SpecAfterToModuleAPIMapper } from "../results/mapResult";
 
 import Debug from "debug";
-import { Cypress12, CypressTypes, Standard } from "../cypress.types";
+import { CypressTypes, Standard } from "../cypress.types";
 import { ConfigState } from "./config";
 const debug = Debug("currents:state");
 
@@ -17,7 +17,7 @@ type InstanceExecutionState = {
   runResults?: Standard.ModuleAPI.CompletedResult;
   runResultsReportedAt?: Date;
   specAfter?: Date;
-  specAfterResults?: Cypress12.SpecAfter.Payload;
+  specAfterResults?: Standard.SpecAfter.Payload;
   reportStartedAt?: Date;
   coverageFilePath?: string;
 };

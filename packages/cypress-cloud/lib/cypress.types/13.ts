@@ -1,5 +1,5 @@
 import { Cypress12 } from "./12";
-import { TestState, TestingType } from "./shared";
+import { TestAttemptState, TestState, TestingType } from "./shared";
 
 export namespace Cypress13 {
   export namespace SpecAfter {
@@ -63,7 +63,7 @@ export namespace Cypress13 {
     }
 
     export interface TestAttempt {
-      state: TestState;
+      state: TestAttemptState;
     }
   }
 

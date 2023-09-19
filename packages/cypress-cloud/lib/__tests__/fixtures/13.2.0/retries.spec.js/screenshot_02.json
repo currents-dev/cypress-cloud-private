@@ -1,0 +1,16 @@
+{
+  "testAttemptIndex": 1,
+  "size": 374560,
+  "takenAt": "2023-09-18T23:16:57.888Z",
+  "dimensions": { "width": 2560, "height": 1440 },
+  "multipart": false,
+  "specName": "retries.spec.js",
+  "testFailure": true,
+  "path": "/Users/agoldis/cypress-cloud/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
+  "scaled": true,
+  "blackout": [],
+  "duration": 200,
+  "testId": "r3",
+  "height": 1440,
+  "width": 2560
+}

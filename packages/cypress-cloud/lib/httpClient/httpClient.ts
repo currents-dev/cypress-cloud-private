@@ -12,6 +12,7 @@ import prettyMilliseconds from "pretty-ms";
 import { getCurrentsConfig } from "../config";
 import { ValidationError } from "../errors";
 import { warn } from "../log";
+import { _currentsVersion, _cypressVersion, _runId } from "../state/global";
 import { getAPIBaseUrl, getDelay, isRetriableError } from "./config";
 import { maybePrintErrors } from "./printErrors";
 
@@ -83,21 +84,6 @@ export async function getClient() {
   });
   return _client;
 }
-
-let _runId: string | undefined = undefined;
-export const setRunId = (runId: string) => {
-  _runId = runId;
-};
-
-let _cypressVersion: string | undefined = undefined;
-export const setCypressVersion = (cypressVersion: string) => {
-  _cypressVersion = cypressVersion;
-};
-
-let _currentsVersion: string | undefined = undefined;
-export const setCurrentsVersion = (v: string) => {
-  _currentsVersion = v;
-};
 
 function onRetry(
   retryCount: number,

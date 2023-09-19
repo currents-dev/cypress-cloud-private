@@ -10,7 +10,7 @@ import {
 import { SpecAfterResult } from "./specAfterResult";
 
 export class ModuleAPIResults {
-  static getRunScreenshots(run: CypressTypes.ModuleAPI.Run) {
+  private static getRunScreenshots(run: CypressTypes.ModuleAPI.Run) {
     if ("screenshots" in run) {
       return run.screenshots;
     }
@@ -19,7 +19,7 @@ export class ModuleAPIResults {
     );
   }
 
-  static getTests(
+  private static getTests(
     run: CypressTypes.ModuleAPI.Run,
     executionState: ExecutionState
   ) {
@@ -142,39 +142,29 @@ export class ModuleAPIResults {
       ...run,
       tests: ModuleAPIResults.getTests(run, executionState),
       spec: SpecAfterResult.getSpecStandard(run.spec),
-      hooks: "hooks" in run ? run.hooks : [],
+      // hooks: "hooks" in run ? run.hooks : [],
+      hooks: null,
       shouldUploadVideo:
         "shouldUploadVideo" in run ? run.shouldUploadVideo : true,
     };
   }
 
   /**
-   * Convert batched multi-spec result into a single-spec result
    * Converts different Cypress versions to standard form
-   *
-   * @param spec - relative spec path
-   * @param batchResults - batched results in Module API format
-   * @returns Module API results for single spec in standard format
    */
-  static getRunResultPerSpec(
-    spec: string,
-    batchResults: CypressTypes.ModuleAPI.Result,
+  static getStandardResult(
+    result: CypressTypes.ModuleAPI.CompletedResult,
     executionState: ExecutionState
-  ): Standard.ModuleAPI.CompletedResult | undefined {
-    if (!ModuleAPIResults.isSuccessResult(batchResults)) {
-      // TODO: return dummy result for missing spec results?
-      return;
+  ): Standard.ModuleAPI.CompletedResult {
+    if (result.runs.length !== 1) {
+      throw new Error("Expected single run");
     }
-
-    const run = batchResults.runs.find((r) => r.spec.relative === spec);
-    if (!run) {
-      return;
-    }
+    const run = result.runs[0];
     const stats = SpecAfterResult.getStatsStandard(run.stats);
 
     // standardize the result for singe spec
     return {
-      ...batchResults,
+      ...result,
       runs: [ModuleAPIResults.getRun(run, executionState)],
       totalSuites: 1,
       totalDuration: stats.wallClockDuration,
