@@ -37,10 +37,13 @@ export async function resolveCurrentsParams(
 
   const testingType = params.testingType ?? "e2e";
 
-  const batchSize =
-    testingType === "e2e"
-      ? configFromFile.e2e.batchSize
-      : configFromFile.component.batchSize;
+  let batchSize = params.batchSize;
+  if (!batchSize) {
+    batchSize =
+      testingType === "e2e"
+        ? configFromFile.e2e.batchSize
+        : configFromFile.component.batchSize;
+  }
 
   // batchSize and cloudServiceUrl defaults are in getCurrentsConfig()
   return {

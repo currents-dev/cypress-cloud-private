@@ -1,4 +1,4 @@
-import { Event, pubsub } from "../pubsub";
+import { Event, getPubSub } from "../pubsub";
 
 interface ExecutionState {
   cancellationReason: string | null;
@@ -12,7 +12,7 @@ export const setCancellationReason = (reason: string) => {
     return;
   }
   state.cancellationReason = reason;
-  pubsub.emit(Event.RUN_CANCELLED, reason);
+  getPubSub().emit(Event.RUN_CANCELLED, reason);
 };
 
 export const getCancellationReason = () => state.cancellationReason;

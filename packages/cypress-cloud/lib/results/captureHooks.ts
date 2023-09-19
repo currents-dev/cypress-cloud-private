@@ -1,10 +1,13 @@
+import Debug from "debug";
+import { getCapturedOutput } from "../capture";
+import { getCoverageFilePath } from "../coverage";
 import { CypressTypes } from "../cypress.types";
-import {
-  getScreenshotCount,
-  getTestHookSpecName,
-  writeDataToFile,
-} from "../debug-data";
-import { ExecutionState } from "../state";
+import { dim, format } from "../log";
+import { createReportTaskSpec } from "../runner";
+import { ConfigState, ExecutionState } from "../state";
+import { SpecAfterResult } from "./specAfterResult";
+
+const debug = Debug("currents:events");
 
 export function handleScreenshotEvent(
   screenshot: CypressTypes.EventPayload.ScreenshotAfter,
@@ -17,12 +20,12 @@ export function handleScreenshotEvent(
     width: screenshot.dimensions.width,
   };
   // % save results
-  writeDataToFile(
-    JSON.stringify(data),
-    `${screenshot.specName}`,
-    `screenshot`,
-    `_0${getScreenshotCount(screenshot.specName)}`
-  );
+  //   writeDataToFile(
+  //     JSON.stringify(data),
+  //     `${screenshot.specName}`,
+  //     `screenshot`,
+  //     `_0${getScreenshotCount(screenshot.specName)}`
+  //   );
 
   executionState.addScreenshotsData(data);
 }
@@ -42,12 +45,61 @@ export function handleTestAfter(
   const test: CypressTypes.EventPayload.TestAfter = JSON.parse(testAttempt);
 
   // % save results
-  writeDataToFile(
-    testAttempt,
-    getTestHookSpecName(test),
-    "testAfter",
-    `_0${test.currentRetry}`
-  );
+  //   writeDataToFile(
+  //     testAttempt,
+  //     getTestHookSpecName(test),
+  //     "testAfter",
+  //     `_0${test.currentRetry}`
+  //   );
 
   executionState.addAttemptsData(test);
+}
+
+export async function handleSpecAfter({
+  executionState,
+  configState,
+  spec,
+  results,
+  experimentalCoverageRecording = false,
+}: {
+  executionState: ExecutionState;
+  configState: ConfigState;
+  spec: CypressTypes.EventPayload.SpecAfter.Spec;
+  results: CypressTypes.EventPayload.SpecAfter.Payload;
+  experimentalCoverageRecording: boolean;
+}) {
+  // % save results
+  //   const s = getSpecShortName(spec.relative);
+  //   writeDataToFile(JSON.stringify(results), s, "specAfter");
+
+  debug("after:spec %s %o", spec.relative, results);
+  executionState.setSpecAfter(
+    spec.relative,
+    SpecAfterResult.getSpecAfterStandard(results, executionState)
+  );
+  executionState.setSpecOutput(spec.relative, getCapturedOutput());
+  const config = configState.getConfig();
+
+  if (experimentalCoverageRecording) {
+    const config = configState.getConfig();
+
+    const { path, error } = await getCoverageFilePath(
+      config?.env?.coverageFile
+    );
+
+    if (!error) {
+      executionState.setSpecCoverage(spec.relative, path);
+    } else {
+      executionState.addWarning(
+        format(
+          `Error reading coverage file "%s". Coverage recording will be skipped.\n${dim(
+            `Error: %s`
+          )}`,
+          path,
+          error
+        )
+      );
+    }
+  }
+  createReportTaskSpec(configState, executionState, spec.relative);
 }

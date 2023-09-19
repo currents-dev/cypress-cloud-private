@@ -8,7 +8,6 @@ import {
 import { uploadArtifacts, uploadStdoutSafe } from "../artifacts";
 import { setCancellationReason } from "../cancellation";
 import { getInitialOutput } from "../capture";
-import { getSpecShortName, writeDataToFile } from "../debug-data";
 import { isCurrents } from "../env";
 import { ConfigState, ExecutionState } from "../state";
 import { getInstanceResultPayload, getInstanceTestsPayload } from "./api";
@@ -31,14 +30,14 @@ export async function getReportResultsTask(
   const instanceTests = getInstanceTestsPayload(run, configState);
 
   // % save results
-  writeDataToFile(
-    JSON.stringify({
-      tests: instanceTests,
-      results: instanceResults,
-    }),
-    getSpecShortName(results.runs[0].spec.relative),
-    "apiCall"
-  );
+  // writeDataToFile(
+  //   JSON.stringify({
+  //     tests: instanceTests,
+  //     results: instanceResults,
+  //   }),
+  //   getSpecShortName(results.runs[0].spec.relative),
+  //   "apiCall"
+  // );
 
   const { videoUploadUrl, screenshotUploadUrls, coverageUploadUrl, cloud } =
     await reportResults(instanceId, instanceTests, instanceResults);

@@ -38,3 +38,4 @@ export const gray = chalk.gray;
 export const white = chalk.white;
 export const magenta = chalk.magenta;
 export const bold = chalk.bold;
+export const dim = chalk.dim;

@@ -4,7 +4,7 @@ import http from "http";
 import HttpTerminator from "lil-http-terminator";
 import { match, P } from "ts-pattern";
 import * as WebSocket from "ws";
-import { pubsub } from "../pubsub";
+import { getPubSub } from "../pubsub";
 
 const debug = Debug("currents:ws");
 
@@ -48,7 +48,7 @@ export const startWSS = () => {
       wss.on("connection", function connection(ws) {
         ws.on("message", function incoming(event) {
           const message = JSON.parse(event.toString());
-          pubsub.emit(message.type, message.payload);
+          getPubSub().emit(message.type, message.payload);
         });
       });
     })

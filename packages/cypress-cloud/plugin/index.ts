@@ -3,6 +3,7 @@
 import fs from "fs";
 import { format } from "util";
 import WebSocket from "ws";
+import { Event } from "../lib/pubsub";
 
 export async function cloudPlugin(
   on: Cypress.PluginEvents,
@@ -16,7 +17,7 @@ export async function cloudPlugin(
 
   on("after:screenshot", (details) => {
     sendToWS({
-      type: "after:screenshot",
+      type: Event.AFTER_SCREENSHOT,
       payload: details,
     });
   });
@@ -41,14 +42,14 @@ export async function cloudPlugin(
   on("task", {
     "currents:test:after:run": (test) => {
       sendToWS({
-        type: "test:after:run",
+        type: Event.TEST_AFTER_RUN,
         payload: test,
       });
       return null;
     },
     "currents:test:before:run": (test) => {
       sendToWS({
-        type: "test:before:run",
+        type: Event.TEST_BEFORE_RUN,
         payload: test,
       });
       return null;
@@ -69,7 +70,7 @@ export async function cloudPlugin(
 
   on("after:spec", (spec, results) => {
     sendToWS({
-      type: "after:spec",
+      type: Event.AFTER_SPEC,
       payload: {
         spec,
         results,

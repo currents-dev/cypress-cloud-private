@@ -4,7 +4,7 @@ import path from "path";
 import * as api from "../api";
 import { initCapture } from "../capture";
 import { listenToEvents, stopListeningToEvents } from "../listener";
-import { pubsub } from "../pubsub";
+import { Event, getPubSub } from "../pubsub";
 import { getReportResultsTask } from "../results/uploadResults";
 import { ConfigState, ExecutionState } from "../state";
 
@@ -114,12 +114,12 @@ describe("Data Flow", () => {
               executionState.addScreenshotsData(screenshot)
             );
 
-            pubsub.emit("cypress:runResult", {
+            getPubSub().emit(Event.RUN_RESULT, {
               specRelative,
               instanceId,
               runResult,
             });
-            pubsub.emit("after:spec", {
+            getPubSub().emit(Event.AFTER_SPEC, {
               spec: {
                 relative: specRelative,
               },

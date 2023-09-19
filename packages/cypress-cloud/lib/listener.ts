@@ -1,43 +1,28 @@
-import chalk from "chalk";
 import Debug from "debug";
 
-import { getCapturedOutput } from "./capture";
-import { getCoverageFilePath } from "./coverage";
 import { CypressTypes } from "./cypress.types";
-import { getSpecShortName, writeDataToFile } from "./debug-data";
-import { format } from "./log";
-import { pubsub } from "./pubsub";
+import { Event, allEvents, getPubSub } from "./pubsub";
 import {
   handleScreenshotEvent,
+  handleSpecAfter,
   handleTestAfter,
   handleTestBefore,
 } from "./results/captureHooks";
 import { ModuleAPIResults } from "./results/moduleAPIResult";
-import { SpecAfterResult } from "./results/specAfterResult";
-import { createReportTaskSpec } from "./runner";
 import { ConfigState, ExecutionState } from "./state";
 
 const debug = Debug("currents:events");
 
-const events = [
-  "cypress:runResult",
-  "test:after:run",
-  "test:before:run",
-  "after:screenshot",
-  "after:spec",
-];
 export function stopListeningToEvents() {
-  events.forEach((e) => pubsub.removeAllListeners(e));
+  allEvents.forEach((e) => getPubSub().removeAllListeners(e));
 }
 export function listenToEvents(
   configState: ConfigState,
   executionState: ExecutionState,
-  experimentalCoverageRecording?: boolean
+  experimentalCoverageRecording: boolean = false
 ) {
-  const config = configState.getConfig();
-
-  pubsub.on(
-    "cypress:runResult",
+  getPubSub().on(
+    Event.RUN_RESULT,
     ({
       instanceId,
       runResult,
@@ -48,12 +33,12 @@ export function listenToEvents(
       runResult: CypressTypes.ModuleAPI.CompletedResult;
     }) => {
       // % save results
-      writeDataToFile(
-        JSON.stringify(runResult),
-        getSpecShortName(specRelative),
-        "runResult"
-      );
-      debug("cypress:runResult %s: %o", instanceId, runResult);
+      // writeDataToFile(
+      //   JSON.stringify(runResult),
+      //   getSpecShortName(specRelative),
+      //   "runResult"
+      // );
+      debug("%s %s: %o", Event.RUN_RESULT, instanceId, runResult);
       executionState.setInstanceResult(
         instanceId,
         ModuleAPIResults.getStandardResult(runResult, executionState)
@@ -61,26 +46,26 @@ export function listenToEvents(
     }
   );
 
-  pubsub.on("test:after:run", (payload: string) => {
-    debug("test:after:run %o", payload);
+  getPubSub().on(Event.TEST_AFTER_RUN, (payload: string) => {
+    debug("%s %o", Event.TEST_AFTER_RUN, payload);
     handleTestAfter(payload, executionState);
   });
 
-  pubsub.on("test:before:run", (payload: string) => {
-    debug("test:before:run %o", payload);
+  getPubSub().on(Event.TEST_BEFORE_RUN, (payload: string) => {
+    debug("%s %o", Event.TEST_BEFORE_RUN, payload);
     handleTestBefore(payload, executionState);
   });
 
-  pubsub.on(
-    "after:screenshot",
+  getPubSub().on(
+    Event.AFTER_SCREENSHOT,
     (screenshot: CypressTypes.EventPayload.ScreenshotAfter) => {
-      debug("after:screenshot %o", screenshot);
+      debug("%s %o", Event.AFTER_SCREENSHOT, screenshot);
       handleScreenshotEvent(screenshot, executionState);
     }
   );
 
-  pubsub.on(
-    "after:spec",
+  getPubSub().on(
+    Event.AFTER_SPEC,
     async ({
       spec,
       results,
@@ -88,37 +73,13 @@ export function listenToEvents(
       spec: CypressTypes.EventPayload.SpecAfter.Spec;
       results: CypressTypes.EventPayload.SpecAfter.Payload;
     }) => {
-      // % save results
-      const s = getSpecShortName(spec.relative);
-      writeDataToFile(JSON.stringify(results), s, "specAfter");
-
-      debug("after:spec %s %o", spec.relative, results);
-      executionState.setSpecAfter(
-        spec.relative,
-        SpecAfterResult.getSpecAfterStandard(results, executionState)
-      );
-      executionState.setSpecOutput(spec.relative, getCapturedOutput());
-
-      if (experimentalCoverageRecording) {
-        const { path, error } = await getCoverageFilePath(
-          config?.env?.coverageFile
-        );
-
-        if (!error) {
-          executionState.setSpecCoverage(spec.relative, path);
-        } else {
-          executionState.addWarning(
-            format(
-              `Error reading coverage file "%s". Coverage recording will be skipped.\n${chalk.dim(
-                `Error: %s`
-              )}`,
-              path,
-              error
-            )
-          );
-        }
-      }
-      createReportTaskSpec(configState, executionState, spec.relative);
+      await handleSpecAfter({
+        spec,
+        results,
+        executionState,
+        configState,
+        experimentalCoverageRecording,
+      });
     }
   );
 }

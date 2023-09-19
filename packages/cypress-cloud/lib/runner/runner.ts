@@ -17,7 +17,7 @@ import { runSpecFileSafe } from "../cypress";
 import { CypressTypes } from "../cypress.types";
 import { isCurrents } from "../env";
 import { divider, info, title, warn } from "../log";
-import { pubsub } from "../pubsub";
+import { Event, getPubSub } from "../pubsub";
 import { ConfigState, ExecutionState } from "../state";
 import { createReportTask, reportTasks } from "./reportTask";
 
@@ -159,7 +159,7 @@ async function runBatch(
       return;
     }
 
-    pubsub.emit("cypress:runResult", {
+    getPubSub().emit(Event.RUN_RESULT, {
       specRelative: spec.spec,
       instanceId: spec.instanceId,
       runResult: singleSpecResult,
@@ -187,6 +187,7 @@ function getSingleSpecRunResult(
 
   return {
     ...batchedResult,
+    // @ts-ignore
     runs: [run],
   };
 }

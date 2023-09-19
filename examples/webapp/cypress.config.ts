@@ -12,7 +12,6 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/*.js",
     setupNodeEvents(on, config) {
       require("@cypress/grep/src/plugin")(config);
-      require("cypress-terminal-report/src/installLogsPrinter")(on);
       return currents(on, config);
     },
   },
