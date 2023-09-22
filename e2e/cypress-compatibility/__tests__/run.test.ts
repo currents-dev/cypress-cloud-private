@@ -1,7 +1,7 @@
 import { expect, jest } from "@jest/globals";
 import { fetchRun, runCypressCloud } from "../../utils/utils";
 
-import { data } from "../data-references/ccy-1.9.4-cy-12-crapi";
+import { data as apiReference } from "../data-references/ccy-1.9.4-cy-12-crapi";
 import { all, config, specs } from "../data-references/ccy-1.9.4-cy-12-cycl";
 const testSpecs = [
   "a.spec.js",
@@ -73,7 +73,7 @@ describe(`Cypress ${cypressVersion} compatibility`, () => {
 
     it(`should have compatible API results`, async () => {
       expect(apiRun.status).toBe("OK");
-      expect(apiRun.data).toMatchObject(data);
+      expect(apiRun.data).toMatchObject(apiReference);
     });
   });
 });
