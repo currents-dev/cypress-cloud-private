@@ -12,7 +12,9 @@ const testSpecs = [
 ];
 let result: any = null;
 
-describe("Cypress 13 compatible output", () => {
+// eslint-disable-next-line
+const cypressVersion = process.env.CURRENTS_USE_CYPRESS_VERSION ?? 13;
+describe(`Cypress ${cypressVersion} compatibility`, () => {
   jest.setTimeout(60 * 1000 * 5);
 
   beforeAll(async () => {
@@ -31,10 +33,15 @@ describe("Cypress 13 compatible output", () => {
       });
     });
 
+    it("should have the right cypress version", async () => {
+      expect(result.config).toMatchObject({
+        version: expect.stringContaining(`${cypressVersion}`),
+      });
+    });
+
     it("should have compatible config", async () => {
       expect(result.config).toMatchObject({
         video: config.video,
-        version: expect.stringContaining("13."),
       });
     });
 
@@ -48,7 +55,7 @@ describe("Cypress 13 compatible output", () => {
         // @ts-ignore
         const actual = result.runs.find(
           // @ts-ignore
-          (run) => run.spec.name === spec
+          (run) => run.spec.name.match(`${spec}`)
         );
 
         // @ts-ignore

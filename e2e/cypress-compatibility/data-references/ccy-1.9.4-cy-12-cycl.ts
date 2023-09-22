@@ -50,7 +50,7 @@ export const specA = {
     fileExtension: ".js",
     fileName: "a",
     name: "a.spec.js",
-    relative: "cypress/e2e/a.spec.js",
+    relative: expect.stringMatching("cypress/e2e/a.spec.js"),
     absolute: expect.stringMatching("a.spec.js"),
   },
   error: null,
@@ -77,7 +77,7 @@ export const specA = {
               line: 5,
               column: 20,
               originalFile: "cypress/e2e/a.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/a.spec.js"),
               absoluteFile: expect.stringContaining("a.spec.js"),
               frame:
                 "  3 |     retries: 2,\n  4 |   }, () => {\n> 5 |     cy.wrap(false).should('be.true');\n    |                    ^\n  6 |   });\n  7 | });\n  8 | ",
@@ -115,7 +115,7 @@ export const specA = {
               line: 5,
               column: 20,
               originalFile: "cypress/e2e/a.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/a.spec.js"),
               absoluteFile: expect.stringContaining("a.spec.js"),
               frame:
                 "  3 |     retries: 2,\n  4 |   }, () => {\n> 5 |     cy.wrap(false).should('be.true');\n    |                    ^\n  6 |   });\n  7 | });\n  8 | ",
@@ -153,7 +153,7 @@ export const specA = {
               line: 5,
               column: 20,
               originalFile: "cypress/e2e/a.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/a.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/a.spec.js"),
               absoluteFile: expect.stringContaining("a.spec.js"),
               frame:
                 "  3 |     retries: 2,\n  4 |   }, () => {\n> 5 |     cy.wrap(false).should('be.true');\n    |                    ^\n  6 |   });\n  7 | });\n  8 | ",
@@ -241,7 +241,7 @@ export const specE = {
               line: 3,
               column: 11,
               originalFile: "cypress/e2e/e.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/e.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/e.spec.js"),
               absoluteFile: expect.stringContaining("e.spec.js"),
               frame:
                 "  1 | describe('Should throw an error', () => {\n  2 |   it('Should throw an error', () => {\n> 3 |     throw new Error(\"test error\")\n    |           ^\n  4 |   });\n  5 | });\n  6 | ",
@@ -403,7 +403,7 @@ export const specC = {
     fileExtension: ".js",
     fileName: "c",
     name: "c.spec.js",
-    relative: "cypress/e2e/c.spec.js",
+    relative: expect.stringMatching("cypress/e2e/c.spec.js"),
     absolute: expect.stringMatching("c.spec.js"),
   },
   error: null,
@@ -467,7 +467,7 @@ export const specB = {
     fileExtension: ".js",
     fileName: "b",
     name: "b.spec.js",
-    relative: "cypress/e2e/b.spec.js",
+    relative: expect.stringMatching("cypress/e2e/b.spec.js"),
     absolute: expect.stringMatching("b.spec.js"),
   },
   error: null,
@@ -497,7 +497,7 @@ export const specB = {
               line: 6,
               column: 20,
               originalFile: "cypress/e2e/b.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/b.spec.js"),
               absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
@@ -530,7 +530,7 @@ export const specB = {
               line: 6,
               column: 20,
               originalFile: "cypress/e2e/b.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/b.spec.js"),
               absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
@@ -563,7 +563,7 @@ export const specB = {
               line: 6,
               column: 20,
               originalFile: "cypress/e2e/b.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/b.spec.js"),
               absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  4 |     retries: 2,\n  5 |   }, () => {\n> 6 |     cy.wrap(false).should('be.true');\n    |                    ^\n  7 |   });\n  8 | \n  9 |   it('should assert that true is true', () => {",
@@ -632,7 +632,7 @@ export const specB = {
               line: 16,
               column: 22,
               originalFile: "cypress/e2e/b.spec.js",
-              relativeFile: "e2e/cypress-13-demo/cypress/e2e/b.spec.js",
+              relativeFile: expect.stringMatching("cypress/e2e/b.spec.js"),
               absoluteFile: expect.stringContaining("b.spec.js"),
               frame:
                 "  14 |     if (attempt === 0) {\n  15 |       attempt++;\n> 16 |       cy.wrap(false).should('be.true');  // This will fail on the first attempt\n     |                      ^\n  17 |     } else {\n  18 |       cy.wrap(true).should('be.true');   // This will pass on the second attempt\n  19 |     }",
