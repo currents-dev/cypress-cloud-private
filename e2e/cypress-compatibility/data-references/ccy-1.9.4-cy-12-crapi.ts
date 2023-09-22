@@ -195,7 +195,7 @@ export const data = {
       machineId: expect.any(String),
       worker: null,
       results: {
-        videoUrl: null,
+        videoUrl: expect.any(String),
         stats: {
           duration: expect.any(Number),
           endedAt: expect.any(String),
@@ -224,7 +224,7 @@ export const data = {
       machineId: expect.any(String),
       worker: null,
       results: {
-        videoUrl: null,
+        videoUrl: expect.any(String),
         stats: {
           duration: expect.any(Number),
           endedAt: expect.any(String),
