@@ -20,3 +20,13 @@ export const safe =
       return ifFaled(e);
     }
   };
+
+export const sortObjectKeys = <T extends Record<string, any>>(obj: T) => {
+  return Object.keys(obj)
+    .sort()
+    .reduce((acc, key) => {
+      // @ts-ignore
+      acc[key] = obj[key];
+      return acc;
+    }, {} as T);
+};

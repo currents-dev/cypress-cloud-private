@@ -30,15 +30,6 @@ const specs = [
   "retries.spec.js",
 ] as const;
 
-// const specs = [
-//   "crash.spec.js",
-//   "passing.spec.js",
-//   "failed.spec.js",
-//   "pending.spec.js",
-//   "skipped.spec.js",
-//   "retries.spec.js",
-// ];
-
 // /fixtures/12.17.4/fails.spec.js/12.17.4_fails.spec.js_specAfter
 function getFixtureBase(cypressVersion: string, spec: string) {
   return path.resolve(__dirname, `./fixtures/${cypressVersion}/${spec}`);

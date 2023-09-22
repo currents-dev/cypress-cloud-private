@@ -1,9 +1,11 @@
 import { expect } from "@jest/globals";
+import { sortObjectKeys } from "../../lang";
 import { getBootstrapArgs } from "../serializer";
 
 const defaultEnv = {
   currents_temp_file: "tempFilePath",
   currents_debug_enabled: false,
+  currents_marker: true,
 };
 
 const defaultArgs = {
@@ -29,10 +31,12 @@ describe("getBootstrapArgs", () => {
     expect(result).toEqual(
       expect.arrayContaining([
         "--env",
-        JSON.stringify(defaultEnv),
+        JSON.stringify(sortObjectKeys(defaultEnv)),
         "--spec",
         expect.any(String),
         "--e2e",
+        "--record",
+        false,
       ])
     );
   });
@@ -76,10 +80,12 @@ describe("getBootstrapArgs", () => {
     expect(result).toEqual(
       expect.arrayContaining([
         "--env",
-        JSON.stringify({
-          ...env,
-          ...defaultEnv,
-        }),
+        JSON.stringify(
+          sortObjectKeys({
+            ...env,
+            ...defaultEnv,
+          })
+        ),
         "--spec",
         expect.any(String),
         "--e2e",
@@ -104,7 +110,7 @@ describe("getBootstrapArgs", () => {
         "--reporter-options",
         JSON.stringify(reporterOptions),
         "--env",
-        JSON.stringify(defaultEnv),
+        JSON.stringify(sortObjectKeys(defaultEnv)),
         "--spec",
         expect.any(String),
         "--e2e",
@@ -129,7 +135,7 @@ describe("getBootstrapArgs", () => {
         "--config",
         JSON.stringify(config),
         "--env",
-        JSON.stringify(defaultEnv),
+        JSON.stringify(sortObjectKeys(defaultEnv)),
         "--spec",
         expect.any(String),
         "--e2e",

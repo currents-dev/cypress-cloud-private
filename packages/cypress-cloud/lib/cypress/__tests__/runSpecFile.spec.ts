@@ -51,6 +51,8 @@ describe("runSpecFile", () => {
     expect(run).toHaveBeenCalledWith(
       expect.objectContaining({
         env: {
+          currents_marker: true,
+          currents_debug_enabled: false,
           currents_ws: expect.any(Number),
           foo: "bar",
         },

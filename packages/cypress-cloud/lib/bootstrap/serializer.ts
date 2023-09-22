@@ -6,6 +6,7 @@ import Debug from "debug";
 import _ from "lodash";
 import { getCypressRunAPIParams } from "../config";
 import { shouldEnablePluginDebug } from "../debug";
+import { sortObjectKeys } from "../lang";
 import { getRandomString } from "../nano";
 const debug = Debug("currents:boot");
 
@@ -30,6 +31,10 @@ export function getBootstrapArgs({
     .tap((opts) => {
       debug("cypress bootstrap params: %o", opts);
     })
+    .thru((opts) => ({
+      ...opts,
+      env: sortObjectKeys(opts.env ?? {}),
+    }))
     .thru(serializeOptions)
     .tap((opts) => {
       debug("cypress bootstrap serialized params: %o", opts);

@@ -2,7 +2,7 @@ import { expect } from "@jest/globals";
 
 export const tests = {
   config: {
-    videoUploadOnPasses: false,
+    videoUploadOnPasses: true,
   },
   tests: [
     {

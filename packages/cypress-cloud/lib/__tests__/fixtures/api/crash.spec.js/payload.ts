@@ -1,7 +1,7 @@
 import { expect } from "@jest/globals";
 export const tests = {
   config: {
-    videoUploadOnPasses: false,
+    videoUploadOnPasses: true,
   },
   tests: [{ body: "redacted", title: ["Unknown"], clientId: "r0" }],
   hooks: null,
