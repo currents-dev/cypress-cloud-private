@@ -5,6 +5,7 @@ import {
 import Debug from "debug";
 import _ from "lodash";
 import { getCypressRunAPIParams } from "../config";
+import { shouldEnablePluginDebug } from "../debug";
 import { getRandomString } from "../nano";
 const debug = Debug("currents:boot");
 
@@ -21,10 +22,9 @@ export function getBootstrapArgs({
       // merge the env with the currents specific env variables
       env: {
         ...(opts.env ?? {}),
+        currents_marker: true,
         currents_temp_file: tempFilePath,
-        currents_debug_enabled: process.env.DEBUG?.includes("currents:")
-          ? true
-          : false,
+        currents_debug_enabled: shouldEnablePluginDebug(params.cloudDebug),
       },
     }))
     .tap((opts) => {

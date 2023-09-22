@@ -33,7 +33,8 @@ export const getInstanceTestsPayload = (
     // @ts-ignore
     config: {
       ...config.getConfig(),
-      videoUploadOnPasses: config.getConfig()?.videoUploadOnPasses ?? false,
+      // @ts-ignore
+      videoUploadOnPasses: config.getConfig()?.videoUploadOnPasses ?? true,
     },
     tests: (runResult.tests ?? []).map(
       StandardResultsToAPIResults.getTestForSetTests

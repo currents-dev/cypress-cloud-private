@@ -5,6 +5,7 @@ import {
 } from "cypress-cloud/types";
 import Debug from "debug";
 import _ from "lodash";
+import { shouldEnablePluginDebug } from "../debug";
 import { ValidationError } from "../errors";
 import { error } from "../log";
 import { getCurrentsConfig } from "./config";
@@ -190,6 +191,10 @@ export function getCypressRunAPIParams(
       Boolean
     ),
     record: false,
+    env: {
+      ...params.env,
+      currents_debug_enabled: shouldEnablePluginDebug(params.cloudDebug),
+    },
   };
 }
 

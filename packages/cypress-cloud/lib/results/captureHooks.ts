@@ -19,6 +19,7 @@ export function handleScreenshotEvent(
     height: screenshot.dimensions.height,
     width: screenshot.dimensions.width,
   };
+
   // % save results
   //   writeDataToFile(
   //     JSON.stringify(data),

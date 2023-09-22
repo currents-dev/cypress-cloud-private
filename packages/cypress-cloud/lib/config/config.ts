@@ -3,7 +3,7 @@ import Debug from "debug";
 import { P, match } from "ts-pattern";
 import { DetectedBrowser, ValidatedCurrentsParameters } from "../../types";
 import { bootCypress } from "../bootstrap";
-import { info, warn } from "../log";
+import { dim, info, warn } from "../log";
 import { getConfigFilePath } from "./path";
 
 const debug = Debug("currents:config");
@@ -54,7 +54,7 @@ export async function getCurrentsConfig(
 
     if (config) {
       debug("loaded currents config from '%s'\n%O", filepath, config);
-      info("Using config file: '%s'", filepath);
+      info(`Using config file: ${dim(filepath)}`);
       _config = {
         ...defaultConfig,
         ...config,

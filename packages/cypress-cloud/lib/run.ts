@@ -18,14 +18,14 @@ import { isCurrents } from "./env";
 import { getGitInfo } from "./git";
 import { setAPIBaseUrl } from "./httpClient";
 import { listenToEvents } from "./listener";
-import { bold, divider, info, spacer, title } from "./log";
+import { bold, dim, divider, info, spacer, title } from "./log";
 import { getPlatform } from "./platform";
 import { summarizeExecution, summaryTable } from "./results";
 import { reportTasks, runTillDoneOrCancelled } from "./runner";
 import { shutdown } from "./shutdown";
 import { getSpecFiles } from "./specMatcher";
 import { ConfigState, ExecutionState } from "./state";
-import { setRunId } from "./state/global";
+import { _currentsVersion, _cypressVersion, setRunId } from "./state/global";
 import { printWarnings } from "./warnings";
 import { startWSS } from "./ws";
 
@@ -83,6 +83,8 @@ export async function run(params: CurrentsRunParameters = {}) {
     browser: validatedParams.browser,
   });
 
+  info(`Cypress-cloud version: ${dim(_currentsVersion)}`);
+  info(`Cypress version: ${dim(_cypressVersion)}`);
   info("Discovered %d spec files", specs.length);
   info(
     `Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${

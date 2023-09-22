@@ -51,6 +51,7 @@ export async function runSpecFile(
     env: {
       ...runAPIOptions.env,
       currents_ws: getWSSPort(),
+      currents_marker: true,
     },
     spec,
   };
