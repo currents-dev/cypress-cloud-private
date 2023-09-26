@@ -9,6 +9,7 @@ import { MochaError } from "../cypress.types/shared";
 import { warn } from "../log";
 import { getRandomString } from "../nano";
 import { ExecutionState, ExecutionStateTestAttempt } from "../state";
+import { _cypressVersion } from "../state/global";
 
 export class SpecAfterResult {
   /**
@@ -104,6 +105,7 @@ export class SpecAfterResult {
         "wallClockDuration" in cypressAttempt
           ? cypressAttempt.wallClockDuration
           : null;
+
       return {
         state: cypressAttempt.state,
         error: error
@@ -112,9 +114,12 @@ export class SpecAfterResult {
         timings: "timings" in cypressAttempt ? cypressAttempt.timings : null,
         wallClockStartedAt:
           "wallClockStartedAt" in cypressAttempt
-            ? cypressAttempt.wallClockStartedAt
+            ? cypressAttempt.wallClockStartedAt ?? new Date().toISOString()
             : new Date().toISOString(),
-
+        startedAt:
+          "startedAt" in cypressAttempt
+            ? cypressAttempt.startedAt ?? new Date().toISOString()
+            : new Date().toISOString(),
         wallClockDuration: duration ? duration : 0,
         failedFromHookId:
           "failedFromHookId" in cypressAttempt
@@ -122,7 +127,7 @@ export class SpecAfterResult {
             : null,
         videoTimestamp:
           "videoTimestamp" in cypressAttempt
-            ? cypressAttempt.videoTimestamp
+            ? cypressAttempt.videoTimestamp ?? 0
             : 0,
       };
     }
@@ -140,6 +145,7 @@ export class SpecAfterResult {
       wallClockStartedAt:
         mochaAttempt.wallClockStartedAt ?? new Date().toISOString(),
       wallClockDuration: mochaAttempt.duration ?? -1,
+      startedAt: mochaAttempt.wallClockStartedAt,
       failedFromHookId:
         "failedFromHookId" in cypressAttempt
           ? cypressAttempt.failedFromHookId
@@ -195,7 +201,12 @@ export class SpecAfterResult {
     spec: CypressTypes.EventPayload.SpecAfter.Spec
   ): Standard.SpecAfter.Spec {
     return {
-      name: spec.name,
+      name:
+        parseFloat(_cypressVersion!) >= 13
+          ? spec.name
+          : "baseName" in spec
+          ? spec.baseName
+          : "",
       relative: spec.relative,
       absolute: spec.absolute,
       fileExtension: spec.fileExtension,

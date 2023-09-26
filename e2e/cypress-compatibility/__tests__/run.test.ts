@@ -1,5 +1,5 @@
 import { expect, jest } from "@jest/globals";
-import { fetchRun, runCypressCloud } from "../../utils/utils";
+import { fetchRun, runCypressCloud } from "../utils/utils";
 
 import { data as apiReference } from "../data-references/ccy-1.9.4-cy-12-crapi";
 import { all, config, specs } from "../data-references/ccy-1.9.4-cy-12-cycl";
