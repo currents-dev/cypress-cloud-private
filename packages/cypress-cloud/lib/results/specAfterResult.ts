@@ -114,11 +114,11 @@ export class SpecAfterResult {
         timings: "timings" in cypressAttempt ? cypressAttempt.timings : null,
         wallClockStartedAt:
           "wallClockStartedAt" in cypressAttempt
-            ? (cypressAttempt.wallClockStartedAt ?? new Date().toISOString())
+            ? cypressAttempt.wallClockStartedAt ?? new Date().toISOString()
             : new Date().toISOString(),
         startedAt:
           "startedAt" in cypressAttempt
-            ? (cypressAttempt.startedAt ?? new Date().toISOString())
+            ? cypressAttempt.startedAt ?? new Date().toISOString()
             : new Date().toISOString(),
         wallClockDuration: duration ? duration : 0,
         failedFromHookId:
@@ -127,7 +127,7 @@ export class SpecAfterResult {
             : null,
         videoTimestamp:
           "videoTimestamp" in cypressAttempt
-            ? (cypressAttempt.videoTimestamp ?? 0)
+            ? cypressAttempt.videoTimestamp ?? 0
             : 0,
       };
     }
@@ -154,9 +154,9 @@ export class SpecAfterResult {
         "videoTimestamp" in cypressAttempt
           ? cypressAttempt.videoTimestamp
           : SpecAfterResult.getAttemptVideoTimestamp(
-            parseISO(mochaAttempt.wallClockStartedAt).getTime(),
-            specStartedAt.getTime()
-          ),
+              parseISO(mochaAttempt.wallClockStartedAt).getTime(),
+              specStartedAt.getTime()
+            ),
     };
   }
 
@@ -201,7 +201,12 @@ export class SpecAfterResult {
     spec: CypressTypes.EventPayload.SpecAfter.Spec
   ): Standard.SpecAfter.Spec {
     return {
-      name: parseFloat(_cypressVersion!) >= 13 ? spec.name : ("baseName" in spec ? spec.baseName : ""),
+      name:
+        parseFloat(_cypressVersion!) >= 13
+          ? spec.name
+          : "baseName" in spec
+          ? spec.baseName
+          : "",
       relative: spec.relative,
       absolute: spec.absolute,
       fileExtension: spec.fileExtension,
