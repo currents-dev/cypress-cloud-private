@@ -112,7 +112,7 @@ ${getLegalNotice()}
     )
     .addOption(
       new Option(
-        `--cloud-debug [true | string]`,
+        `--cloud-debug [true | ${Object.values(DebugMode).join(" | ")}]`,
         `Enable debug mode for cypress-cloud, this will print out logs for troubleshooting. Values: [true | ${Object.values(
           DebugMode
         ).join(
@@ -121,6 +121,18 @@ ${getLegalNotice()}
       )
         .argParser(parseCommaSeparatedList)
         .default(undefined)
+    )
+    .addOption(
+      new Option(
+        `--cloud-debug-remote`,
+        `Enable sending debug logs to remote storage for troubleshooting`
+      ).default(undefined)
+    )
+    .addOption(
+      new Option(
+        `--cloud-debug-silent`,
+        `Supress printing debug logs to stdout, this is useful when you want to send the logs to remote servers for troubleshooting without printing them to stdout`
+      ).default(undefined)
     )
     .addOption(
       new Option(

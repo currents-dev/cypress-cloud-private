@@ -170,6 +170,16 @@ export type CurrentsRunParameters = StrippedCypressModuleAPIOptions & {
   cloudDebug?: DebugMode | true | string | string[];
 
   /**
+   * Enable sending the debug logs to remote servers for troubleshooting.
+   */
+  cloudDebugRemote?: true;
+
+  /**
+   * Supress printing debug logs to stdout, this is useful when you want to send the logs to remote servers for troubleshooting without printing them to stdout.
+   */
+  cloudDebugSilent?: true;
+
+  /**
    * Whether to record coverage results. If set, must be a boolean, defaults to false.
    */
   experimentalCoverageRecording?: boolean;

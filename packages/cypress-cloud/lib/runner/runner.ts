@@ -6,12 +6,12 @@ import { getCapturedOutput, resetCapture } from "../capture";
 
 import { ModuleAPIResults } from "../results/moduleAPIResult";
 
-import Debug from "debug";
 import {
   InstanceAPIPayload,
   createBatchedInstances,
   createInstance,
 } from "../api";
+import { Debug } from "../remote-debug";
 
 import { runSpecFileSafe } from "../cypress";
 import { CypressTypes } from "../cypress.types";

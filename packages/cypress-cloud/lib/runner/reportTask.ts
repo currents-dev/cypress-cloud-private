@@ -1,6 +1,6 @@
 import { InstanceId } from "cypress-cloud/types";
-import Debug from "debug";
 import { error } from "../log";
+import { Debug } from "../remote-debug";
 import { getReportResultsTask } from "../results";
 import { ConfigState, ExecutionState } from "../state";
 

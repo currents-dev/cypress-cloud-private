@@ -3,11 +3,11 @@ import {
   CypressRunParameters,
   ValidatedCurrentsParameters,
 } from "cypress-cloud/types";
-import Debug from "debug";
 import _ from "lodash";
 import { shouldEnablePluginDebug } from "../debug";
 import { ValidationError } from "../errors";
 import { error } from "../log";
+import { Debug } from "../remote-debug";
 import { getCurrentsConfig } from "./config";
 const debug = Debug("currents:validateParams");
 
@@ -171,6 +171,8 @@ export function getCypressRunAPIParams(
     ..._.pickBy(
       _.omit(params, [
         "cloudDebug",
+        "cloudDebugRemote",
+        "cloudDebugSilent",
         "cloudConfigFile",
         "autoCancelAfterFailures",
         "cloudServiceUrl",

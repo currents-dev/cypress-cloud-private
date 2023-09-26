@@ -1,8 +1,8 @@
-import Debug from "debug";
 import { getCapturedOutput } from "../capture";
 import { getCoverageFilePath } from "../coverage";
 import { CypressTypes } from "../cypress.types";
 import { dim } from "../log";
+import { Debug } from "../remote-debug";
 import { createReportTaskSpec } from "../runner";
 import { ConfigState, ExecutionState } from "../state";
 import { SpecAfterResult } from "./specAfterResult";

@@ -44,6 +44,12 @@ export async function cloudPlugin(
   }
 
   on("after:screenshot", (details) => {
+    // debug("after:screenshot event received");
+    sendToWS({
+      type: Event.DEBUG,
+      payload: "after:screenshot event received",
+    });
+
     sendToWS({
       type: Event.AFTER_SCREENSHOT,
       payload: details,
@@ -52,7 +58,11 @@ export async function cloudPlugin(
 
   on("task", {
     "currents:test:after:run": (test) => {
-      debug("currents:test:after:run task received %o", test);
+      // debug("currents:test:after:run task received");
+      sendToWS({
+        type: Event.DEBUG,
+        payload: "currents:test:after:run task received",
+      });
       sendToWS({
         type: Event.TEST_AFTER_RUN,
         payload: test,
@@ -60,7 +70,11 @@ export async function cloudPlugin(
       return null;
     },
     "currents:test:before:run": (test) => {
-      debug("currents:test:before:run task received %o", test);
+      // debug("currents:test:before:run task received");
+      sendToWS({
+        type: Event.DEBUG,
+        payload: "currents:test:before:run task received",
+      });
       sendToWS({
         type: Event.TEST_BEFORE_RUN,
         payload: test,
@@ -70,12 +84,20 @@ export async function cloudPlugin(
   });
 
   on("before:spec", (spec) => {
-    debug("before:spec task received %o", spec);
-    sendToWS({ type: "before:spec", payload: { spec } });
+    // debug("before:spec event received");
+    sendToWS({
+      type: Event.DEBUG,
+      payload: "before:spec event received",
+    });
+    sendToWS({ type: Event.BEFORE_SPEC, payload: { spec } });
   });
 
   on("after:spec", (spec, results) => {
-    debug("after:spec task received %o", spec);
+    // debug("after:spec event received");
+    sendToWS({
+      type: Event.DEBUG,
+      payload: "after:spec event received",
+    });
     sendToWS({
       type: Event.AFTER_SPEC,
       payload: {

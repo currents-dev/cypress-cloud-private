@@ -104,20 +104,22 @@ export const updateInstanceStdout = (instanceId: string, stdout: string) =>
   });
 
 export const getDebugUrl = ({
-  recordKey,
   runId,
+  type,
 }: {
-  recordKey: string;
   runId: string;
+  type: string;
 }) => {
   return makeRequest<
     { uploadUrl: string; readUrl: string },
-    { recordKey: string; runId: string }
+    { runId: string; type: string }
   >({
+    // comment for local
+    baseURL: "https://cy.currents.dev",
     method: "POST",
     url: `runs/debug-logs`,
     data: {
-      recordKey,
+      type,
       runId,
     },
   }).then((result) => result.data);

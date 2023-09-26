@@ -1,6 +1,5 @@
 import "./init";
 
-import Debug from "debug";
 import { getLegalNotice } from "../legal";
 import { CurrentsRunParameters } from "../types";
 import { createRun } from "./api";
@@ -20,7 +19,7 @@ import { setAPIBaseUrl } from "./httpClient";
 import { listenToEvents } from "./listener";
 import { bold, dim, divider, info, spacer, title } from "./log";
 import { getPlatform } from "./platform";
-import { finalizeDebug } from "./remote-debug";
+import { Debug, finalizeDebug, initRemoteDebug } from "./remote-debug";
 import { summarizeExecution, summaryTable } from "./results";
 import { reportTasks, runTillDoneOrCancelled } from "./runner";
 import { shutdown } from "./shutdown";
@@ -33,10 +32,11 @@ import { startWSS } from "./ws";
 const debug = Debug("currents:run");
 
 export async function run(params: CurrentsRunParameters = {}) {
+  activateDebug(params.cloudDebug);
+  await initRemoteDebug(params, "core");
+
   const executionState = new ExecutionState();
   const configState = new ConfigState();
-
-  activateDebug(params.cloudDebug);
 
   debug("run params %o", params);
   params = preprocessParams(params);
@@ -155,7 +155,7 @@ export async function run(params: CurrentsRunParameters = {}) {
 
   spacer();
 
-  await finalizeDebug({ recordKey, runId: run.runId });
+  await finalizeDebug({ runId: run.runId });
   return {
     ..._summary,
     runUrl: run.runUrl,

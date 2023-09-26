@@ -2,12 +2,12 @@ import {
   CurrentsRunParameters,
   CypressRunParameters,
 } from "cypress-cloud/types";
-import Debug from "debug";
 import _ from "lodash";
 import { getCypressRunAPIParams } from "../config";
 import { shouldEnablePluginDebug } from "../debug";
 import { sortObjectKeys } from "../lang";
 import { getRandomString } from "../nano";
+import { Debug } from "../remote-debug";
 const debug = Debug("currents:boot");
 
 export function getBootstrapArgs({

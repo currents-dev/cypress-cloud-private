@@ -1,4 +1,3 @@
-import Debug from "debug";
 import {
   InstanceAPIPayload,
   reportInstanceResultsMerged,
@@ -9,6 +8,7 @@ import { uploadArtifacts, uploadStdoutSafe } from "../artifacts";
 import { setCancellationReason } from "../cancellation";
 import { getInitialOutput } from "../capture";
 import { isCurrents } from "../env";
+import { Debug } from "../remote-debug";
 import { ConfigState, ExecutionState } from "../state";
 import { getInstanceResultPayload, getInstanceTestsPayload } from "./api";
 

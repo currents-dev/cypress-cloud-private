@@ -1,5 +1,6 @@
-import Debug from "debug";
+import { Debug } from "../remote-debug";
 
+import _ from "lodash";
 import { P, match } from "ts-pattern";
 import { DetectedBrowser, ValidatedCurrentsParameters } from "../../types";
 import { bootCypress } from "../bootstrap";
@@ -93,7 +94,7 @@ export async function getMergedConfig(params: ValidatedCurrentsParameters) {
       })
     | undefined = await bootCypress(params);
 
-  debug("cypress resolvedConfig: %O", cypressResolvedConfig);
+  debug("cypress resolvedConfig: %o", cypressResolvedConfig);
 
   // @ts-ignore
   const rawE2EPattern = cypressResolvedConfig.rawJson?.e2e?.specPattern;
@@ -116,6 +117,6 @@ export async function getMergedConfig(params: ValidatedCurrentsParameters) {
     resolved: cypressResolvedConfig,
     experimentalCoverageRecording: params.experimentalCoverageRecording,
   };
-  debug("merged config: %O", result);
+  debug("merged config: %o", _.omit(result, ["resolved"]));
   return result;
 }

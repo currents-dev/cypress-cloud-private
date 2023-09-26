@@ -27,8 +27,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import Debug from "debug";
 import path from "path";
+import { Debug } from "../remote-debug";
 
 import commonPathPrefix from "common-path-prefix";
 import globby, { GlobbyOptions } from "globby";

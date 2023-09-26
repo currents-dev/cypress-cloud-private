@@ -67,6 +67,7 @@ export async function getClient() {
     };
 
     debug("network request: %o", {
+      baseUrl: req.baseURL,
       ..._.pick(req, "method", "url", "headers"),
       data: Buffer.isBuffer(req.data) ? "buffer" : redactData(req.data),
     });
@@ -105,6 +106,12 @@ function redactData(data: Record<string, any>) {
   return _.mapValues(data, (value, key) => {
     if (key === "stdout") {
       return "<redacted stdout>";
+    }
+    if (key === "platform") {
+      return {
+        ...value,
+        osCpus: "<omitted osCpus>",
+      };
     }
     return value;
   });

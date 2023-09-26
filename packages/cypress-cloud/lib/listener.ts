@@ -1,4 +1,4 @@
-import Debug from "debug";
+import { Debug } from "./remote-debug";
 
 import { CypressTypes } from "./cypress.types";
 import { Event, allEvents, getPubSub } from "./pubsub";
@@ -21,6 +21,9 @@ export function listenToEvents(
   executionState: ExecutionState,
   experimentalCoverageRecording: boolean = false
 ) {
+  getPubSub().on(Event.DEBUG, (payload: string) => {
+    debug("%s: %o", Event.DEBUG, payload);
+  });
   getPubSub().on(
     Event.RUN_RESULT,
     ({
@@ -38,7 +41,13 @@ export function listenToEvents(
       //   getSpecShortName(specRelative),
       //   "runResult"
       // );
-      debug("%s %s: %o", Event.RUN_RESULT, instanceId, runResult);
+      debug(
+        "%s %s %s: %o",
+        Event.RUN_RESULT,
+        instanceId,
+        specRelative,
+        runResult
+      );
       executionState.setInstanceResult(
         instanceId,
         ModuleAPIResults.getStandardResult(runResult, executionState)

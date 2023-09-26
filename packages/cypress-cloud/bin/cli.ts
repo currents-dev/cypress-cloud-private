@@ -7,7 +7,7 @@ import { run } from "../lib/run";
 import { parseCLIOptions, program } from "./lib";
 
 async function main() {
-  return run(parseCLIOptions());
+  return run(await parseCLIOptions());
 }
 
 main()

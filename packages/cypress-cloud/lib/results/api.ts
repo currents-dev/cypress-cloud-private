@@ -1,5 +1,5 @@
-import Debug from "debug";
 import { InstanceAPIPayload } from "../api";
+import { Debug } from "../remote-debug";
 
 import { Standard } from "../cypress.types";
 import { getRandomString } from "../nano";

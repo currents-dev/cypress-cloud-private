@@ -1,18 +1,20 @@
 import { CurrentsRunParameters, TestingType } from "cypress-cloud/types";
-import Debug from "debug";
 import { activateDebug } from "../../lib/debug";
+import { Debug, initRemoteDebug } from "../../lib/remote-debug";
 import { sanitizeAndConvertNestedArgs } from "./parser";
 import { program } from "./program";
 
 const debug = Debug("currents:cli");
 
-export function parseCLIOptions(
+export async function parseCLIOptions(
   _program: typeof program = program,
   ...args: Parameters<typeof program.parse>
 ) {
   const opts = _program.parse(...args).opts();
 
+  await initRemoteDebug(opts, "cli");
   activateDebug(opts.cloudDebug);
+
   debug("parsed CLI flags %o", opts);
 
   const { e2e, component } = opts;

@@ -1,6 +1,6 @@
-import Debug from "debug";
 import { DetectedBrowser, Platform } from "../../types";
 import { warn } from "../log";
+import { Debug } from "../remote-debug";
 
 const debug = Debug("currents:browser");
 

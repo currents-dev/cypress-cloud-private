@@ -1,5 +1,5 @@
-import Debug from "debug";
 import http from "http";
+import { Debug } from "../remote-debug";
 // @ts-ignore
 import HttpTerminator from "lil-http-terminator";
 import { match, P } from "ts-pattern";

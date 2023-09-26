@@ -1,7 +1,7 @@
-import Debug from "debug";
 import getos from "getos";
-import { cpus, freemem, platform, release, totalmem } from "os";
+import { freemem, platform, release, totalmem } from "os";
 import { promisify } from "util";
+import { Debug } from "../remote-debug";
 
 const debug = Debug("currents:platform");
 
@@ -26,7 +26,7 @@ export const getPlatformInfo = async () => {
   const result = {
     osName: platform(),
     osVersion,
-    osCpus: cpus(),
+    osCpus: [],
     osMemory: {
       free: freemem(),
       total: totalmem(),

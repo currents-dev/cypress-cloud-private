@@ -1,4 +1,4 @@
-import Debug from "debug";
+import { Debug } from "./remote-debug";
 const debug = Debug("currents:capture");
 
 const _write = process.stdout.write;

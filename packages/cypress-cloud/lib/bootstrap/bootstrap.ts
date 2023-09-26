@@ -1,11 +1,11 @@
 import { getBinPath } from "cy2";
 import { ValidatedCurrentsParameters } from "cypress-cloud/types";
-import Debug from "debug";
 import execa, { ExecaError } from "execa";
 import fs from "fs";
 import { ValidationError } from "../errors";
 import { createTempFile } from "../fs";
 import { bold, info } from "../log";
+import { Debug } from "../remote-debug";
 import { require } from "../require";
 import { getBootstrapArgs } from "./serializer";
 
