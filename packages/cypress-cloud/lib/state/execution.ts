@@ -3,9 +3,10 @@ import { error, warn } from "../log";
 import { getFailedFakeInstanceResult } from "../results/empty";
 import { SpecAfterToModuleAPIMapper } from "../results/mapResult";
 
-import Debug from "debug";
 import { CypressTypes, Standard } from "../cypress.types";
+import { Debug } from "../remote-debug";
 import { ConfigState } from "./config";
+
 const debug = Debug("currents:state");
 
 type InstanceExecutionState = {
@@ -69,7 +70,7 @@ export class ExecutionState {
     instanceId: InstanceId;
     spec: string;
   }) {
-    debug('Init execution state for "%s"', spec);
+    debug("Init execution state for %o", spec);
     this.state[instanceId] = {
       instanceId,
       spec,
@@ -80,7 +81,7 @@ export class ExecutionState {
   public setSpecBefore(spec: string) {
     const i = this.getSpec(spec);
     if (!i) {
-      warn('Cannot find execution state for spec "%s"', spec);
+      warn("Cannot find execution state for spec %o", spec);
       return;
     }
 
@@ -90,7 +91,7 @@ export class ExecutionState {
   public setSpecCoverage(spec: string, coverageFilePath: string) {
     const i = this.getSpec(spec);
     if (!i) {
-      warn('Cannot find execution state for spec "%s"', spec);
+      warn("Cannot find execution state for spec %o", spec);
       return;
     }
 
@@ -101,7 +102,7 @@ export class ExecutionState {
   public setSpecAfter(spec: string, results: Standard.SpecAfter.Payload) {
     const i = this.getSpec(spec);
     if (!i) {
-      warn('Cannot find execution state for spec "%s"', spec);
+      warn("Cannot find execution state for spec %o", spec);
       return;
     }
     i.specAfter = new Date();
@@ -111,7 +112,7 @@ export class ExecutionState {
   public setSpecOutput(spec: string, output: string) {
     const i = this.getSpec(spec);
     if (!i) {
-      warn('Cannot find execution state for spec "%s"', spec);
+      warn("Cannot find execution state for spec %o", spec);
       return;
     }
     this.setInstanceOutput(i.instanceId, output);
@@ -120,11 +121,11 @@ export class ExecutionState {
   public setInstanceOutput(instanceId: string, output: string) {
     const i = this.state[instanceId];
     if (!i) {
-      warn('Cannot find execution state for instance "%s"', instanceId);
+      warn("Cannot find execution state for instance %o", instanceId);
       return;
     }
     if (i.output) {
-      debug('Instance "%s" already has output', instanceId);
+      debug("Instance %o already has output", instanceId);
       return;
     }
     i.output = output;
@@ -136,7 +137,7 @@ export class ExecutionState {
   ) {
     const i = this.state[instanceId];
     if (!i) {
-      warn('Cannot find execution state for instance "%s"', instanceId);
+      warn("Cannot find execution state for instance %o", instanceId);
       return;
     }
     i.runResults = {
@@ -153,7 +154,7 @@ export class ExecutionState {
     const i = this.getInstance(instanceId);
 
     if (!i) {
-      error('Cannot find execution state for instance "%s"', instanceId);
+      error("Cannot find execution state for instance %o", instanceId);
 
       return getFailedFakeInstanceResult(configState, {
         specs: ["unknown"],
@@ -163,18 +164,18 @@ export class ExecutionState {
 
     // use spec:after results - it can become available before run results
     if (i.specAfterResults) {
-      debug('Using spec:after results for %s "%s"', instanceId, i.spec);
+      debug("Using spec:after results for %o %o", instanceId, i.spec);
       return SpecAfterToModuleAPIMapper.backfillException(
         SpecAfterToModuleAPIMapper.convert(i.specAfterResults, configState)
       );
     }
 
     if (i.runResults) {
-      debug('Using runResults for %s "%s"', instanceId, i.spec);
+      debug("Using runResults for %o %o", instanceId, i.spec);
       return SpecAfterToModuleAPIMapper.backfillException(i.runResults);
     }
 
-    debug('No results detected for "%s"', i.spec);
+    debug("No results detected for %o", i.spec);
     return getFailedFakeInstanceResult(configState, {
       specs: [i.spec],
       error: `No results detected for the spec file. That usually happens because of cypress crash. See the console output for details.`,

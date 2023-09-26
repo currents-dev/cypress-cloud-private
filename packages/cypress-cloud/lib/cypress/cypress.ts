@@ -3,12 +3,12 @@ import {
   CurrentsRunParameters,
   ValidatedCurrentsParameters,
 } from "cypress-cloud/types";
-import Debug from "debug";
 import _ from "lodash";
 import { getCypressRunAPIParams } from "../config";
 import { CypressTypes } from "../cypress.types";
 import { safe } from "../lang";
 import { warn } from "../log";
+import { Debug } from "../remote-debug";
 import { ModuleAPIResults } from "../results/moduleAPIResult";
 import { getWSSPort } from "../ws";
 

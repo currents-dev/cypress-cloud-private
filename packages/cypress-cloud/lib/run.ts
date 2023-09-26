@@ -20,6 +20,7 @@ import { setAPIBaseUrl } from "./httpClient";
 import { listenToEvents } from "./listener";
 import { bold, dim, divider, info, spacer, title } from "./log";
 import { getPlatform } from "./platform";
+import { finalizeDebug } from "./remote-debug";
 import { summarizeExecution, summaryTable } from "./results";
 import { reportTasks, runTillDoneOrCancelled } from "./runner";
 import { shutdown } from "./shutdown";
@@ -154,6 +155,7 @@ export async function run(params: CurrentsRunParameters = {}) {
 
   spacer();
 
+  await finalizeDebug({ recordKey, runId: run.runId });
   return {
     ..._summary,
     runUrl: run.runUrl,

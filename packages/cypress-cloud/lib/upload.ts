@@ -15,13 +15,17 @@ export function uploadImage(file: string, url: string) {
 export function uploadJson(file: string, url: string) {
   return uploadFile(file, url, "application/json");
 }
+export function uploadText(file: string, url: string) {
+  return uploadFile(file, url, "plain/text");
+}
 
 type UploadTypes =
   | "video/mp4"
   | "image/png"
   | "plain/text"
   | "application/json";
-async function uploadFile(file: string, url: string, type: UploadTypes) {
+
+export async function uploadFile(file: string, url: string, type: UploadTypes) {
   debug('uploading file "%s" to "%s"', file, url);
   const f = await readFile(file);
   await makeRequest({

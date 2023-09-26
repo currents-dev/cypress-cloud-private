@@ -6,12 +6,12 @@ import axios, {
   RawAxiosRequestHeaders,
 } from "axios";
 import axiosRetry from "axios-retry";
-import Debug from "debug";
 import _ from "lodash";
 import prettyMilliseconds from "pretty-ms";
 import { getCurrentsConfig } from "../config";
 import { ValidationError } from "../errors";
 import { warn } from "../log";
+import { Debug } from "../remote-debug";
 import { _currentsVersion, _cypressVersion, _runId } from "../state/global";
 import { getAPIBaseUrl, getDelay, isRetriableError } from "./config";
 import { maybePrintErrors } from "./printErrors";
@@ -68,7 +68,7 @@ export async function getClient() {
 
     debug("network request: %o", {
       ..._.pick(req, "method", "url", "headers"),
-      data: Buffer.isBuffer(req.data) ? "buffer" : req.data,
+      data: Buffer.isBuffer(req.data) ? "buffer" : redactData(req.data),
     });
 
     return req;
@@ -98,6 +98,16 @@ function onRetry(
     retryCount,
     MAX_RETRIES
   );
+}
+
+function redactData(data: Record<string, any>) {
+  // redact sensitive data
+  return _.mapValues(data, (value, key) => {
+    if (key === "stdout") {
+      return "<redacted stdout>";
+    }
+    return value;
+  });
 }
 
 export const makeRequest = async <T = any, D = any>(

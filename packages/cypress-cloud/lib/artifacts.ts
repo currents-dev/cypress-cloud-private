@@ -103,7 +103,7 @@ export async function uploadArtifacts({
         );
       },
 
-      () => debug("success uploading", coverageFilePath)
+      () => debug("success uploading coverage file %s", coverageFilePath)
     )(coverageFilePath, coverageUploadUrl);
   }
 }

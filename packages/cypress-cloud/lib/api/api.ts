@@ -102,3 +102,23 @@ export const updateInstanceStdout = (instanceId: string, stdout: string) =>
       stdout,
     },
   });
+
+export const getDebugUrl = ({
+  recordKey,
+  runId,
+}: {
+  recordKey: string;
+  runId: string;
+}) => {
+  return makeRequest<
+    { uploadUrl: string; readUrl: string },
+    { recordKey: string; runId: string }
+  >({
+    method: "POST",
+    url: `runs/debug-logs`,
+    data: {
+      recordKey,
+      runId,
+    },
+  }).then((result) => result.data);
+};

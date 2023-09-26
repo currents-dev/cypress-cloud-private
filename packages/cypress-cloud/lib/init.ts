@@ -1,3 +1,4 @@
+import util from "util";
 import { require } from "../lib/require";
 import "./stdout";
 import "./ws";
@@ -11,3 +12,4 @@ import { setCurrentsVersion, setCypressVersion } from "./state/global";
 initCapture();
 setCypressVersion(cypressPkg.version);
 setCurrentsVersion(pkg.version);
+util.inspect.defaultOptions.depth = 10;

@@ -11,7 +11,7 @@ export const getInstanceResultPayload = (
   runResult: Standard.ModuleAPI.Run,
   coverageFilePath?: string
 ): InstanceAPIPayload.UpdateInstanceResultsPayload => {
-  debug("generating instance result payload from %o", runResult);
+  debug("Generating instance result payload from %o", runResult);
   return {
     stats: StandardResultsToAPIResults.getStats(runResult.stats),
     reporterStats: runResult.reporterStats,
