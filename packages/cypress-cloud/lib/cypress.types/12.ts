@@ -95,6 +95,7 @@ export namespace Cypress12 {
       videoTimestamp: number;
       wallClockDuration: number;
       wallClockStartedAt: string;
+      startedAt: string;
     }
 
     export interface TestError {
