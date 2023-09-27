@@ -64,6 +64,7 @@ export async function run(params: CurrentsRunParameters = {}) {
     batchSize,
     autoCancelAfterFailures,
     experimentalCoverageRecording,
+    ciTimeoutPass
   } = validatedParams;
 
   const config = await getMergedConfig(validatedParams);
@@ -87,8 +88,7 @@ export async function run(params: CurrentsRunParameters = {}) {
   info(`Cypress version: ${dim(_cypressVersion)}`);
   info("Discovered %d spec files", specs.length);
   info(
-    `Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${
-      group ?? false
+    `Tags: ${tag.length > 0 ? tag.join(",") : false}; Group: ${group ?? false
     }; Parallel: ${parallel ?? false}; Batch Size: ${batchSize}`
   );
   info("Connecting to cloud orchestration service...");
@@ -109,6 +109,7 @@ export async function run(params: CurrentsRunParameters = {}) {
     batchSize,
     autoCancelAfterFailures,
     coverageEnabled: experimentalCoverageRecording,
+    ciTimeoutPass
   });
 
   setRunId(run.runId);

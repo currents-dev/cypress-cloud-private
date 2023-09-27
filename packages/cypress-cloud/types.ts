@@ -173,11 +173,16 @@ export type CurrentsRunParameters = StrippedCypressModuleAPIOptions & {
    * Whether to record coverage results. If set, must be a boolean, defaults to false.
    */
   experimentalCoverageRecording?: boolean;
+
+  /**
+   * Flag to allow a github action to pass/fail but no error, if the run is timed out.
+   */
+  ciTimeoutPass?: boolean;
 };
 
 // User-facing `run` interface
 // We can resolve the projectId and recordKey from different sources, so we can't really enforce them via the type definition
-export interface CurrentsRunAPI extends CurrentsRunParameters {}
+export interface CurrentsRunAPI extends CurrentsRunParameters { }
 
 // Params after validation and resolution
 export interface ValidatedCurrentsParameters extends CurrentsRunParameters {
