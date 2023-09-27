@@ -173,6 +173,11 @@ export type CurrentsRunParameters = StrippedCypressModuleAPIOptions & {
    * Whether to record coverage results. If set, must be a boolean, defaults to false.
    */
   experimentalCoverageRecording?: boolean;
+
+  /**
+   * Flag to allow a github action to pass/fail but no error, if the run is timed out.
+   */
+  ciTimeoutPass?: boolean;
 };
 
 // User-facing `run` interface

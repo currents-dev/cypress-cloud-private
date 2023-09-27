@@ -70,7 +70,7 @@ function getCypressCLIParams(
         }
       : {};
   return {
-    ..._.omit(result, "testingType"),
+    ..._.omit(result, "testingType", "ciTimeoutPass"),
     ...testingType,
   };
 }

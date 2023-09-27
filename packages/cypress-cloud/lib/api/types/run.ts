@@ -23,6 +23,7 @@ export type CreateRunPayload = {
   batchSize?: number;
   autoCancelAfterFailures: ValidatedCurrentsParameters["autoCancelAfterFailures"];
   coverageEnabled?: boolean;
+  ciTimeoutPass?: boolean;
 };
 
 export type CloudWarning = {
