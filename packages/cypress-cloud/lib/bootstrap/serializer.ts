@@ -66,8 +66,8 @@ function getCypressCLIParams(
   const testingType =
     result.testingType === "component"
       ? {
-        component: true,
-      }
+          component: true,
+        }
       : {};
   return {
     ..._.omit(result, "testingType", "ciTimeoutPass"),

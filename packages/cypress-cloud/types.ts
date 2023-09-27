@@ -182,7 +182,7 @@ export type CurrentsRunParameters = StrippedCypressModuleAPIOptions & {
 
 // User-facing `run` interface
 // We can resolve the projectId and recordKey from different sources, so we can't really enforce them via the type definition
-export interface CurrentsRunAPI extends CurrentsRunParameters { }
+export interface CurrentsRunAPI extends CurrentsRunParameters {}
 
 // Params after validation and resolution
 export interface ValidatedCurrentsParameters extends CurrentsRunParameters {

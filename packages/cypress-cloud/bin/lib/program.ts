@@ -129,7 +129,8 @@ ${getLegalNotice()}
       )
         .default(undefined)
         .argParser((i) => (i === "false" ? false : true))
-    ).addOption(
+    )
+    .addOption(
       new Option(
         `--ci-timeout-pass [bool]`,
         `Enable ci runner to pass/fail but no error even if the run timed out`
