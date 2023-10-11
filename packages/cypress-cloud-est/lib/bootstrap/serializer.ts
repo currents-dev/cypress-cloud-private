@@ -1,9 +1,7 @@
-import {
-  CurrentsRunParameters,
-  CypressRunParameters,
-} from "cypress-cloud/types";
 import Debug from "debug";
 import _ from "lodash";
+import { configSlugs } from "../..";
+import { CurrentsRunParameters, CypressRunParameters } from "../../types";
 import { getCypressRunAPIParams } from "../config";
 import { shouldEnablePluginDebug } from "../debug";
 import { sortObjectKeys } from "../lang";
@@ -23,9 +21,9 @@ export function getBootstrapArgs({
       // merge the env with the currents specific env variables
       env: {
         ...(opts.env ?? {}),
-        currents_marker: true,
-        currents_temp_file: tempFilePath,
-        currents_debug_enabled: shouldEnablePluginDebug(params.cloudDebug),
+        [configSlugs.marker]: true,
+        [configSlugs.temp_file]: tempFilePath,
+        [configSlugs.debug_enabled]: shouldEnablePluginDebug(params.cloudDebug),
       },
     }))
     .tap((opts) => {

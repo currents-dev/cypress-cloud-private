@@ -1,4 +1,4 @@
-import { InstanceId } from "cypress-cloud/types";
+import { InstanceId } from "../../types";
 import { error, warn } from "../log";
 import { getFailedFakeInstanceResult } from "../results/empty";
 import { SpecAfterToModuleAPIMapper } from "../results/mapResult";

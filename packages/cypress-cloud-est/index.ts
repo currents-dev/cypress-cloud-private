@@ -13,3 +13,10 @@ export type { CurrentsRunAPI } from "./types";
 export function run(params?: CurrentsRunAPI) {
   return internalRun(params);
 }
+
+export const configSlugs = {
+  marker: "currents_marker",
+  ws: "currents_ws",
+  temp_file: "currents_temp_file",
+  debug_enabled: "currents_debug_enabled",
+};

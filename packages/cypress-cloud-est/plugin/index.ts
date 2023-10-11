@@ -4,6 +4,7 @@ import Debug from "debug";
 import fs from "fs";
 import { format } from "util";
 import WebSocket from "ws";
+import { configSlugs } from "..";
 import { dim, warn } from "../lib/log";
 import { Event } from "../lib/pubsub";
 
@@ -87,10 +88,11 @@ export async function cloudPlugin(
 
   debug("currents plugin loaded");
 
-  if (config.env.currents_temp_file) {
-    debug("dumping config to '%s'", config.env.currents_temp_file);
-    fs.writeFileSync(config.env.currents_temp_file, JSON.stringify(config));
-    debug("config is availabe at '%s'", config.env.currents_temp_file);
+  const configFileDumpPath = config.env[configSlugs.temp_file];
+  if (configFileDumpPath) {
+    debug("dumping config to '%s'", configFileDumpPath);
+    fs.writeFileSync(configFileDumpPath, JSON.stringify(config));
+    debug("config is availabe at '%s'", configFileDumpPath);
   }
 
   return config;

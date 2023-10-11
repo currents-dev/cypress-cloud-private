@@ -1,7 +1,4 @@
-import {
-  SpecWithRelativeRoot,
-  ValidatedCurrentsParameters,
-} from "cypress-cloud/types";
+import { SpecWithRelativeRoot, ValidatedCurrentsParameters } from "../../types";
 import { getCapturedOutput, resetCapture } from "../capture";
 
 import { ModuleAPIResults } from "../results/moduleAPIResult";

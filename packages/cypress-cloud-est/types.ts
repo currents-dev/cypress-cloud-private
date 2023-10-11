@@ -127,6 +127,7 @@ export type CurrentsRunParameters = StrippedCypressModuleAPIOptions & {
 
   /** The URL of the currents server to use. If not specified, will use the one from currents.config.js */
   cloudServiceUrl?: string;
+
   /** The environment variables to use for the run */
   env?: object;
 
