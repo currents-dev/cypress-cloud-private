@@ -1,3 +1,7 @@
+
+
+## [2.0.1](https://github.com/currents-dev/cypress-cloud/compare/v2.0.0-beta.1...v2.0.1) (2023-10-17)
+
 # [2.0.0-beta.1](https://github.com/currents-dev/cypress-cloud/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2023-09-22)
 
 ### Bug Fixes

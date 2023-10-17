@@ -8,7 +8,7 @@
     "runtest": "ts-node scripts/test.ts"
   },
   "dependencies": {
-    "cypress-cloud": "*"
+    "@currents/cc-est": "*"
   },
   "devDependencies": {
     "@swc/jest": "^0.2.29",
