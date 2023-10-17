@@ -1,4 +1,4 @@
-
+## [1.0.1](https://github.com/currents-dev/cypress-cloud/compare/v2.0.0-beta.1...v1.0.1) (2023-10-17)
 
 ## [2.0.1](https://github.com/currents-dev/cypress-cloud/compare/v2.0.0-beta.1...v2.0.1) (2023-10-17)
 
