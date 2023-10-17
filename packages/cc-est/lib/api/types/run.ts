@@ -1,4 +1,7 @@
-import { Platform, ValidatedCurrentsParameters } from "cc-est-est/types";
+import {
+  Platform,
+  ValidatedCurrentsParameters,
+} from "@currents/cc-est-est/types";
 import { CiParams, CiProvider } from "../../ciProvider";
 
 export type CreateRunPayload = {

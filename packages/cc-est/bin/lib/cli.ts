@@ -1,4 +1,4 @@
-import { CurrentsRunParameters, TestingType } from "cc-est/types";
+import { CurrentsRunParameters, TestingType } from "@currents/cc-est/types";
 import Debug from "debug";
 import { activateDebug } from "../../lib/debug";
 import { sanitizeAndConvertNestedArgs } from "./parser";

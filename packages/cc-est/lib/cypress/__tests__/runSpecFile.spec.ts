@@ -1,5 +1,5 @@
+import { ValidatedCurrentsParameters } from "@currents/cc-est/types";
 import { expect } from "@jest/globals";
-import { ValidatedCurrentsParameters } from "cc-est/types";
 import { run } from "cypress";
 import { runSpecFile } from "../cypress";
 jest.mock("cypress", () => ({

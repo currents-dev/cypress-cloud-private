@@ -46,7 +46,7 @@ export const results = {
       testId: "r0",
       testAttemptIndex: 0,
       takenAt: expect.any(String),
-      path: "/Users/agoldis/cc-est/examples/webapp/cypress/screenshots/failed.spec.js/Failed -- should fail (failed).png",
+      path: "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/screenshots/failed.spec.js/Failed -- should fail (failed).png",
       height: 1440,
       width: 2560,
     },
@@ -70,7 +70,7 @@ export const results = {
               originalFile: "cypress/e2e/failed.spec.js",
               relativeFile: "examples/webapp/cypress/e2e/failed.spec.js",
               absoluteFile:
-                "/Users/agoldis/cc-est/examples/webapp/cypress/e2e/failed.spec.js",
+                "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/e2e/failed.spec.js",
               frame:
                 '  1 | describe("Failed", function () {\n  2 |   it("should fail", function () {\n> 3 |     expect(fail).to.be.true;\n    |            ^\n  4 |   });\n  5 | });\n  6 | ',
               language: "js",

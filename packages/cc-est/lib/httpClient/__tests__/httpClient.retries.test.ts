@@ -1,10 +1,10 @@
-import * as log from "cc-est/lib/log";
+import * as log from "@currents/cc-est/lib/log";
 import nock from "nock";
 import { getAPIBaseUrl, getDelay, isRetriableError } from "../config";
 import { makeRequest } from "../httpClient";
 
 jest.mock("../config");
-jest.mock("cc-est/lib/log");
+jest.mock("@currents/cc-est/lib/log");
 (getAPIBaseUrl as jest.Mock).mockReturnValue("http://localhost:1234");
 const apiMock = nock(getAPIBaseUrl()).persist();
 

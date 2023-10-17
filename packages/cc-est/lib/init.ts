@@ -3,7 +3,7 @@ import "./stdout";
 import "./ws";
 
 const cypressPkg = require("cypress/package.json");
-const pkg = require("cc-est/package.json");
+const pkg = require("@currents/cc-est/package.json");
 
 import { initCapture } from "./capture";
 import { setCurrentsVersion, setCypressVersion } from "./state/global";

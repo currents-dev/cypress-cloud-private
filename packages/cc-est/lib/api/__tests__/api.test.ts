@@ -7,12 +7,12 @@ import {
   setInstanceTests,
   updateInstanceResults,
   updateInstanceStdout,
-} from "cc-est/lib/api";
-import { getAPIBaseUrl } from "cc-est/lib/httpClient/config";
+} from "@currents/cc-est/lib/api";
+import { getAPIBaseUrl } from "@currents/cc-est/lib/httpClient/config";
 import _ from "lodash";
 import nock from "nock";
 
-jest.mock("cc-est/lib/httpClient/config", () => ({
+jest.mock("@currents/cc-est/lib/httpClient/config", () => ({
   getAPIBaseUrl: jest.fn().mockReturnValue("http://localhost:1234"),
 }));
 

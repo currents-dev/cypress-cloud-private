@@ -23,7 +23,7 @@ export async function cloudPlugin(
     warn(
       `Currents plugin is not installed properly - missing required variables in ${dim(
         "cypress.env"
-      )}. Please refer to: https://github.com/currents-dev/cc-est#setup-with-existing-plugins`
+      )}. Please refer to: https://github.com/currents-dev/@currents/cc-est#setup-with-existing-plugins`
     );
   }
 

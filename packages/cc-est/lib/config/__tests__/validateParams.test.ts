@@ -1,6 +1,6 @@
+import { ValidationError } from "@currents/cc-est/lib/errors";
+import { CurrentsRunParameters } from "@currents/cc-est/types";
 import { describe, expect, it } from "@jest/globals";
-import { ValidationError } from "cc-est/lib/errors";
-import { CurrentsRunParameters } from "cc-est/types";
 import { getCurrentsConfig } from "../config";
 import {
   cloudServiceInvalidUrlError,
@@ -10,7 +10,7 @@ import {
   validateParams,
 } from "../params";
 
-jest.mock("cc-est/lib/log");
+jest.mock("@currents/cc-est/lib/log");
 jest.mock("../config", () => ({
   getCurrentsConfig: jest.fn(() => ({
     e2e: {

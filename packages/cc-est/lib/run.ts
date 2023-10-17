@@ -83,7 +83,7 @@ export async function run(params: CurrentsRunParameters = {}) {
     browser: validatedParams.browser,
   });
 
-  info(`cc-est version: ${dim(_currentsVersion)}`);
+  info(`@currents/cc-est version: ${dim(_currentsVersion)}`);
   info(`Cypress version: ${dim(_cypressVersion)}`);
   info("Discovered %d spec files", specs.length);
   info(

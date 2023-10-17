@@ -80,7 +80,8 @@ export class SpecAfterResult {
     return match(attemptState)
       .with("failed", () => ({
         name: "Error",
-        message: "[cc-est] Could not get cypress attempt error details",
+        message:
+          "[@currents/cc-est] Could not get cypress attempt error details",
         stack: "",
         codeFrame: null,
       }))

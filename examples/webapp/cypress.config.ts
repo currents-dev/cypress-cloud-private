@@ -1,4 +1,4 @@
-import currents from "cc-est/plugin";
+import currents from "@currents/cc-est/plugin";
 import { defineConfig } from "cypress";
 
 module.exports = defineConfig({

@@ -1,11 +1,11 @@
-import { createRun, CreateRunResponse } from "cc-est/lib/api";
-import { getAPIBaseUrl } from "cc-est/lib/httpClient/config";
+import { createRun, CreateRunResponse } from "@currents/cc-est/lib/api";
+import { getAPIBaseUrl } from "@currents/cc-est/lib/httpClient/config";
 import nock from "nock";
 import { printWarnings } from "../warnings";
 import { createRunPayload, createRunResponse } from "./fixtures/run";
 
 jest.mock("../warnings");
-jest.mock("cc-est/lib/httpClient/config", () => ({
+jest.mock("@currents/cc-est/lib/httpClient/config", () => ({
   getAPIBaseUrl: jest.fn().mockReturnValue("http://localhost:1234"),
 }));
 

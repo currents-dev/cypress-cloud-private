@@ -2,7 +2,7 @@ import {
   CurrentsRunParameters,
   CypressRunParameters,
   ValidatedCurrentsParameters,
-} from "cc-est/types";
+} from "@currents/cc-est/types";
 import Debug from "debug";
 import _ from "lodash";
 import { shouldEnablePluginDebug } from "../debug";

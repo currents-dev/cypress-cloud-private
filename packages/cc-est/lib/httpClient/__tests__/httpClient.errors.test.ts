@@ -1,10 +1,10 @@
+import * as log from "@currents/cc-est/lib/log";
 import { expect } from "@jest/globals";
-import * as log from "cc-est/lib/log";
 import nock from "nock";
 import { makeRequest } from "../httpClient";
 import { formatGenericError } from "../printErrors";
 
-jest.mock("cc-est/lib/log");
+jest.mock("@currents/cc-est/lib/log");
 
 const apiMock = nock("https://cy.currents.dev");
 

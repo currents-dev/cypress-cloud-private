@@ -46,7 +46,7 @@ export const results = {
       height: 1320,
       width: 2000,
       name: "custom-screenshot",
-      path: "/Users/agoldis/cc-est/examples/webapp/cypress/screenshots/passed.spec.js/Passed -- should pass.png",
+      path: "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/screenshots/passed.spec.js/Passed -- should pass.png",
       takenAt: expect.any(String),
       testAttemptIndex: 0,
       testId: "r0",

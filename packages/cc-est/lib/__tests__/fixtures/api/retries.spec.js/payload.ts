@@ -45,7 +45,7 @@ export const results = {
       height: 1440,
       width: 2560,
       name: null,
-      path: "/Users/agoldis/cc-est/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed).png",
+      path: "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed).png",
       takenAt: expect.any(String),
       testAttemptIndex: 0,
       testId: "r0",
@@ -55,7 +55,7 @@ export const results = {
       height: 1440,
       width: 2560,
       name: null,
-      path: "/Users/agoldis/cc-est/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
+      path: "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/screenshots/retries.spec.js/Retries -- Runs a test with retries (failed) (attempt 2).png",
       takenAt: expect.any(String),
       testAttemptIndex: 1,
       testId: "r0",
@@ -80,7 +80,7 @@ export const results = {
               originalFile: "cypress/e2e/retries.spec.js",
               relativeFile: "examples/webapp/cypress/e2e/retries.spec.js",
               absoluteFile:
-                "/Users/agoldis/cc-est/examples/webapp/cypress/e2e/retries.spec.js",
+                "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/e2e/retries.spec.js",
               frame:
                 '   9 |       if (i > 1) {\n  10 |         i--;\n> 11 |         throw new Error("oh no!");\n     |               ^\n  12 |       }\n  13 |       return;\n  14 |     }',
               language: "js",
@@ -102,7 +102,7 @@ export const results = {
               originalFile: "cypress/e2e/retries.spec.js",
               relativeFile: "examples/webapp/cypress/e2e/retries.spec.js",
               absoluteFile:
-                "/Users/agoldis/cc-est/examples/webapp/cypress/e2e/retries.spec.js",
+                "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/e2e/retries.spec.js",
               frame:
                 '   9 |       if (i > 1) {\n  10 |         i--;\n> 11 |         throw new Error("oh no!");\n     |               ^\n  12 |       }\n  13 |       return;\n  14 |     }',
               language: "js",

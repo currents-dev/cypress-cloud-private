@@ -51,7 +51,7 @@ export const results = {
       height: 1440,
       width: 2560,
       name: null,
-      path: "/Users/agoldis/cc-est/examples/webapp/cypress/screenshots/skipped.spec.js/Skipped -- should not be skipped -- before each hook (failed).png",
+      path: "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/screenshots/skipped.spec.js/Skipped -- should not be skipped -- before each hook (failed).png",
       takenAt: expect.any(String),
       testAttemptIndex: 0,
       testId: "r0",
@@ -78,7 +78,7 @@ export const results = {
               originalFile: "cypress/e2e/skipped.spec.js",
               relativeFile: "examples/webapp/cypress/e2e/skipped.spec.js",
               absoluteFile:
-                "/Users/agoldis/cc-est/examples/webapp/cypress/e2e/skipped.spec.js",
+                "/Users/agoldis/@currents/cc-est/examples/webapp/cypress/e2e/skipped.spec.js",
               frame:
                 '  1 | describe("Skipped", function () {\n  2 |   beforeEach(function () {\n> 3 |     throw new Error("before each exception");\n    |           ^\n  4 |   });\n  5 |   it("should not be skipped", function () {\n  6 |     expect(true).to.be.true;',
               language: "js",

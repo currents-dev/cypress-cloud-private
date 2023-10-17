@@ -26,7 +26,7 @@ export namespace Cypress12 {
     }
 
     export interface Spec {
-      absolute: string; // /Users/agoldis/cc-est/examples/webapp/cypress/e2e/crash.spec.js
+      absolute: string; // /Users/agoldis/@currents/cc-est/examples/webapp/cypress/e2e/crash.spec.js
       baseName: string; // crash.spec.js
       fileExtension: string; // .js
       fileName: string; // crash

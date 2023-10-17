@@ -1,7 +1,7 @@
 import {
   CurrentsRunParameters,
   ValidatedCurrentsParameters,
-} from "cc-est/types";
+} from "@currents/cc-est/types";
 import cypress from "cypress";
 import Debug from "debug";
 import _ from "lodash";

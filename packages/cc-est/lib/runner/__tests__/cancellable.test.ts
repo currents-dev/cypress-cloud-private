@@ -1,6 +1,6 @@
+import { warn } from "@currents/cc-est/lib/log";
+import { Event, getPubSub } from "@currents/cc-est/lib/pubsub";
 import { describe, expect, it } from "@jest/globals";
-import { warn } from "cc-est/lib/log";
-import { Event, getPubSub } from "cc-est/lib/pubsub";
 import { random } from "lodash";
 import { runTillDoneOrCancelled } from "../cancellable";
 import { runTillDone } from "../runner";
@@ -8,7 +8,7 @@ import { runTillDone } from "../runner";
 jest.mock("../runner", () => ({
   runTillDone: jest.fn().mockResolvedValue({}),
 }));
-jest.mock("cc-est/lib/log", () => ({
+jest.mock("@currents/cc-est/lib/log", () => ({
   warn: jest.fn(),
 }));
 

@@ -1,4 +1,4 @@
-import { ValidatedCurrentsParameters } from "cc-est/types";
+import { ValidatedCurrentsParameters } from "@currents/cc-est/types";
 import { getBinPath } from "cy2";
 import Debug from "debug";
 import execa, { ExecaError } from "execa";
@@ -31,7 +31,7 @@ export const bootCypress = async (params: ValidatedCurrentsParameters) => {
   try {
     const f = fs.readFileSync(tempFilePath, "utf-8");
     if (!f) {
-      throw new Error("Is cc-est/plugin installed?");
+      throw new Error("Is @currents/cc-est/plugin installed?");
     }
     debug("cypress config '%s': '%s'", tempFilePath, f);
     return JSON.parse(f);
@@ -41,7 +41,7 @@ export const bootCypress = async (params: ValidatedCurrentsParameters) => {
     info(bold("Cypress stderr:\n"), stderr);
 
     throw new ValidationError(`Unable to resolve cypress configuration
-- make sure that 'cc-est/plugin' is installed
+- make sure that '@currents/cc-est/plugin' is installed
 - report the issue together with cypress stdout and stderr
 `);
   }

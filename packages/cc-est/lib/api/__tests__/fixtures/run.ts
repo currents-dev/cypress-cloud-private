@@ -1,4 +1,4 @@
-import { CreateRunPayload, CreateRunResponse } from "cc-est/lib/api/";
+import { CreateRunPayload, CreateRunResponse } from "@currents/cc-est/lib/api/";
 
 export const createRunPayload: CreateRunPayload = {
   ci: {

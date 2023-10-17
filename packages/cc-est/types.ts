@@ -166,7 +166,7 @@ export type CurrentsRunParameters = StrippedCypressModuleAPIOptions & {
   ccConfigFile?: string;
 
   /**
-   * Enable debug mode for cc-est, this will print out logs for troubleshooting.
+   * Enable debug mode for @currents/cc-est, this will print out logs for troubleshooting.
    */
   cloudDebug?: DebugMode | true | string | string[];
 

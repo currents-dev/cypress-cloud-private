@@ -1,4 +1,4 @@
-import { Platform, ScreenshotArtifact } from "cc-est/types";
+import { Platform, ScreenshotArtifact } from "@currents/cc-est/types";
 import { Standard } from "../../cypress.types";
 import { TestAttemptState, TestState } from "../../cypress.types/shared";
 

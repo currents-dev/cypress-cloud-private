@@ -1,5 +1,5 @@
 {
-  "name": "cc-est",
+  "name": "@currents/cc-est",
   "version": "2.0.0-beta.1",
   "main": "./dist/index.js",
   "license": "GPL-3.0-or-later",
@@ -67,7 +67,7 @@
     "ws": "^8.13.0"
   },
   "bin": {
-    "cc-est": "./dist/bin/cli.js"
+    "@currents/cc-est": "./dist/bin/cli.js"
   },
   "files": [
     "dist"
