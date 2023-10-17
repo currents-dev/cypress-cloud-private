@@ -1,5 +1,5 @@
+import currents from "cc-est/plugin";
 import { defineConfig } from "cypress";
-import currents from "cypress-cloud-est/plugin";
 
 module.exports = defineConfig({
   video: true,

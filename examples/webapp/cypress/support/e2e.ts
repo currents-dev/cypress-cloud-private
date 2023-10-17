@@ -1,5 +1,5 @@
 import registerCypressGrep from "@cypress/grep/src/support";
-require("cypress-cloud/support");
+require("cc-est/support");
 require("./commands");
 
 registerCypressGrep();
