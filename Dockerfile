@@ -1,3 +1,4 @@
+# docker run -it --entrypoint /bin/bash -v .:/app  cypress-local
 FROM cypress/included
 
 

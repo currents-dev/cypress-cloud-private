@@ -256,20 +256,20 @@ npm run test
 ### Beta channel
 
 ```sh
-cd packages/cypress-cloud
+cd packages/cc-est
 npm run release -- --preRelease=beta && npm run release:npm -- -t beta
 ```
 
 ### Latest channel
 
 ```sh
-cd packages/cypress-cloud
+cd packages/cc-est
 npm run release && npm run release:npm -- -t latest
 ```
 
 ### Localhost
 
-Publishing from `packages/cypress-cloud`:
+Publishing from `packages/cc-est`:
 
 ```sh
 docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
@@ -281,7 +281,7 @@ npm_config_registry=http://localhost:4873  npm run release:npm -- --tag latest
 Using:
 
 ```sh
-npm install cypress-cloud --registry http://localhost:4873
+npm install @currents/cc-est --registry http://localhost:4873 --@currents:registry=http://localhost:4873
 ```
 
 ## License
