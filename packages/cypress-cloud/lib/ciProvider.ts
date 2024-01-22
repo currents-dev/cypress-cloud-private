@@ -31,6 +31,7 @@ import debugFn from "debug";
 
 import _ from "lodash";
 import { ValidationError } from "./errors";
+import { GhaEventData } from "./git";
 
 const debug = debugFn("currents:ci");
 
@@ -650,6 +651,7 @@ type CiProviderData = {
   defaultBranch?: string;
   remoteBranch?: string;
   runAttempt?: string;
+  ghaEventData?: GhaEventData;
 };
 
 interface ProviderCommitParamsRes {
