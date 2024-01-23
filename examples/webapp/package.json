@@ -10,7 +10,7 @@
     "cypress:script:esm": "node scripts/currents-script.mjs"
   },
   "dependencies": {
-    "cypress": "^12.17.4",
+    "cypress": "12.17.4",
     "cypress-cloud": "*",
     "cypress-terminal-report": "^5.3.3",
     "next": "^13.2.1",
